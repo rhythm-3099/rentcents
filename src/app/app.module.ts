@@ -1,16 +1,51 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { RouterModule } from "@angular/router";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './auth/login/login.component';
+import { HomeComponent } from "./homepage/home.component";
+import { HeaderComponent} from "./header/header.component";
+
+import { MatCardModule } from '@angular/material/card';
+import {  MatFormFieldModule} from '@angular/material/form-field';
+import {  MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import { HttpClientModule } from '@angular/common/http';
+
+
+
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SignupComponent } from './auth/signup/signup.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    HomeComponent,
+    HeaderComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    MatToolbarModule,
+    RouterModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
