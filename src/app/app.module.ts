@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignupComponent } from './auth/signup/signup.component';
+import { UploadItemComponent } from './uploadItem/uploaditem.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { SignupComponent } from './auth/signup/signup.component';
     LoginComponent,
     HomeComponent,
     HeaderComponent,
-    SignupComponent
+    SignupComponent,
+    UploadItemComponent
   ],
   imports: [
     BrowserModule,

@@ -7,7 +7,7 @@
 
       <a mat-button routerLink="/signup" routerLinkActive="mat-accent" *ngIf="!userIsAuthenticated">Signup</a>
 
-
+      <a mat-button routerLink="/uploaditem" routerLinkActive="mat-accent" *ngIf="userIsAuthenticated">Upload an item</a>
       <button mat-button *ngIf="userIsAuthenticated" (click)="onLogout()">Log out</button>
 
 
