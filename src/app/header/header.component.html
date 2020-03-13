@@ -1,5 +1,14 @@
 <mat-toolbar>
     RentsCents
-  <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
-  <a mat-button routerLink="/signup" routerLinkActive="mat-accent">Signup</a>
+
+
+      <a mat-button routerLink="/login" routerLinkActive="mat-accent" *ngIf="!userIsAuthenticated">Login</a>
+
+
+      <a mat-button routerLink="/signup" routerLinkActive="mat-accent" *ngIf="!userIsAuthenticated">Signup</a>
+
+
+      <button mat-button *ngIf="userIsAuthenticated" (click)="onLogout()">Log out</button>
+
+
 </mat-toolbar>

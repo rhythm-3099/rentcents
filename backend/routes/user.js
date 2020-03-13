@@ -45,6 +45,7 @@ router.post("/login", (req,res,next) => {
     .then(result => {
 
       if(!result) {
+        fetchedUser = null;
         return res.status(401).json({
           message: 'Auth failed'
         });
@@ -53,7 +54,7 @@ router.post("/login", (req,res,next) => {
       res.status(200).json({
         token: token
       });
-      //console.log(token);
+      //console.log(fetchedUser);
     })
     .catch(err => {
       return res.status(401).json({
