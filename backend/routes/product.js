@@ -16,12 +16,13 @@ router.post("/", (req, res, next) => {
   product.save()
     .then(result => {
       console.log(result);
+      res.status(200).json({
+        "message" : "Product added Succesfully."
+      });
     })
     .catch(err => console.log(err));
 
-  res.status(200).json({
-    "message" : "Product added Succesfully."
-  });
+
 })
 
 router.get("/", (req, res, next) => {
