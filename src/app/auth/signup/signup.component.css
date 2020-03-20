@@ -1,10 +1,10 @@
 mat-card{
-  width: 80%;
+  width: 40%;
   margin: auto;
 }
 
 input, mat-form-field{
-  width: 100%;
+  width: 95%;
 }
 
 mat-spinner {
