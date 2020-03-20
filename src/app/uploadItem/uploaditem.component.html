@@ -1,0 +1,61 @@
+<mat-card>
+  <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
+  <form (submit)="onUpload(signupForm)" #signupForm="ngForm" >
+
+    <div>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput name="name" ngModel type="text" placeholder="Enter the name of the item" #mobInput="ngModel" required>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput name="description" ngModel type="text" placeholder="Enter the description of the item" #mobInput="ngModel" required>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Expected price</mat-label>
+        <input matInput name="price" ngModel type="text" placeholder="Enter the expected price" #mobInput="ngModel" required>
+      </mat-form-field>
+    </div>
+
+    <!-- <div>
+      <mat-form-field appearance="legacy">
+        <mat-label>Email</mat-label>
+        <input matInput name="email" ngModel type="email" placeholder="Email" #emailInput="ngModel" required email>
+        <mat-error *ngIf="emailInput.invalid">Please enter a valid email</mat-error>
+
+      </mat-form-field>
+    </div> -->
+
+    <!-- <div>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput name="password" ngModel type="password" placeholder="Password" #passwordInput="ngModel" required>
+        <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <mat-label>Confirm Password</mat-label>
+        <input matInput name="password" ngModel type="password" placeholder="Confirm Password" #passwordInput="ngModel" required>
+        <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+      </mat-form-field>
+    </div> -->
+
+    <!-- <div>
+      <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading">Upload for rent</button>
+    </div> -->
+
+    <div>
+      <button mat-raised-button color="primary" type="submit" >Upload for rent</button>
+    </div>
+    <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
+
+  </form>
+</mat-card>
