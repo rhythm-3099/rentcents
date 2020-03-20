@@ -14,7 +14,7 @@ router.post("/", (req, res, next) => {
     rating : 0
   });
   product.save()
-    .then(resilt => {
+    .then(result => {
       console.log(result);
     })
     .catch(err => console.log(err));

@@ -11,7 +11,8 @@ const app = express();
 
 mongoose
   .connect(
-    "mongodb+srv://rhythm1:rhythm1@test-cphts.mongodb.net/test?retryWrites=true&w=majority"
+    "mongodb+srv://rhythm1:rhythm1@test-cphts.mongodb.net/test?retryWrites=true&w=majority",
+    {useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => {
     console.log("Connected to database!");
