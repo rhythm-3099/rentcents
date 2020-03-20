@@ -53,9 +53,10 @@ router.post("/login", (req,res,next) => {
       const token = jwt.sign({email: fetchedUser.email, userId: fetchedUser._id}, 'secret_this_should_be_longer', {expiresIn: "1h"});
       res.status(200).json({
         token: token,
+        userId : fetchedUser,
         expiresIn: "3600"
       });
-      //console.log(fetchedUser);
+      console.log(fetchedUser);
     })
     .catch(err => {
       return res.status(401).json({
@@ -63,5 +64,15 @@ router.post("/login", (req,res,next) => {
       });
     });
 });
+
+router.get("/", (req, res, next) => {
+  User.find().then(documents => {
+    res.status(200).json({
+      message: "Products fetched successfully!",
+      users: documents
+    });
+  });
+})
+
 
 module.exports = router;
