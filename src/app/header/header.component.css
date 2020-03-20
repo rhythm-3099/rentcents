@@ -1,3 +1,8 @@
-a {
+
+mat-toolbar{
+  color: white;
+  background-color: black;    
+}
+span{
   float: right;
 }

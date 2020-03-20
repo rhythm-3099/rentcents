@@ -1,24 +1,26 @@
-<mat-card>
+<mat-card id="myDIV">
   <mat-spinner *ngIf="isLoading"></mat-spinner>
   <form (submit)="onLogin(loginForm)" #loginForm="ngForm" *ngIf="!isLoading">
-    <p>
+    <div style="margin-left: 10px ; margin-right: 10px ; " class="form-group">
+    <div >
       <mat-form-field appearance="legacy">
-        <mat-label>Email</mat-label>
-        <input matInput name="email" ngModel type="email" placeholder="Email" #emailInput="ngModel" required email>
+        <mat-label style="color : white; font-size: 1rem;">Email</mat-label>
+        <input matInput name="email" ngModel type="email" placeholder="Email" #emailInput="ngModel" class="form-control" required email>
         <mat-error *ngIf="emailInput.invalid">Please enter a valid email</mat-error>
 
       </mat-form-field>
-    </p>
-    <p>
+    </div>
+    <div>
       <mat-form-field>
-        <mat-label>password</mat-label>
-        <input matInput name="password" ngModel type="password" placeholder="Password" #passwordInput="ngModel" required>
+        <mat-label style="color : white; font-size: 1rem;">Password</mat-label>
+        <input matInput name="password" ngModel type="password" placeholder="Password" #passwordInput="ngModel" class="form-control" required>
         <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
       </mat-form-field>
-    </p>
-    <p>
+    </div>
+    <div>
       <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading">Login</button>
-    </p>
+    </div>
+  </div>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
 
   </form>
