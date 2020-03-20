@@ -30,13 +30,13 @@ export class NavbarComponent implements OnInit {
   private router:Router
   //private flashMessages : FlashMessagesService
   ) { }
-   
-  
+
+
   private hotelUser : any;
   private usernameOfUser;
   private navbarOpen = false;
   ngOnInit() {
-   
+
     // this.authService.getProfile().subscribe(
     //   profile =>{
     //     this.hotelUser = profile.user  ;
