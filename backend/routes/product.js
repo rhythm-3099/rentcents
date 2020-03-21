@@ -7,7 +7,9 @@ const Product = require("../models/product");
 const router = express.Router();
 
 router.post("/", (req, res, next) => {
+
   console.log('product creating:)');
+
   const product = new Product({
     name: req.body.name,
     description : req.body.description,
@@ -16,6 +18,7 @@ router.post("/", (req, res, next) => {
     state: req.body.state,
     main_category: req.body.main_category,
     sub_category: req.body.sub_category,
+    owner: req.body.userId,
     rating : 0
   });
   console.log(product);

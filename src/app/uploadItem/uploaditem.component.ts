@@ -17,22 +17,22 @@ export class UploadItemComponent {
   constructor(public user_item_service: User_item_service, private _snackBar: MatSnackBar) {}
 
   onUpload(form: NgForm) {
-    console.log(form.value.name,form.value.description,form.value.price,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
+    console.log(form.value.name,form.value.description,form.value.price,form.value.city,form.value.state,form.value.catef,form.value.sub_category);
     if (form.invalid) {
       return;
     }
     //console.log(form.value.name,form.value.description,form.value.price,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
-    this.user_item_service.addProduct(form.value.name,form.value.description,form.value.price,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);//,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
+    this.user_item_service.addProduct(form.value.name,form.value.description,form.value.price,form.value.city,form.value.state,form.value.catef,form.value.sub_category);//,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
     const message = 'Item added!!';
     this._snackBar.open('Item added', 'Okay', {
       duration: 3000
     });
     form.resetForm();
 }
-   
+
 
 categories = [
-  
+
   {value: 'Real Estate-0', viewValue: "Real Estate"},
   {value: 'Vehicles-1', viewValue: 'Vehicles'},
   {value: 'Electronics-2', viewValue: 'Electronics'},
@@ -54,7 +54,7 @@ findSUB(catef){
   if(catef == "Hobby")this.cat_sub = ["Singing equipment","Dance equipment","Others"];
   if(catef == "Books")this.cat_sub = ["Love stories","NCRT books","Horror","History","Others"];
   if(catef == "Educational")this.cat_sub = ["Reference Books","Journals","Magazines","Notebooks","CDs","Other"];
-  if(catef == "Clothing")this.cat_sub = ["Men","Women","Children","Other"];    
+  if(catef == "Clothing")this.cat_sub = ["Men","Women","Children","Other"];
   if(catef == "Furniture")this.cat_sub = ["Beds and wardrobes","Sofa and dining","Home Decor","Other"];
   // this.flag= true;
 }
