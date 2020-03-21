@@ -12,6 +12,7 @@ import { User_item_service } from "../services/user_item.service";
 export class UploadItemComponent {
 
   catef;
+  categ;
   cat_main = ["Real Estate","Vehicles","Electronics","Sports","Hobby","Books","Educational","Clothing","Furniture","Other"];
   cat_sub = ["Laptop","Pendrives/hard-disks","Computer accessories","Home entertainment","Televisions","camera accessories","projecters","Security cameras","Cameras","Printers and scanners","Other"];
   constructor(public user_item_service: User_item_service, private _snackBar: MatSnackBar) {}
@@ -21,9 +22,15 @@ export class UploadItemComponent {
     if (form.invalid) {
       return;
     }
+    console.log(form.value.main_category,form.value.sub_category);
     //console.log(form.value.name,form.value.description,form.value.price,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
+<<<<<<< HEAD
     this.user_item_service.addProduct(form.value.name,form.value.description,form.value.price,form.value.city,form.value.state,form.value.catef,form.value.sub_category);//,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
     const message = 'Item added!!';
+=======
+    this.user_item_service.addProduct(form.value.name,form.value.description,form.value.price,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);//,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
+    //git staconst message = 'Item added!!';
+>>>>>>> upstream/master
     this._snackBar.open('Item added', 'Okay', {
       duration: 3000
     });
