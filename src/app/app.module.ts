@@ -25,7 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignupComponent } from './auth/signup/signup.component';
 import { UploadItemComponent } from './uploadItem/uploaditem.component';
-
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,8 @@ import { UploadItemComponent } from './uploadItem/uploaditem.component';
     MatToolbarModule,
     MatSnackBarModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
