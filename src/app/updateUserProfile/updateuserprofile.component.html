@@ -1,0 +1,56 @@
+<mat-card>
+
+    <h2><b>Update Your Profile Information:</b></h2>
+    <form>
+      <div>
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input matInput name="f_name" ngModel type="text" placeholder="Enter your first name" #mobInput="ngModel" required>
+        </mat-form-field>
+      </div>
+  
+      <div>
+        <mat-form-field>
+          <mat-label>Last Name</mat-label>
+          <input matInput name="l_name" ngModel type="text" placeholder="Enter your last name" #mobInput="ngModel" required>
+        </mat-form-field>
+      </div>
+  
+      <div>
+        <mat-form-field>
+          <mat-label>Mobile Number</mat-label>
+          <input matInput name="mob" ngModel type="text" placeholder="Enter your mobile number" #mobInput="ngModel" required>
+        </mat-form-field>
+      </div>
+  
+      <div>
+        <mat-form-field appearance="legacy">
+          <mat-label>Email</mat-label>
+          <input matInput name="email" ngModel type="email" placeholder="Email" #emailInput="ngModel" required email>
+          <mat-error *ngIf="emailInput.invalid">Please enter a valid email</mat-error>
+  
+        </mat-form-field>
+      </div>
+  
+      <div>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput name="password" ngModel type="password" placeholder="Password" #passwordInput="ngModel" required>
+          <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div>
+        <mat-form-field>
+          <mat-label>Confirm Password</mat-label>
+          <input matInput name="password" ngModel type="password" placeholder="Confirm Password" #passwordInput="ngModel" required>
+          <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+        </mat-form-field>
+      </div>
+  
+      <div>
+        <button mat-raised-button color="primary" type="updateinfo">Update Information</button>
+      </div>
+  
+    </form>
+  </mat-card>
