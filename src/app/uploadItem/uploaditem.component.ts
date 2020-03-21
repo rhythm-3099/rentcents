@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { NgForm } from '@angular/forms';
+//import {MatSnackBar} from '@angular/material/snack-bar';
 
 import { User_item_service } from "../services/user_item.service";
 
@@ -13,10 +14,16 @@ export class UploadItemComponent {
   constructor(public user_item_service: User_item_service) {}
 
   onUpload(form: NgForm) {
+    console.log(form.value.name,form.value.description,form.value.price,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
     if (form.invalid) {
       return;
     }
-    this.user_item_service.addProduct(form.value.name,form.value.description,form.value.price);
+    console.log(form.value.name,form.value.description,form.value.price,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
+    this.user_item_service.addProduct(form.value.name,form.value.description,form.value.price,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
+    // const message = 'Item added!!';
+    // this._snackBar.open('Item added', 'Undo', {
+    //   duration: 3000
+    // });
     form.resetForm();
 }
 
