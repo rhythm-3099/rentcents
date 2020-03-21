@@ -7,4 +7,5 @@ export interface Product {
   state: string;
   main_category: string;
   sub_category: string;
+  userId: string;
 }

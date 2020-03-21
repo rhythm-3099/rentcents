@@ -18,7 +18,7 @@ export class UploadItemComponent {
   constructor(public user_item_service: User_item_service, private _snackBar: MatSnackBar) {}
 
   onUpload(form: NgForm) {
-    console.log(form.value.name,form.value.description,form.value.price,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
+    console.log(form.value.name,form.value.description,form.value.price,form.value.city,form.value.state,form.value.catef,form.value.sub_category);
     if (form.invalid) {
       return;
     }
