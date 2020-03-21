@@ -16,15 +16,19 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatGridListModule} from '@angular/material/grid-list';
+
 import { HttpClientModule } from '@angular/common/http';
+
+
+
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignupComponent } from './auth/signup/signup.component';
 import { UploadItemComponent } from './uploadItem/uploaditem.component';
-import { AboutComponent } from './about/about.component';
 import {MatSelectModule} from '@angular/material/select';
-//import {MatPaginatorModule} from '@angular/material/paginator';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { UserProfileComponent } from './userProfile/userprofile.component';
+import { UpdateUserProfileComponent } from './updateUserProfile/updateuserprofile.component';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +38,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     HeaderComponent,
     SignupComponent,
     UploadItemComponent,
-    AboutComponent
+    UserProfileComponent,
+    UpdateUserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -51,10 +56,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MatSnackBarModule,
     RouterModule,
     HttpClientModule,
-    MatSelectModule,
-    MatGridListModule,
-    NgxPaginationModule
-
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
