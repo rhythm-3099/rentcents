@@ -35,16 +35,27 @@
     </div>
     <div>
       <mat-form-field>
-        <mat-label>Main category</mat-label>
-        <input matInput name="main_category" ngModel type="text" placeholder="Main Category" #mobInput="ngModel" required>
+
+        <mat-select placeholder="Main Category" name="main_category" (selectionChange)="findSUB(catef)" [(ngModel)]="catef">
+
+          <mat-option *ngFor="let cas of cat_main" [value]="cas">
+            {{cas}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
-    </div>
+     </div>
+
     <div>
       <mat-form-field>
-        <mat-label>Sub category</mat-label>
-        <input matInput name="sub_category" ngModel type="text" placeholder="Sub Category" #mobInput="ngModel" required>
+
+        <mat-select placeholder="Sub Category" name="sub_category" [(ngModel)]="categ">
+          <mat-option *ngFor="let cas of cat_sub" [value]="cas">
+            {{cas}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
-    </div>
+     </div>
+
     <!-- <div style="color: #585d61; margin-bottom: 20px;" >
 
         Product image

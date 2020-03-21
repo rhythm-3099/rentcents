@@ -3,13 +3,14 @@ import { Subject } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
 import { Product } from './product.model';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({providedIn: 'root'})
 export class User_item_service  {
   private posts: Product[] = [];
   private postsUpdated = new Subject<Product[]>();
 
-  constructor(private http:HttpClient) {}
+  constructor(private http:HttpClient,public authService: AuthService) {}
 
   getPosts() {
     this.http.get<{message: string, products: Product[] }>('http://localhost:3000/api/product')
@@ -24,8 +25,9 @@ export class User_item_service  {
     return this.postsUpdated.asObservable();
   }
 
-  addProduct(name: string,  price: string, description: string, city: string, state: string, main_category: string, sub_category: string) { //, city: string, state: string, main_category: string, sub_cateegory: string){
-    const product: Product = {id:null, name: name,  price: price , description: description , city: city , state: state , main_category: main_category, sub_category: sub_category}//};
+
+  addProduct(name: string, description: string, price: string, city: string, state: string, main_category: string, sub_category: string) { //, city: string, state: string, main_category: string, sub_cateegory: string){
+    const product: Product = {id:null, name: name,  description: description , price: price, city: city , state: state , main_category: main_category, sub_category: sub_category, userId: this.authService.userId}//};
     console.log(product);
     this.http
         .post<{message: string}>('http://localhost:3000/api/product',product)

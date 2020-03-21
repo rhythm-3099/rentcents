@@ -7,7 +7,7 @@ const productSchema = mongoose.Schema({
   city: { type: String, required: true },
   state: { type: String, required: true },
   main_category: { type: String, required: true },
-  sub_category: { type: String, required: true },
+  sub_category: { type: String},
   rating: { type: String },
   owner : { type: String }
 });

@@ -1,26 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+
+    
 <app-header></app-header>
 <div>
   <router-outlet></router-outlet>
 </div>
-
 <mat-grid-list cols="4" rowHeight="1:2" guttersize="5px">
-   <mat-grid-tile
-     *ngFor="let tile of products">
+    <!-- items being paged -->
+  <!-- <div *ngFor="let item of pagedItems">{{item.name}}</div> -->
 
+   <mat-grid-tile *ngFor="let tile of pagedItems">
         <mat-card class="example-card">
           <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
             <mat-card-title>{{tile.Name}}</mat-card-title>
           </mat-card-header>
-          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="product pic unavailable">
+
+          <img mat-card-image src="https://www.apicius.es/wp-content/uploads/2012/07/IMG-20120714-009211.jpg" alt="product pic unavailable">
+          
           <mat-card-content>
             <p> Price : {{tile.price}}  </p>
           </mat-card-content>
+          
           <mat-card-actions>
             <button mat-raised-button color="primary">BUY</button>
             <button mat-raised-button color="primary">VIEW</button>
           </mat-card-actions>
+
         </mat-card>
-     
     </mat-grid-tile> 
 </mat-grid-list>
+
+ <!-- pager -->
+ 
+ <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+  <li [ngClass]="{disabled:pager.currentPage === 1}">
+      <!-- <a (click)="setPage(1)">First</a> --> <p>first</p>
+  </li>
+  <li [ngClass]="{disabled:pager.currentPage === 1}">
+      <!-- <a (click)="setPage(pager.currentPage - 1)">Previous</a> --><p>prev</p>
+  </li>
+  <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+      <a >{{page}}</a>
+  </li>
+  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item">
+      <!-- <a (click)="setPage(pager.currentPage + 1)">Next</a> --><a>Nextt</a>
+  </li>
+  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+      <!-- <a (click)="setPage(pager.totalPages)">Last</a> --> <a>last</a>
+  </li>
+</ul>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
