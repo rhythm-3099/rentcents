@@ -20,7 +20,7 @@ export class UploadItemComponent {
     }
     //console.log(form.value.name,form.value.description,form.value.price,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
     this.user_item_service.addProduct(form.value.name,form.value.description,form.value.price,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);//,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
-    const message = 'Item added!!';
+    git staconst message = 'Item added!!';
     this._snackBar.open('Item added', 'Okay', {
       duration: 3000
     });
