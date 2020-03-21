@@ -24,13 +24,8 @@ export class UploadItemComponent {
     }
     console.log(form.value.main_category,form.value.sub_category);
     //console.log(form.value.name,form.value.description,form.value.price,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
-<<<<<<< HEAD
-    this.user_item_service.addProduct(form.value.name,form.value.description,form.value.price,form.value.city,form.value.state,form.value.catef,form.value.sub_category);//,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
-    const message = 'Item added!!';
-=======
     this.user_item_service.addProduct(form.value.name,form.value.description,form.value.price,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);//,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
     //git staconst message = 'Item added!!';
->>>>>>> upstream/master
     this._snackBar.open('Item added', 'Okay', {
       duration: 3000
     });

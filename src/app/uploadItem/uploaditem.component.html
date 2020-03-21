@@ -36,11 +36,8 @@
     <div>
       <mat-form-field>
 
-<<<<<<< HEAD
-        <mat-select placeholder="Main Category" name="catef" (selectionChange)="findSUB(catef)" [(ngModel)]="catef">
-=======
         <mat-select placeholder="Main Category" name="main_category" (selectionChange)="findSUB(catef)" [(ngModel)]="catef">
->>>>>>> upstream/master
+
           <mat-option *ngFor="let cas of cat_main" [value]="cas">
             {{cas}}
           </mat-option>
@@ -51,11 +48,7 @@
     <div>
       <mat-form-field>
 
-<<<<<<< HEAD
-        <mat-select placeholder="Sub_Category" name="sub_Category">
-=======
         <mat-select placeholder="Sub Category" name="sub_category" [(ngModel)]="categ">
->>>>>>> upstream/master
           <mat-option *ngFor="let cas of cat_sub" [value]="cas">
             {{cas}}
           </mat-option>
