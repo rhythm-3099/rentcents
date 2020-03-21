@@ -16,16 +16,13 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-
+import {MatGridListModule} from '@angular/material/grid-list';
 import { HttpClientModule } from '@angular/common/http';
-
-
-
-
+import { JwPaginationComponent } from 'jw-angular-pagination';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignupComponent } from './auth/signup/signup.component';
 import { UploadItemComponent } from './uploadItem/uploaditem.component';
-
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +31,9 @@ import { UploadItemComponent } from './uploadItem/uploaditem.component';
     HomeComponent,
     HeaderComponent,
     SignupComponent,
-    UploadItemComponent
+    UploadItemComponent,
+    AboutComponent,
+    JwPaginationComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +49,9 @@ import { UploadItemComponent } from './uploadItem/uploaditem.component';
     MatToolbarModule,
     MatSnackBarModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    MatGridListModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

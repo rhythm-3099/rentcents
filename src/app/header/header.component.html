@@ -1,11 +1,13 @@
-<mat-toolbar>
+<mat-toolbar class="fixed-header">
     <div style="width: 100%;">RentsCents
       <a mat-button routerLink="/uploaditem" routerLinkActive="mat-accent" *ngIf="userIsAuthenticated">Upload an item</a>
+      <a mat-button routerLink="/about" routerLinkActive="mat-accent" >About us</a>
       <span style="float: right;">
         <a mat-button routerLink="/login" routerLinkActive="mat-accent" *ngIf="!userIsAuthenticated" >Login</a>
         <a mat-button routerLink="/signup" routerLinkActive="mat-accent" *ngIf="!userIsAuthenticated">Signup</a>
        <!-- <a mat-button routerLink="/userProfile" routerLinkActive="mat-accent" *ngIf="!userIsAuthenticated">userProfile</a>-->
         <button mat-button *ngIf="userIsAuthenticated" (click)="onLogout()">Log out</button>
+        
       </span>
     </div>
     
