@@ -1,61 +1,62 @@
-<mat-card>
+<mat-card id="myitem">
   <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
   <form (submit)="onUpload(signupForm)" #signupForm="ngForm" >
-
+    <h1>Upload items</h1>
+    <div style="margin-left: 10px ; margin-right: 10px ; " class="form-group">
     <div>
       <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput name="name" ngModel type="text" placeholder="Enter the name of the item" #mobInput="ngModel" required>
+        <mat-label >Product Name</mat-label>
+        <input matInput name="name" ngModel type="text" placeholder="Enter the name of the item" #mobInput="ngModel"required>
       </mat-form-field>
     </div>
-
-    <div>
-      <mat-form-field>
-        <mat-label>Description</mat-label>
-        <input matInput name="description" ngModel type="text" placeholder="Enter the description of the item" #mobInput="ngModel" required>
-      </mat-form-field>
-    </div>
-
     <div>
       <mat-form-field>
         <mat-label>Expected price</mat-label>
         <input matInput name="price" ngModel type="text" placeholder="Enter the expected price" #mobInput="ngModel" required>
       </mat-form-field>
     </div>
-
-    <!-- <div>
-      <mat-form-field appearance="legacy">
-        <mat-label>Email</mat-label>
-        <input matInput name="email" ngModel type="email" placeholder="Email" #emailInput="ngModel" required email>
-        <mat-error *ngIf="emailInput.invalid">Please enter a valid email</mat-error>
-
-      </mat-form-field>
-    </div> -->
-
-    <!-- <div>
-      <mat-form-field>
-        <mat-label>Password</mat-label>
-        <input matInput name="password" ngModel type="password" placeholder="Password" #passwordInput="ngModel" required>
-        <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
-      </mat-form-field>
-    </div>
-
     <div>
       <mat-form-field>
-        <mat-label>Confirm Password</mat-label>
-        <input matInput name="password" ngModel type="password" placeholder="Confirm Password" #passwordInput="ngModel" required>
-        <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+        <mat-label>Description</mat-label>
+        <input matInput name="description" ngModel type="text" placeholder="Enter the description of the item" #mobInput="ngModel" required>
       </mat-form-field>
-    </div> -->
-
-    <!-- <div>
-      <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading">Upload for rent</button>
-    </div> -->
-
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>City</mat-label>
+        <input matInput name="city" ngModel type="text" placeholder="Enter the city" #mobInput="ngModel" required>
+      </mat-form-field>
+    </div> 
+    <div>
+      <mat-form-field>
+        <mat-label>State</mat-label>
+        <input matInput name="state" ngModel type="text" placeholder="Enter the state" #mobInput="ngModel" required>
+      </mat-form-field>
+    </div> 
+    <div>
+      <mat-form-field>
+        <mat-label>Main category</mat-label>
+        <input matInput name="main ctegory" ngModel type="text" placeholder="Main Category" #mobInput="ngModel" required>
+      </mat-form-field>
+    </div> 
+    <div>
+      <mat-form-field>
+        <mat-label>Sub category</mat-label>
+        <input matInput name="sub ctegory" ngModel type="text" placeholder="Sub Category" #mobInput="ngModel" required>
+      </mat-form-field>
+    </div>
+    <div style="color: #585d61; margin-bottom: 20px;" >
+      
+        Product image
+        <input name="productimage" ngModel type="file" #mobInput="ngModel" required>
+     
+    </div>
+   
     <div>
       <button mat-raised-button color="primary" type="submit" >Upload for rent</button>
     </div>
-    <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
-
+    <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> 
+    </div>-->
+    </div>
   </form>
 </mat-card>
