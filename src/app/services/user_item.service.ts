@@ -24,8 +24,9 @@ export class User_item_service  {
     return this.postsUpdated.asObservable();
   }
 
-  addProduct(name: string, description: string, price: string){
-    const product: Product = {id:null, name: name, description: description, price: price};
+  addProduct(name: string,  price: string, description: string, city: string, state: string, main_category: string, sub_category: string) { //, city: string, state: string, main_category: string, sub_cateegory: string){
+    const product: Product = {id:null, name: name,  price: price , description: description , city: city , state: state , main_category: main_category, sub_category: sub_category}//};
+    console.log(product);
     this.http
         .post<{message: string}>('http://localhost:3000/api/product',product)
         .subscribe(responseData => {
@@ -33,5 +34,7 @@ export class User_item_service  {
           this.posts.push(product);
           this.postsUpdated.next([...this.posts]);
         });
+    console.log('here');
+
   }
 }

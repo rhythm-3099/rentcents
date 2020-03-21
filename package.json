@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "star": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start:server": "nodemon server.js"
+    "start": "nodemon server.js"
   },
   "private": true,
   "dependencies": {
@@ -29,6 +29,7 @@
     "material": "^0.4.3",
     "mongoose": "^5.9.4",
     "mongoose-unique-validator": "^2.0.3",
+    "morgan": "^1.9.1",
     "nodemon": "^2.0.2",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
