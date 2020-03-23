@@ -1,4 +1,4 @@
-export interface Product {
+export class Product {
   id: string;
   name: string;
   description: string;
@@ -8,4 +8,5 @@ export interface Product {
   main_category: string;
   sub_category: string;
   userId: string;
+  rating: string;
 }

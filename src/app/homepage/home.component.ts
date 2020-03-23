@@ -1,22 +1,47 @@
-import { Component } from "@angular/core";
+import { Component,OnInit, OnDestroy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import {PageEvent} from '@angular/material/paginator';
 
-export interface product {
-  price: number;
-  Name: string;
-}
+import { Product } from '../services/product.model';
+import { User_item_service } from "../services/user_item.service";
+import { Subscription } from 'rxjs';
 
 @Component ({
   selector: 'app-home',
   templateUrl: './home.component.html'
 })
-export class HomeComponent {
-// pagedItem here is used just to check pager will habe all pageditems
-  pagedItems: Array<product> = [
-    { 
+
+export class HomeComponent implements OnInit, OnDestroy {
+  public pagedItems :  Product[] = [];
+  private postsSub: Subscription;
+
+
+constructor(public user_item_service: User_item_service){}
+
+
+ngOnInit() {
+  this.user_item_service.getPosts();
+  this.postsSub = this.user_item_service.getPostUpdateListener()
+      .subscribe((products: Product[]) => {
+        this.pagedItems = products;
+      });
+  console.log(this.pagedItems);
+}
+
+onLogout() {
+
+}
+
+ngOnDestroy() {
+
+  this.postsSub.unsubscribe();
+}
+
+/* pagedItems: Array<Product>  = [
+    {
       Name: 'Name 1',
       price: 100
+
     },
     {
       price: 200,
@@ -42,9 +67,9 @@ export class HomeComponent {
       price: 400,
       Name: 'Name 6'
     }
-  ];
+  ];*/
 
-    // array of all items to be paged 
+    // array of all items to be paged
     private allItems: any[];
 // NOTE: here we have to fetch all the items from the server !! (not server side pagination)
 
