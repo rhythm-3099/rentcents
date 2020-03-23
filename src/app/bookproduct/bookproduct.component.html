@@ -1,0 +1,61 @@
+<mat-card>
+   <!-- <mat-spinner *ngIf="isLoading"></mat-spinner>-->
+   <mat-card-header>
+    <mat-card-title>Booking a Product :name of product jythi apade view kari ne aya ta</mat-card-title>
+   </mat-card-header>
+   <mat-card >
+    <mat-card-header>
+        <mat-card-title>Product details:</mat-card-title>
+    </mat-card-header> 
+      <mat-card-content>
+        
+        <mat-list role="list">  
+            <mat-list-item role="listitem"> Product Name &nbsp;: </mat-list-item>
+            <mat-list-item role="listitem"> Category &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;: </mat-list-item>
+            <mat-list-item role="listitem"> Sub Category &nbsp;&nbsp;&nbsp;: </mat-list-item>
+            <mat-list-item role="listitem"> Located &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </mat-list-item>
+            <mat-list-item role="listitem"> Ratting &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </mat-list-item>
+            <mat-list-item role="listitem"> Landed &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </mat-list-item>
+           </mat-list>
+      </mat-card-content>
+   </mat-card>
+
+   <mat-card>
+       <mat-card-header>
+           <mat-card-title>Product availability, Rent details and Previous History</mat-card-title>
+       </mat-card-header>
+       <mat-card-content>
+        <mat-list role="list">
+            <mat-list-item>Available &nbsp;:</mat-list-item>
+            <mat-list-item>Price &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</mat-list-item>
+        </mat-list>
+        <p> Before booking if you have any doubt or query related to product then you can contact 
+            owner  via phone , email and chat. options given below : </p>   
+       </mat-card-content>
+       <mat-card-actions>
+        <button mat-raised-button color="primary" type="button"  (click)="chat1()">Chat Box</button>
+        <button mat-raised-button color="primary" type="button"  (click)="email1()">Email</button>
+      </mat-card-actions>
+      <button mat-raised-button color="primary" type="button"  (click)="do1()" style="margin-left: 15px;">View previous History</button>
+   </mat-card>
+   <mat-card>
+       <mat-card-header>
+           <mat-card-title>Booking details</mat-card-title>
+       </mat-card-header>
+       <mat-card-content>
+        <mat-list role="list">
+            <mat-list-item>Your Name &nbsp;:</mat-list-item>
+            <mat-list-item>Your Email&nbsp;&nbsp;&nbsp;:</mat-list-item>
+        </mat-list>
+       </mat-card-content>
+       <div style="margin-left:15px;">
+        <span>Date for which thing is available to buyers/users :&nbsp;&nbsp; </span>
+        <input matInput name="redate" ngModel type="date" class="form-control" required>
+       </div>
+       <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit"  (click)="book()">Book product</button>
+      </mat-card-actions>
+   </mat-card>
+    
+  <!--  <mat-spinner *ngIf="isLoading"></mat-spinner>-->
+</mat-card>

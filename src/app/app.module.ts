@@ -18,7 +18,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { HttpClientModule } from '@angular/common/http';
-
+import {MatListModule} from '@angular/material/list';
 
 
 
@@ -29,6 +29,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { UserProfileComponent } from './userProfile/userprofile.component';
 import { UpdateUserProfileComponent } from './updateUserProfile/updateuserprofile.component';
 import { ViewproductComponent } from './viewproduct/viewproduct.component';
+import { BookproductComponent } from './bookproduct/bookproduct.component';
+import { User_item_service } from './services/user_item.service';
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { ViewproductComponent } from './viewproduct/viewproduct.component';
     UploadItemComponent,
     UserProfileComponent,
     UpdateUserProfileComponent,
-    ViewproductComponent
+    ViewproductComponent,
+    BookproductComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ import { ViewproductComponent } from './viewproduct/viewproduct.component';
     FormsModule,
     MatCardModule,
     MatFormFieldModule,
+    MatListModule,
     MatInputModule,
     MatButtonModule,
     MatProgressSpinnerModule,
@@ -61,7 +65,7 @@ import { ViewproductComponent } from './viewproduct/viewproduct.component';
     HttpClientModule,
     MatSelectModule
   ],
-  providers: [],
+  providers: [User_item_service],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

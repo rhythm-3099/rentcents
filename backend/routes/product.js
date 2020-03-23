@@ -39,13 +39,33 @@ router.post("/", (req, res, next) => {
 
 })
 
-router.get("/", (req, res, next) => {
-  Product.find().then(documents => {
-    res.status(200).json({
-      message: "Products fetched successfully!",
-      posts: documents
-    });
-  });
+// router.get("/", (req, res, next) => {
+//   Product.find().then(documents => {
+//     res.status(200).json({
+//       message: "Products fetched successfully!",
+//       posts: documents
+//     });
+//   });
+// })
+
+// // Get all student
+// studentRoute.route('/').get((req, res) => {
+//   Student.find((error, data) => {
+//     if (error) {
+//       return next(error)
+//     } else {
+//       res.json(data)
+//     }
+//   })
+// })
+
+router.route("/").get((req,res) => {
+  Product.find((err,data) => {
+    if(err)
+      return next(err);
+    else
+      res.json(data);
+  })
 })
 
 module.exports = router;

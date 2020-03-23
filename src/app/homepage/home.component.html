@@ -18,7 +18,7 @@
     <!-- items being paged -->
   <!-- <div *ngFor="let item of pagedItems">{{item.name}}</div> -->
 
-   <mat-grid-tile *ngFor="let tile of pagedItems">
+   <mat-grid-tile *ngFor="let tile of posts">
         <mat-card class="example-card">
           <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
@@ -33,7 +33,7 @@
 
           <mat-card-actions>
             <button mat-raised-button color="primary">BUY</button>
-            <button mat-raised-button color="primary">VIEW</button>
+            <button mat-raised-button color="primary"><a mat-button routerLink="/viewproduct" routerLinkActive="mat-accent"  >VIEW</a></button>
           </mat-card-actions>
 
         </mat-card>

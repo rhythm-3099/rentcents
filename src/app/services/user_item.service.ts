@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product } from './product.model';
 import { AuthService } from '../auth/auth.service';
 
@@ -10,6 +10,7 @@ export class User_item_service  {
   private products: Product[];
   private postsUpdated = new Subject<Product[]>();
 
+<<<<<<< HEAD
   constructor(private http:HttpClient,public authService: AuthService) {
   }
 
@@ -21,7 +22,46 @@ export class User_item_service  {
         this.postsUpdated.next(this.products);
       });
       return [...this.products];
+=======
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+  constructor(private http:HttpClient,public authService: AuthService) {}
+
+  getPosts() {
+    // this.http.get<{message: string, products: Product[] }>('http://localhost:3000/api/product')
+    //   .subscribe((productdata) => {
+    //     this.posts = productdata.products;
+    //     this.postsUpdated.next([...this.posts]);
+    //   });
+    // return [...this.posts];
+
+
+
+
+    //**************************************************************************************************************
+
+    this.http.get<{message: string, posts: Product[]}>('http://localhost:3000/api/product')
+      .subscribe((postData) => {
+        this.posts = postData.posts;
+        this.postsUpdated.next([...this.posts]);
+      });
+      //console.log('riii ', this.posts);
+
+
+
+>>>>>>> upstream/master
   }
+
+  // getPosts() {
+  //   console.log('useritem');
+
+  //   this.http.get<{message: string, posts: Product[]}>('http://localhost:3000/api/product')
+  //     .subscribe((postData) => {
+  //       this.posts = postData.posts;
+  //       this.postsUpdated.next([...this.posts]);
+  //     });
+  // }
+  endpoint: string = 'http://localhost:3000/api/product';
 
   getPostUpdateListener() {
     return this.postsUpdated.asObservable();
