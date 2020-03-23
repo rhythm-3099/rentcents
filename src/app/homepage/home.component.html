@@ -10,9 +10,9 @@
 
     <title>Hello, world!</title>
   </head>
-  <body>  
+  <body>
 <div>
-  
+
 </div>
 <mat-grid-list cols="4" rowHeight="1:2" guttersize="5px">
     <!-- items being paged -->
@@ -26,22 +26,22 @@
           </mat-card-header>
 
           <img mat-card-image src="https://www.apicius.es/wp-content/uploads/2012/07/IMG-20120714-009211.jpg" alt="product pic unavailable">
-          
+
           <mat-card-content>
             <p> Price : {{tile.price}}  </p>
           </mat-card-content>
-          
+
           <mat-card-actions>
             <button mat-raised-button color="primary">BUY</button>
             <button mat-raised-button color="primary">VIEW</button>
           </mat-card-actions>
 
         </mat-card>
-    </mat-grid-tile> 
+    </mat-grid-tile>
 </mat-grid-list>
 
  <!-- pager -->
- 
+
  <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
   <li [ngClass]="{disabled:pager.currentPage === 1}">
       <!-- <a (click)="setPage(1)">First</a> --> <p>first</p>
