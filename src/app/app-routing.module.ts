@@ -6,6 +6,7 @@ import { SignupComponent } from "./auth/signup/signup.component";
 import { UploadItemComponent } from './uploadItem/uploaditem.component';
 import { UserProfileComponent } from './userProfile/userprofile.component';
 import { UpdateUserProfileComponent } from './updateUserProfile/updateuserprofile.component';
+import { ViewproductComponent } from './viewproduct/viewproduct.component';
 
 const routes: Routes = [
   { path:'' ,component: HomeComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   {path: 'uploaditem', component: UploadItemComponent},
   {path: 'userprofile', component: UserProfileComponent},
-  {path: 'updateuserprofile', component: UpdateUserProfileComponent}
+  {path: 'updateuserprofile', component: UpdateUserProfileComponent},
+  {path: 'viewproduct', component: ViewproductComponent}
 ];
 
 @NgModule({
