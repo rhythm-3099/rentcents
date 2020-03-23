@@ -4,7 +4,7 @@
         <mat-card-header>  
             <mat-card-title><h1>Product Name:</h1></mat-card-title>
         </mat-card-header> 
-         <div class="card-container card side back">
+         <div  class="card-container card side back">
             <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
          </div>   
          
@@ -60,7 +60,7 @@
             <mat-card-subtitle (click)="doStuff()">View Profile</mat-card-subtitle>
           </mat-card-header>
           <mat-card-actions>
-            <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading" (click)="book()">Book product</button>
+            <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading" (click)="book()"><a mat-button routerLink="/bookproduct" routerLinkActive="mat-accent">Book product</a></button>
             <button mat-raised-button color="primary" type="button" *ngIf="!isLoading" (click)="chat1()">chat</button>
           </mat-card-actions>  
     <mat-spinner *ngIf="isLoading"></mat-spinner>
