@@ -1,6 +1,9 @@
-import { Component } from "@angular/core";
+import { Component, Input, OnInit, OnDestroy } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import {PageEvent} from '@angular/material/paginator';
+import { Subscription } from 'rxjs';
+import { Product } from '../services/product.model';
+import { User_item_service } from '../services/user_item.service';
 
 export interface product {
   price: number;
@@ -11,8 +14,50 @@ export interface product {
   selector: 'app-home',
   templateUrl: './home.component.html'
 })
-export class HomeComponent {
-// pagedItem here is used just to check pager will habe all pageditems
+export class HomeComponent implements OnInit, OnDestroy{
+
+  // products: Product[] = [{
+  //   "name":"guitar",
+  //   "description":"electric guitar",
+  //   "price":"1500",
+  //   "city":"ahm",
+  //   "state":"guj",
+  //   "id":"xyz",
+  //   "main_category":"music",
+  //   "sub_category":"electronic",
+  //   "userId":"abc"
+  // }];
+  posts: Product[] = [];
+  private postsSub: Subscription;
+
+
+
+
+
+  constructor(public postsService: User_item_service) {
+
+  }
+
+  ngOnInit() {
+    // console.log('1) ');
+
+    this.postsService.getPosts();
+    this.postsSub = this.postsService.getPostUpdateListener()
+      .subscribe((products: Product[]) => {
+        this.posts = products;
+        console.log(this.posts);
+      });
+    //   console.log('2) ');
+    // console.log('homeComponent ', this.posts);
+  }
+
+  ngOnDestroy() {
+    this.postsSub.unsubscribe();
+  }
+
+
+  // pagedItem here is used just to check pager will habe all pageditems
+
   pagedItems: Array<product> = [
     {
       Name: 'Name 1',
@@ -45,7 +90,7 @@ export class HomeComponent {
   ];
 
     // array of all items to be paged
-    private allItems: any[];
+    //private allItems: any[];
 // NOTE: here we have to fetch all the items from the server !! (not server side pagination)
 
     // pager object

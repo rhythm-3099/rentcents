@@ -18,11 +18,11 @@
     <!-- items being paged -->
   <!-- <div *ngFor="let item of pagedItems">{{item.name}}</div> -->
 
-   <mat-grid-tile *ngFor="let tile of pagedItems">
+   <mat-grid-tile *ngFor="let tile of posts">
         <mat-card class="example-card">
           <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{tile.Name}}</mat-card-title>
+            <mat-card-title>{{tile.name}}</mat-card-title>
           </mat-card-header>
 
           <img mat-card-image src="https://www.apicius.es/wp-content/uploads/2012/07/IMG-20120714-009211.jpg" alt="product pic unavailable">
