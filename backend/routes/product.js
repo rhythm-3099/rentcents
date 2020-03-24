@@ -1,12 +1,34 @@
 const express = require("express");
-// const bcrypt = require("bcrypt");
-// const jwt = require("jsonwebtoken");
+const multer = require('multer');
 
 const Product = require("../models/product");
 
 const router = express.Router();
 
-router.post("/", (req,res,next) => {
+const MIME_TYPE_MAP = {
+  'image/png': 'png',
+  'image/jpeg': 'jpg',
+  'image/jpg': 'jpg'
+};
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const isValid = MIME_TYPE_MAP[file.mimetype];
+    let error = new Error("Invalid mime type");
+    if(isValid) {
+      error = null;
+    }
+    cb(error, "backend/images"); //relative to the server.js file
+  },
+  filename: (req, file, cb) => {
+    const name = file.originalname.toLowerCase().split(' ').join('-');
+    const ext = MIME_TYPE_MAP[file.mimetype];
+    cb(null, name + '-' + Date.now() + '.' + ext);
+  }
+});
+
+router.post("/", multer({storage: storage}).single("image"), (req,res,next) => {
+  const url = req.protocol + '://' + req.get("host");
   const post = new Product({
     _id: req.body._id,
     name: req.body.name,
@@ -15,20 +37,34 @@ router.post("/", (req,res,next) => {
     city: req.body.city,
     state: req.body.state,
     main_category: req.body.main_category,
-    sub_category: req.body.sub_category
+    sub_category: req.body.sub_category,
+    imagePath:  url + "/images/" + req.file.filename
   });
+
   post.save().then(result => {
-    console.log(post);
+    //console.log(post);
     res.status(201).json({
       message: 'Post added successfully.',
-      postId: result._id
+      post: {
+        // id: result._id,
+        // name: result.name,
+        // price: result.price,
+        // description: result.description,
+        // city: result.city,
+        // state:result.state,
+        // main_category: result.main_category,
+        // sub_category: result.sub_category,
+        // imagePath: result.imagePath
+        ...result,
+        id: result._id
+      }
     });
   });
 
 });
 
 //get all the products
-router.use("/", (req,res,next) => {
+router.get("/", (req,res,next) => {
   Product.find()
     .then(documents => {
       console.log(documents);

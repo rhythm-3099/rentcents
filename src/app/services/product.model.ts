@@ -1,5 +1,5 @@
 export interface Product {
-  _id: string;
+  id: string,
   name: string;
   description: string;
   price: string;
@@ -7,5 +7,6 @@ export interface Product {
   state: string;
   main_category: string;
   sub_category: string;
-  userId: string;
+  imagePath: string;
+  //userId: string;
 }

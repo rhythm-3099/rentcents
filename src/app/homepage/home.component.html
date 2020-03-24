@@ -25,7 +25,7 @@
             <mat-card-title>{{tile.name}}</mat-card-title>
           </mat-card-header>
 
-          <img mat-card-image src="https://www.apicius.es/wp-content/uploads/2012/07/IMG-20120714-009211.jpg" alt="product pic unavailable">
+          <img mat-card-image class='post-image' [src]="tile.imagePath" [alt]="tile.name">
 
           <mat-card-content>
             <p> Price : {{tile.price}}  </p>

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const productSchema = mongoose.Schema({
-  _id: String,
+  id: String,
   name: { type: String, required: true },
   description : { type: String, required:true },
   price : { type: String, required: true },
@@ -9,6 +9,7 @@ const productSchema = mongoose.Schema({
   state: { type: String, required: true },
   main_category: { type: String, required: true },
   sub_category: { type: String},
+  imagePath: { type: String, required: true},
   rating: { type: String },
   owner : { type: String }
 });

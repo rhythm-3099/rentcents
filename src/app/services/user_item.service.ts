@@ -35,7 +35,8 @@ export class User_item_service  {
             main_category: post.main_category,
             sub_cateegory: post.sub_cateegory,
             owner: post.owner,
-            rating: post.rating
+            rating: post.rating,
+            imagePath: post.imagePath
           }
         });
       }))
@@ -59,15 +60,36 @@ export class User_item_service  {
 
   //**************************************************************************************************************
 
-  addProduct(name: string, description: string, price: string, city: string, state: string, main_category: string, sub_category: string) { //, city: string, state: string, main_category: string, sub_cateegory: string){
-    const product: Product = {_id:null, name: name,  description: description , price: price, city: city , state: state , main_category: main_category, sub_category: sub_category, userId: this.authService.userId}//};
+  addProduct(name: string, description: string, price: string, city: string, state: string, main_category: string, sub_category: string, image: File) { //, city: string, state: string, main_category: string, sub_cateegory: string){
+    //const product: Product = {_id:null, name: name,  description: description , price: price, city: city , state: state , main_category: main_category, sub_category: sub_category, userId: this.authService.userId}//};
     //console.log(product);
+    const postData = new FormData();
+    postData.append("name", name);
+    postData.append("price", price);
+    postData.append("description", description);
+    postData.append("city", city);
+    postData.append("state", state);
+    postData.append("main_category", main_category);
+    postData.append("sub_category", sub_category);
+    postData.append("image", image, name);
+
     this.http
-        .post<{message: string, postId: string}>('http://localhost:3000/api/product',product)
+        .post<{message: string, post: Product}>('http://localhost:3000/api/product',postData)
         .subscribe(responseData => {
+          const product: Product = {
+            id: responseData.post.id,
+            name: name,
+            price: price,
+            description: description,
+            city: city,
+            state: state,
+            main_category: main_category,
+            sub_category: sub_category,
+            imagePath: responseData.post.imagePath
+          }
           console.log(responseData.message);
-          const postId = responseData.postId;
-          product._id = postId;
+          // const postId = responseData.postId;
+          // product._id = postId;
           console.log(product);
           this.posts.push(product);
           this.postsUpdated.next([...this.posts]);

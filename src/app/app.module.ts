@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ReactiveFormsModule, FormsModule} from "@angular/forms";
 import { RouterModule } from "@angular/router";
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,8 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignupComponent } from './auth/signup/signup.component';
 import { UploadItemComponent } from './uploadItem/uploaditem.component';
 import {MatSelectModule} from '@angular/material/select';
-import { UserProfileComponent } from './userProfile/userprofile.component';
-import { UpdateUserProfileComponent } from './updateUserProfile/updateuserprofile.component';
+//import { UserProfileComponent } from './userProfile/userprofile.component';
+//import { UpdateUserProfileComponent } from './updateUserProfile/updateuserprofile.component';
 import { ViewproductComponent } from './viewproduct/viewproduct.component';
 import { BookproductComponent } from './bookproduct/bookproduct.component';
 import { User_item_service } from './services/user_item.service';
@@ -41,8 +41,8 @@ import { User_item_service } from './services/user_item.service';
     HeaderComponent,
     SignupComponent,
     UploadItemComponent,
-    UserProfileComponent,
-    UpdateUserProfileComponent,
+    //UserProfileComponent,
+    //UpdateUserProfileComponent,
     ViewproductComponent,
     BookproductComponent
   ],
@@ -51,9 +51,9 @@ import { User_item_service } from './services/user_item.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule,
     MatCardModule,
     MatFormFieldModule,
+    FormsModule,
     MatListModule,
     MatInputModule,
     MatButtonModule,
