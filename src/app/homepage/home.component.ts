@@ -1,52 +1,16 @@
-<<<<<<< HEAD
-import { Component,OnInit, OnDestroy } from "@angular/core";
-=======
 import { Component, Input, OnInit, OnDestroy } from "@angular/core";
->>>>>>> upstream/master
 import { RouterModule } from "@angular/router";
 import {PageEvent} from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { Product } from '../services/product.model';
 import { User_item_service } from '../services/user_item.service';
 
-import { Product } from '../services/product.model';
-import { User_item_service } from "../services/user_item.service";
-import { Subscription } from 'rxjs';
 
 @Component ({
   selector: 'app-home',
   templateUrl: './home.component.html'
 })
-<<<<<<< HEAD
 
-export class HomeComponent implements OnInit, OnDestroy {
-  public pagedItems :  Product[] = [];
-  private postsSub: Subscription;
-
-
-constructor(public user_item_service: User_item_service){}
-
-
-ngOnInit() {
-  this.user_item_service.getPosts();
-  this.postsSub = this.user_item_service.getPostUpdateListener()
-      .subscribe((products: Product[]) => {
-        this.pagedItems = products;
-      });
-  console.log(this.pagedItems);
-}
-
-onLogout() {
-
-}
-
-ngOnDestroy() {
-
-  this.postsSub.unsubscribe();
-}
-
-/* pagedItems: Array<Product>  = [
-=======
 export class HomeComponent implements OnInit, OnDestroy{
 
   // products: Product[] = [{
@@ -63,10 +27,6 @@ export class HomeComponent implements OnInit, OnDestroy{
   posts: Product[] = [];
   private postsSub: Subscription;
 
-
-
-
-
   constructor(public postsService: User_item_service) {
 
   }
@@ -78,58 +38,21 @@ export class HomeComponent implements OnInit, OnDestroy{
     this.postsSub = this.postsService.getPostUpdateListener()
       .subscribe((products: Product[]) => {
         this.posts = products;
-        console.log(this.posts);
+   //     console.log(this.posts);
       });
-    //   console.log('2) ');
-    // console.log('homeComponent ', this.posts);
-  }
+   }
 
   ngOnDestroy() {
     this.postsSub.unsubscribe();
   }
 
+  onClick(){
+    alert('clicked');
+  }
 
-  // pagedItem here is used just to check pager will habe all pageditems
-
-  pagedItems: Array<product> = [
->>>>>>> upstream/master
-    {
-      Name: 'Name 1',
-      price: 100
-
-    },
-    {
-      price: 200,
-      Name: 'Name 2'
-    },
-    {
-      price: 300,
-      Name: 'Name 3 '
-    },
-    {
-      price: 400,
-      Name: 'Name 4'
-    },
-    {
-      price: 300,
-      Name: 'Name 5 '
-    },
-    {
-      price: 400,
-      Name: 'Name 6'
-    },
-    {
-      price: 400,
-      Name: 'Name 6'
-    }
-  ];*/
 
     // array of all items to be paged
-<<<<<<< HEAD
-    private allItems: any[];
-=======
     //private allItems: any[];
->>>>>>> upstream/master
 // NOTE: here we have to fetch all the items from the server !! (not server side pagination)
 
     // pager object
