@@ -4,12 +4,16 @@ import {PageEvent} from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { Product } from '../services/product.model';
 import { User_item_service } from '../services/user_item.service';
-import { Router } from '@angular/router';
+
+export interface product {
+
+  Name: string;
+}
+
 @Component ({
   selector: 'app-home',
   templateUrl: './home.component.html'
 })
-
 export class HomeComponent implements OnInit, OnDestroy{
 
   // products: Product[] = [{
@@ -26,7 +30,11 @@ export class HomeComponent implements OnInit, OnDestroy{
   posts: Product[] = [];
   private postsSub: Subscription;
 
-  constructor(public postsService: User_item_service,private router: Router) {
+
+
+
+
+  constructor(public postsService: User_item_service) {
 
   }
 
@@ -37,18 +45,52 @@ export class HomeComponent implements OnInit, OnDestroy{
     this.postsSub = this.postsService.getPostUpdateListener()
       .subscribe((products: Product[]) => {
         this.posts = products;
-       console.log(this.posts);
+        console.log(this.posts);
       });
-   }
+    //   console.log('2) ');
+    // console.log('homeComponent ', this.posts);
+  }
 
   ngOnDestroy() {
     this.postsSub.unsubscribe();
   }
 
-  viewProduct(id: string){
-    this.router.navigate(['/viewproduct'], { state: { product_id: id } });
-  }
 
+  // pagedItem here is used just to check pager will habe all pageditems
+
+  pagedItems: Array<product> = [
+    {
+      Name: 'Real Estate',
+    },
+    {
+      Name: 'Vehicle'
+    },
+    {
+      Name: 'Electronics'
+    },
+    {
+      Name: 'Sports'
+    },
+    {
+
+      Name: 'Furniture'
+    },
+    {
+      Name: 'Books'
+    },
+    {
+      Name: 'Hobby'
+    },
+    {
+      Name: 'Educational'
+    },
+    {
+      Name: 'Clothing'
+    },
+    {
+      Name: 'Others'
+    }
+  ];
 
     // array of all items to be paged
     //private allItems: any[];
@@ -89,4 +131,7 @@ export class HomeComponent implements OnInit, OnDestroy{
         this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
     }
   */
+   book(){
+
+   }
 }

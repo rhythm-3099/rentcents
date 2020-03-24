@@ -58,8 +58,13 @@
           </mat-card-header>
           <mat-card-actions>
             <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading" (click)="book()"><a mat-button routerLink="/bookproduct" routerLinkActive="mat-accent">Book product</a></button>
+<<<<<<< HEAD
             <button mat-raised-button color="primary" type="button" *ngIf="!isLoading" (click)="chat1()">chat</button>
           </mat-card-actions>
+=======
+            <button mat-raised-button color="primary" type="button" *ngIf="!isLoading" (click)="chat1()"><mat-icon>chat</mat-icon>&nbsp;&nbsp;Chat</button>
+          </mat-card-actions>  
+>>>>>>> upstream/master
     <mat-spinner *ngIf="isLoading"></mat-spinner>
     </mat-card>
 </mat-card>

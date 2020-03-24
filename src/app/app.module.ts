@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ReactiveFormsModule, FormsModule} from "@angular/forms";
 import { RouterModule } from "@angular/router";
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,7 +19,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { HttpClientModule } from '@angular/common/http';
 import {MatListModule} from '@angular/material/list';
-
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,6 +33,7 @@ import { UpdateUserProfileComponent } from './updateUserProfile/updateuserprofil
 import { ViewproductComponent } from './viewproduct/viewproduct.component';
 import { BookproductComponent } from './bookproduct/bookproduct.component';
 import { User_item_service } from './services/user_item.service';
+import { ProductCategorizeComponent } from './productCategorization/productcategorize.component';
 
 @NgModule({
   declarations: [
@@ -44,15 +47,19 @@ import { User_item_service } from './services/user_item.service';
     UpdateUserProfileComponent,
     ViewproductComponent,
     BookproductComponent,
+<<<<<<< HEAD
+=======
+    ProductCategorizeComponent
+>>>>>>> upstream/master
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule,
     MatCardModule,
     MatFormFieldModule,
+    FormsModule,
     MatListModule,
     MatInputModule,
     MatButtonModule,
@@ -62,7 +69,10 @@ import { User_item_service } from './services/user_item.service';
     MatGridListModule,
     RouterModule,
     HttpClientModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule,
+    MatIconModule,
+    MatTableModule
   ],
   providers: [User_item_service],
   bootstrap: [AppComponent]

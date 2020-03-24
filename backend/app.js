@@ -43,6 +43,7 @@ app.use((req, res, next) => {
 
 app.use("/api/user", userRoutes);
 
+<<<<<<< HEAD
 /*app.get("/api/product/:productId", (req,res,next) => {
   const id = req.params.productId;
   Product.findById(id)
@@ -58,4 +59,12 @@ app.use("/api/user", userRoutes);
 })
 */
 app.use("/api/product",productRoutes);
+=======
+app.use("/api/product",productRoutes);
+
+
+
+
+
+>>>>>>> upstream/master
 module.exports = app;

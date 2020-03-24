@@ -11,5 +11,5 @@ import {User_item_service} from "../services/user_item.service";
 })
 
 export class UpdateUserProfileComponent{
-    
+
 }
