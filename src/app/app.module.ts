@@ -28,11 +28,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignupComponent } from './auth/signup/signup.component';
 import { UploadItemComponent } from './uploadItem/uploaditem.component';
 import {MatSelectModule} from '@angular/material/select';
-//import { UserProfileComponent } from './userProfile/userprofile.component';
-//import { UpdateUserProfileComponent } from './updateUserProfile/updateuserprofile.component';
+import { UserProfileComponent } from './userProfile/userprofile.component';
+import { UpdateUserProfileComponent } from './updateUserProfile/updateuserprofile.component';
 import { ViewproductComponent } from './viewproduct/viewproduct.component';
 import { BookproductComponent } from './bookproduct/bookproduct.component';
 import { User_item_service } from './services/user_item.service';
+import { ProductCategorizeComponent } from './productCategorization/productcategorize.component';
 
 
 @NgModule({
@@ -43,10 +44,11 @@ import { User_item_service } from './services/user_item.service';
     HeaderComponent,
     SignupComponent,
     UploadItemComponent,
-    //UserProfileComponent,
-    //UpdateUserProfileComponent,
+    UserProfileComponent,
+    UpdateUserProfileComponent,
     ViewproductComponent,
-    BookproductComponent
+    BookproductComponent,
+    ProductCategorizeComponent
   ],
   imports: [
     BrowserModule,
