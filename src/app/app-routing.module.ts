@@ -8,6 +8,8 @@ import { UploadItemComponent } from './uploadItem/uploaditem.component';
 //import { UpdateUserProfileComponent } from './updateUserProfile/updateuserprofile.component';
 import { ViewproductComponent } from './viewproduct/viewproduct.component';
 import { BookproductComponent } from './bookproduct/bookproduct.component';
+import { ProductCategorizeComponent } from './productCategorization/productcategorize.component';
+
 
 const routes: Routes = [
   { path:'' ,component: HomeComponent},
@@ -18,7 +20,8 @@ const routes: Routes = [
   //{path: 'userprofile', component: UserProfileComponent},
   //{path: 'updateuserprofile', component: UpdateUserProfileComponent},
   {path: 'viewproduct', component: ViewproductComponent},
-  {path: 'bookproduct', component: BookproductComponent}
+  {path: 'bookproduct', component: BookproductComponent},
+  {path: 'productcategorize', component: ProductCategorizeComponent}
 ];
 
 @NgModule({
