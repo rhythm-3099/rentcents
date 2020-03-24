@@ -5,14 +5,14 @@
     position: absolute;
     overflow: hidden;
     width: 100%;
-    
+
   }
   .seller-image {
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
   }
-  
-  
+
+
   .card-container {
     cursor: pointer;
     height: auto;
@@ -22,7 +22,7 @@
     margin-top: 50px;
    /* left: 33%;*/
    margin-right: auto;
-   margin-left: auto; 
+   margin-left: auto;
    /*text-align: center;*/
   }
   .a1 {
@@ -41,7 +41,7 @@
     text-decoration:none;
     text-align:center;
     text-shadow:0 1px 0 rgba(255,255,255,.5);
-    border-bottom:1px solid #aaa; 
+    border-bottom:1px solid #aaa;
   }
   .card .back {
     background-color: rgba(137, 188, 255, 0.5);

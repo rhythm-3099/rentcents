@@ -24,13 +24,9 @@ export class ViewproductComponent implements OnInit, OnDestroy {
   private product_id: string;
   constructor(public serach_service : Search_service,private router: Router) {
     this.product_id = this.router.getCurrentNavigation().extras.state.product_id;
-    console.log(this.product_id);
-    console.log(this.product_id);
-
   }
 
   ngOnInit(): void {
-    console.log(this.product_id);
     this.serach_service.getProduct(this.product_id);
     this.productsub = this.serach_service.getProductUpdateListener()
       .subscribe((product: Product) => {

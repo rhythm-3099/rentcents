@@ -7,7 +7,7 @@ export class Product {
   state: string;
   main_category: string;
   sub_category: string;
-  userId: string;
-  userName: string;
+  owner_id: string;
+  owner_name: string;
   rating: string;
 }
