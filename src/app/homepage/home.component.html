@@ -10,39 +10,33 @@
 
     <title>Hello, world!</title>
   </head>
-  <body>
-<div>
+  <body>  
 
-</div>
-<mat-grid-list cols="4" rowHeight="1:2" guttersize="5px">
+    <div>
+<h1>WELCOME TO RENTSCENTS!!</h1>
+
+<mat-grid-list cols="5" rowHeight="2:2" guttersize="5px">
     <!-- items being paged -->
   <!-- <div *ngFor="let item of pagedItems">{{item.name}}</div> -->
 
-   <mat-grid-tile *ngFor="let tile of posts">
+   <mat-grid-tile *ngFor="let tile of pagedItems">
         <mat-card class="example-card">
           <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{tile.name}}</mat-card-title>
+            <mat-card-title>{{tile.Name}}</mat-card-title>
           </mat-card-header>
-
-          <img mat-card-image class='post-image' [src]="tile.imagePath" [alt]="tile.name">
-
-          <mat-card-content>
-            <p> Price : {{tile.price}}  </p>
-          </mat-card-content>
-
-          <mat-card-actions>
-            <button mat-raised-button color="primary" type="submit"  (click)="book()"><a mat-button routerLink="/bookproduct" routerLinkActive="mat-accent">BUY</a></button>
-            
-            <button mat-raised-button color="primary"><a mat-button routerLink="/viewproduct" routerLinkActive="mat-accent">VIEW</a></button>
-          </mat-card-actions>
+          
+          <button mat-raised-button color="no" routerLink="/productcategorize"><img mat-card-image src="https://www.apicius.es/wp-content/uploads/2012/07/IMG-20120714-009211.jpg" alt="product pic unavailable"></button>
+          
 
         </mat-card>
-    </mat-grid-tile>
+    </mat-grid-tile> 
 </mat-grid-list>
 
- <!-- pager -->
 
+
+ <!-- pager -->
+ 
  <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
   <li [ngClass]="{disabled:pager.currentPage === 1}">
       <!-- <a (click)="setPage(1)">First</a> --> <p>first</p>
@@ -67,5 +61,17 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  </div>
   </body>
+
+
 </html>
