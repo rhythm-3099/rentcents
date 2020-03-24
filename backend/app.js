@@ -42,29 +42,6 @@ app.use((req, res, next) => {
 
 
 app.use("/api/user", userRoutes);
-
-<<<<<<< HEAD
-/*app.get("/api/product/:productId", (req,res,next) => {
-  const id = req.params.productId;
-  Product.findById(id)
-    .exec()
-    .then(doc => {
-     // console.log(doc);
-      res.status(200).json({
-          message : "product fetched successfully",
-          product : doc
-      });
-    })
-    .catch(err => console.log(err));
-})
-*/
-app.use("/api/product",productRoutes);
-=======
 app.use("/api/product",productRoutes);
 
-
-
-
-
->>>>>>> upstream/master
 module.exports = app;

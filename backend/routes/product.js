@@ -1,8 +1,5 @@
 const express = require("express");
-<<<<<<< HEAD
-=======
 const multer = require('multer');
->>>>>>> upstream/master
 
 const Product = require("../models/product");
 
@@ -41,22 +38,10 @@ router.post("/", multer({storage: storage}).single("image"), (req,res,next) => {
     state: req.body.state,
     main_category: req.body.main_category,
     sub_category: req.body.sub_category,
-<<<<<<< HEAD
+    imagePath:  url + "/images/" + req.file.filename,
     owner_id: req.body.userId,
     owner_name : req.body.userName,
     rating : "0"
-  });
-  console.log(product);
-  product.save()
-    .then(result => {
-      console.log(result);
-      res.status(200).json({
-        "message" : "Product added Succesfully."
-      });
-    })
-    .catch(err => console.log(err));
-=======
-    imagePath:  url + "/images/" + req.file.filename
   });
 
   post.save().then(result => {
@@ -78,9 +63,23 @@ router.post("/", multer({storage: storage}).single("image"), (req,res,next) => {
       }
     });
   });
->>>>>>> upstream/master
 
 });
+
+// get a product by its id
+router.get("/:id", (req,res,next) => {
+  Product.findById(req.params.id)
+  .exec()
+  .then(doc => {
+      console.log(doc);
+      res.status(200).json({
+          message : "product fetched successfully",
+          product : doc
+      });
+    })
+    .catch(err => console.log(err));
+});
+
 
 //get all the products
 router.get("/", (req,res,next) => {
@@ -94,77 +93,6 @@ router.get("/", (req,res,next) => {
     });
 });
 
-<<<<<<< HEAD
-
-
-router.get("/:productId", (req,res,next) => {
-  const id = req.params.productId;
-  console.log(id);
-  Product.findById(id)
-  .exec()
-  .then(doc => {
-      console.log(doc);
-      res.status(200).json({
-          message : "product fetched successfully",
-          product : doc
-      });
-    })
-    .catch(err => console.log(err));
-})
-
-/*
-app.post("/api/product", (req,res,next) => {
-  const post = new Post({
-    name: req.body.name,
-    price: req.body.price,
-    description: req.body.description,
-    city: req.body.city,
-    state: req.body.state,
-    main_category: req.body.main_category,
-    sub_category: req.body.sub_category
-  });
-  console.log(post);
-  res.status(201).json({
-    message: 'Post added successfully.'
-  });
-});
-*/
-
-
-
-router.get("/", (req,res,next) => {
-  Product.find()
-    .then(documents => {
-     // console.log(documents);
-      res.status(200).json({
-        message: 'Posts fetched',
-        posts: documents
-      });
-    });
-
-});
-
-
-// router.get("/", (req, res, next) => {
-//   Product.find().then(documents => {
-//     res.status(200).json({
-//       message: "Products fetched successfully!",
-//       posts: documents
-//     });
-//   });
-// })
-=======
-// get a product by its id
-router.get("/:id", (req,res,next) => {
-  Product.findById(req.params._id).then(post => {
-    if(post) {
-      res.status(200).json(post);
-    } else {
-      res.status(404).json({ message: "Post not found!" });
-    }
-  });
-});
->>>>>>> upstream/master
 
 // delete a product by its id
 router.delete("/:id",(req,res,next) => {
@@ -174,17 +102,5 @@ router.delete("/:id",(req,res,next) => {
   });
 });
 
-<<<<<<< HEAD
-/*router.route("/").get((req,res) => {
-  Product.find((err,data) => {
-    if(err)
-      return next(err);
-    else
-      res.json(data);
-  })
-})
-*/
-=======
 
->>>>>>> upstream/master
 module.exports = router;

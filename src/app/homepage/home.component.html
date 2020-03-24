@@ -43,7 +43,6 @@
 
    <mat-grid-tile *ngFor="let tile of posts">
         <mat-card class="example-card">
-          <div>
           <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
             <mat-card-title>{{tile.name}}</mat-card-title>
@@ -56,16 +55,10 @@
           </mat-card-content>
 
           <mat-card-actions>
-<<<<<<< HEAD
-            <button mat-raised-button color="primary">BUY</button>
-            <button mat-raised-button color="primary" (click)="viewProduct(tile._id)">VIEW</button>
-=======
             <button mat-raised-button color="primary" type="submit"  (click)="book()"><a mat-button routerLink="/bookproduct" routerLinkActive="mat-accent">BUY</a></button>
-
-            <button mat-raised-button color="primary"><a mat-button routerLink="/viewproduct" routerLinkActive="mat-accent">VIEW</a></button>
->>>>>>> upstream/master
+            <button mat-raised-button color="primary" (click)="viewProduct(tile._id)">VIEW</button>
           </mat-card-actions>
-        </div>
+
         </mat-card>
     </mat-grid-tile>
 </mat-grid-list>

@@ -47,10 +47,7 @@ import { ProductCategorizeComponent } from './productCategorization/productcateg
     UpdateUserProfileComponent,
     ViewproductComponent,
     BookproductComponent,
-<<<<<<< HEAD
-=======
     ProductCategorizeComponent
->>>>>>> upstream/master
   ],
   imports: [
     BrowserModule,

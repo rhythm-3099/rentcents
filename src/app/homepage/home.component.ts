@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Product } from '../services/product.model';
 import { User_item_service } from '../services/user_item.service';
 
+import { Router } from '@angular/router';
 export interface product {
 
   Name: string;
@@ -34,7 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy{
 
 
 
-  constructor(public postsService: User_item_service) {
+  constructor(public postsService: User_item_service,private router: Router) {
 
   }
 
@@ -55,6 +56,9 @@ export class HomeComponent implements OnInit, OnDestroy{
     this.postsSub.unsubscribe();
   }
 
+  viewProduct(id: string){
+    this.router.navigate(['/viewproduct'], { state: { product_id: id } });
+  }
 
   // pagedItem here is used just to check pager will habe all pageditems
 
