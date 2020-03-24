@@ -128,4 +128,7 @@ export class HomeComponent implements OnInit, OnDestroy{
         this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
     }
   */
+   book(){
+     
+   }
 }

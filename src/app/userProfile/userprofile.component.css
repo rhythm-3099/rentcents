@@ -1,0 +1,23 @@
+mat-card{
+  margin-bottom: 10px;
+}
+.center {
+    text-align: center;
+    border: 2px solid black;
+    font-weight: bold;
+    text-decoration: underline;
+    height: 100px;
+  }
+#my{
+  margin-left: 15px;
+}
+button{
+  margin-left: 25px;
+}
+table{
+  border: 1px solid black;
+  width : 100%;
+}
+th,td{
+  border: 1px solid black;
+}
