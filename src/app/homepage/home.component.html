@@ -27,12 +27,12 @@
           <div mat-card-avatar class="example-header-image"></div>
           <mat-card-title>{{tile.Name}}</mat-card-title>
         </mat-card-header>
-        
+
         <button mat-raised-button color="no" routerLink="/productcategorize"><img mat-card-image src="https://www.apicius.es/wp-content/uploads/2012/07/IMG-20120714-009211.jpg" alt="product pic unavailable"></button>
-        
+
 
       </mat-card>
-  </mat-grid-tile> 
+  </mat-grid-tile>
 </mat-grid-list>
 <br>
 <h2>Some of the products that we sell:</h2>
@@ -56,33 +56,13 @@
 
           <mat-card-actions>
             <button mat-raised-button color="primary" type="submit"  (click)="book()"><a mat-button routerLink="/bookproduct" routerLinkActive="mat-accent">BUY</a></button>
-            
+
             <button mat-raised-button color="primary"><a mat-button routerLink="/viewproduct" routerLinkActive="mat-accent">VIEW</a></button>
           </mat-card-actions>
 
         </mat-card>
     </mat-grid-tile>
 </mat-grid-list>
-
- <!-- pager -->
-
- <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-  <li [ngClass]="{disabled:pager.currentPage === 1}">
-      <!-- <a (click)="setPage(1)">First</a> --> <p>first</p>
-  </li>
-  <li [ngClass]="{disabled:pager.currentPage === 1}">
-      <!-- <a (click)="setPage(pager.currentPage - 1)">Previous</a> --><p>prev</p>
-  </li>
-  <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-      <a >{{page}}</a>
-  </li>
-  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item">
-      <!-- <a (click)="setPage(pager.currentPage + 1)">Next</a> --><a>Nextt</a>
-  </li>
-  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-      <!-- <a (click)="setPage(pager.totalPages)">Last</a> --> <a>last</a>
-  </li>
-</ul>
 
 
     <!-- Optional JavaScript -->
