@@ -33,6 +33,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { ViewproductComponent } from './viewproduct/viewproduct.component';
 import { BookproductComponent } from './bookproduct/bookproduct.component';
 import { User_item_service } from './services/user_item.service';
+import { ProductCategorizeComponent } from './productCategorization/productcategorize.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { User_item_service } from './services/user_item.service';
     //UserProfileComponent,
     //UpdateUserProfileComponent,
     ViewproductComponent,
-    BookproductComponent
+    BookproductComponent,
+    ProductCategorizeComponent
   ],
   imports: [
     BrowserModule,
