@@ -6,7 +6,7 @@ import { Product } from '../services/product.model';
 import { User_item_service } from '../services/user_item.service';
 
 export interface product {
-  price: number;
+  
   Name: string;
 }
 
@@ -60,32 +60,35 @@ export class HomeComponent implements OnInit, OnDestroy{
 
   pagedItems: Array<product> = [
     {
-      Name: 'Name 1',
-      price: 100
+      Name: 'Real Estate',
     },
     {
-      price: 200,
-      Name: 'Name 2'
+      Name: 'Vehicle'
     },
     {
-      price: 300,
-      Name: 'Name 3 '
+      Name: 'Electronics'
     },
     {
-      price: 400,
-      Name: 'Name 4'
+      Name: 'Sports'
     },
     {
-      price: 300,
-      Name: 'Name 5 '
+
+      Name: 'Furniture'
     },
     {
-      price: 400,
-      Name: 'Name 6'
+      Name: 'Books'
     },
     {
-      price: 400,
-      Name: 'Name 6'
+      Name: 'Hobby'
+    },
+    {
+      Name: 'Educational'
+    },
+    {
+      Name: 'Clothing'
+    },
+    {
+      Name: 'Others'
     }
   ];
 
