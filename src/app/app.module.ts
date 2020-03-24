@@ -19,7 +19,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { HttpClientModule } from '@angular/common/http';
 import {MatListModule} from '@angular/material/list';
-
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -63,7 +65,10 @@ import { User_item_service } from './services/user_item.service';
     MatGridListModule,
     RouterModule,
     HttpClientModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule,
+    MatIconModule,
+    MatTableModule
   ],
   providers: [User_item_service],
   bootstrap: [AppComponent]
