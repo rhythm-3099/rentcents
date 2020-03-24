@@ -43,35 +43,19 @@ app.use((req, res, next) => {
 
 app.use("/api/user", userRoutes);
 
-app.post("/api/product", (req,res,next) => {
-  const post = new Post({
-    name: req.body.name,
-    price: req.body.price,
-    description: req.body.description,
-    city: req.body.city,
-    state: req.body.state,
-    main_category: req.body.main_category,
-    sub_category: req.body.sub_category
-  });
-  console.log(post);
-  res.status(201).json({
-    message: 'Post added successfully.'
-  });
-});
-
-
-
-
-//app.use("/api/product", productRoutes);
-app.use("/api/product", (req,res,next) => {
-  Post.find()
-    .then(documents => {
-      console.log(documents);
+/*app.get("/api/product/:productId", (req,res,next) => {
+  const id = req.params.productId;
+  Product.findById(id)
+    .exec()
+    .then(doc => {
+     // console.log(doc);
       res.status(200).json({
-        message: 'Posts fetched',
-        posts: documents
+          message : "product fetched successfully",
+          product : doc
       });
-    });
-
-});
+    })
+    .catch(err => console.log(err));
+})
+*/
+app.use("/api/product",productRoutes);
 module.exports = app;

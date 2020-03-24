@@ -20,7 +20,7 @@
 
    <mat-grid-tile *ngFor="let tile of posts">
         <mat-card class="example-card">
-          <div click="onClick">
+          <div>
           <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
             <mat-card-title>{{tile.name}}</mat-card-title>
@@ -34,7 +34,7 @@
 
           <mat-card-actions>
             <button mat-raised-button color="primary">BUY</button>
-            <button mat-raised-button color="primary" ><a mat-button routerLink="'/viewproduct/' + tile.id"  routerLinkActive="mat-accent"  >VIEW</a></button>
+            <button mat-raised-button color="primary" (click)="viewProduct(tile._id)">VIEW</button>
           </mat-card-actions>
         </div>
         </mat-card>

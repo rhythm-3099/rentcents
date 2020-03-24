@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const productSchema = mongoose.Schema({
-  id: String,
   name: { type: String, required: true },
   description : { type: String, required:true },
   price : { type: String, required: true },
@@ -10,7 +9,8 @@ const productSchema = mongoose.Schema({
   main_category: { type: String, required: true },
   sub_category: { type: String},
   rating: { type: String },
-  owner : { type: String }
+  owner_id : { type: String },
+  owner_name : { type: String }
 });
 
 module.exports =  mongoose.model('Product',productSchema);

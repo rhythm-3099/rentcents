@@ -24,6 +24,13 @@
     </div>
 
     <div>
+      <mat-form-field>
+        <mat-label>Address</mat-label>
+        <input matInput name="address" ngModel type="text" placeholder="Enter your Address" #mobInput="ngModel" required>
+      </mat-form-field>
+    </div>
+
+    <div>
       <mat-form-field appearance="legacy">
         <mat-label>Email</mat-label>
         <input matInput name="email" ngModel type="email" placeholder="Email" #emailInput="ngModel" required email>
@@ -43,7 +50,7 @@
     <div>
       <mat-form-field>
         <mat-label>Confirm Password</mat-label>
-        <input matInput name="password" ngModel type="password" placeholder="Confirm Password" #passwordInput="ngModel" required>
+        <input matInput name="cn_password" ngModel type="password" placeholder="Confirm Password" #passwordInput="ngModel" required>
         <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
       </mat-form-field>
     </div>

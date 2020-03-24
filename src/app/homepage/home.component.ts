@@ -4,8 +4,7 @@ import {PageEvent} from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { Product } from '../services/product.model';
 import { User_item_service } from '../services/user_item.service';
-
-
+import { Router } from '@angular/router';
 @Component ({
   selector: 'app-home',
   templateUrl: './home.component.html'
@@ -27,7 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy{
   posts: Product[] = [];
   private postsSub: Subscription;
 
-  constructor(public postsService: User_item_service) {
+  constructor(public postsService: User_item_service,private router: Router) {
 
   }
 
@@ -38,7 +37,7 @@ export class HomeComponent implements OnInit, OnDestroy{
     this.postsSub = this.postsService.getPostUpdateListener()
       .subscribe((products: Product[]) => {
         this.posts = products;
-   //     console.log(this.posts);
+       console.log(this.posts);
       });
    }
 
@@ -46,8 +45,8 @@ export class HomeComponent implements OnInit, OnDestroy{
     this.postsSub.unsubscribe();
   }
 
-  onClick(){
-    alert('clicked');
+  viewProduct(id: string){
+    this.router.navigate(['/viewproduct'], { state: { product_id: id } });
   }
 
 

@@ -1,5 +1,5 @@
 export class Product {
-  id: string;
+  _id : string;
   name: string;
   description: string;
   price: string;
@@ -8,5 +8,6 @@ export class Product {
   main_category: string;
   sub_category: string;
   userId: string;
+  userName: string;
   rating: string;
 }

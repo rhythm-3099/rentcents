@@ -56,7 +56,7 @@ export class User_item_service  {
 
 
   addProduct(name: string, description: string, price: string, city: string, state: string, main_category: string, sub_category: string) { //, city: string, state: string, main_category: string, sub_cateegory: string){
-    const product: Product = {id:null, name: name,  description: description , price: price, city: city , state: state , main_category: main_category, sub_category: sub_category, userId: this.authService.userId, rating : ""};
+    const product: Product = {_id:null, name: name,  description: description , price: price, city: city , state: state , main_category: main_category, sub_category: sub_category, userId: this.authService.userId,userName : this.authService.userName, rating : ""};
     console.log(product);
     this.http
         .post<{message: string}>('http://localhost:3000/api/product',product)

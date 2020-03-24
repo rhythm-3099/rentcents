@@ -1,6 +1,4 @@
 const express = require("express");
-// const bcrypt = require("bcrypt");
-// const jwt = require("jsonwebtoken");
 
 const Product = require("../models/product");
 
@@ -18,15 +16,11 @@ router.post("/", (req, res, next) => {
     state: req.body.state,
     main_category: req.body.main_category,
     sub_category: req.body.sub_category,
-    owner: req.body.userId,
-    rating : 0
+    owner_id: req.body.userId,
+    owner_name : req.body.userName,
+    rating : "0"
   });
   console.log(product);
-
-  // city: { type: String, required: true },
-  // state: { type: String, required: true },
-  // main_category: { type: String, required: true },
-  // sub_category: { type: String, required: true },
   product.save()
     .then(result => {
       console.log(result);
@@ -38,6 +32,56 @@ router.post("/", (req, res, next) => {
 
 
 })
+
+
+
+router.get("/:productId", (req,res,next) => {
+  const id = req.params.productId;
+  console.log(id);
+  Product.findById(id)
+  .exec()
+  .then(doc => {
+      console.log(doc);
+      res.status(200).json({
+          message : "product fetched successfully",
+          product : doc
+      });
+    })
+    .catch(err => console.log(err));
+})
+
+/*
+app.post("/api/product", (req,res,next) => {
+  const post = new Post({
+    name: req.body.name,
+    price: req.body.price,
+    description: req.body.description,
+    city: req.body.city,
+    state: req.body.state,
+    main_category: req.body.main_category,
+    sub_category: req.body.sub_category
+  });
+  console.log(post);
+  res.status(201).json({
+    message: 'Post added successfully.'
+  });
+});
+*/
+
+
+
+router.get("/", (req,res,next) => {
+  Product.find()
+    .then(documents => {
+     // console.log(documents);
+      res.status(200).json({
+        message: 'Posts fetched',
+        posts: documents
+      });
+    });
+
+});
+
 
 // router.get("/", (req, res, next) => {
 //   Product.find().then(documents => {
@@ -59,7 +103,7 @@ router.post("/", (req, res, next) => {
 //   })
 // })
 
-router.route("/").get((req,res) => {
+/*router.route("/").get((req,res) => {
   Product.find((err,data) => {
     if(err)
       return next(err);
@@ -67,5 +111,5 @@ router.route("/").get((req,res) => {
       res.json(data);
   })
 })
-
+*/
 module.exports = router;
