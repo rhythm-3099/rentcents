@@ -93,16 +93,17 @@ categories = [
 
 ];
 
-findSUB(catef){
-  if(catef == "Vehicles")this.cat_sub = ["2-wheeler-Luxury","2-wheeler-Regular","4-wheeler-SUV","4-wheeler-Sedan","4-wheeler-HatchBack","Other"];
-  if(catef == "Real Estate")this.cat_sub = ["Residential","Commercial","Other"];
-  if(catef== "Electronics")this.cat_sub = ["Laptop","Pendrives/hard-disks","Computer accessories","Home entertainment","Televisions","camera accessories","projecters","Security cameras","Cameras","Printers and scanners","Other"];
-  if(catef == "Sports")this.cat_sub = ["Indoor","Outdoor","Gymnasium","Other"];
-  if(catef == "Hobby")this.cat_sub = ["Singing equipment","Dance equipment","Others"];
-  if(catef == "Books")this.cat_sub = ["Love stories","NCRT books","Horror","History","Others"];
-  if(catef == "Educational")this.cat_sub = ["Reference Books","Journals","Magazines","Notebooks","CDs","Other"];
-  if(catef == "Clothing")this.cat_sub = ["Men","Women","Children","Other"];
-  if(catef == "Furniture")this.cat_sub = ["Beds and wardrobes","Sofa and dining","Home Decor","Other"];
+findSUB(){
+  this.catef = this.form.value.main_category;
+  if(this.catef == "Vehicles")this.cat_sub = ["2-wheeler-Luxury","2-wheeler-Regular","4-wheeler-SUV","4-wheeler-Sedan","4-wheeler-HatchBack","Other"];
+  if(this.catef == "Real Estate")this.cat_sub = ["Residential","Commercial","Other"];
+  if(this.catef == "Electronics")this.cat_sub = ["Laptop","Pendrives/hard-disks","Computer accessories","Home entertainment","Televisions","camera accessories","projecters","Security cameras","Cameras","Printers and scanners","Other"];
+  if(this.catef == "Sports")this.cat_sub = ["Indoor","Outdoor","Gymnasium","Other"];
+  if(this.catef == "Hobby")this.cat_sub = ["Singing equipment","Dance equipment","Others"];
+  if(this.catef == "Books")this.cat_sub = ["Love stories","NCRT books","Horror","History","Others"];
+  if(this.catef == "Educational")this.cat_sub = ["Reference Books","Journals","Magazines","Notebooks","CDs","Other"];
+  if(this.catef == "Clothing")this.cat_sub = ["Men","Women","Children","Other"];
+  if(this.catef == "Furniture")this.cat_sub = ["Beds and wardrobes","Sofa and dining","Home Decor","Other"];
   // this.flag= true;
 }
 

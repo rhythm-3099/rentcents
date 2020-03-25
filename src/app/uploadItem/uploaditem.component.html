@@ -36,7 +36,7 @@
     <div>
       <mat-form-field>
 
-        <mat-select placeholder="Main Category" name="main_category" formControlName="main_category" (selectionChange)="findSUB(catef)">
+        <mat-select placeholder="Main Category" name="main_category" formControlName="main_category" (selectionChange)="findSUB()">
 
           <mat-option *ngFor="let cas of cat_main" [value]="cas">
             {{cas}}
