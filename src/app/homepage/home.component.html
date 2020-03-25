@@ -37,7 +37,7 @@
 <br>
 <h2>Some of the products that we sell:</h2>
 
-<mat-grid-list cols="4" rowHeight="1:2" guttersize="5px">
+<mat-grid-list cols="4" rowHeight="1:2" guttersize="5px" *ngIf="posts.length > 0">
     <!-- items being paged -->
   <!-- <div *ngFor="let item of pagedItems">{{item.name}}</div> -->
 
@@ -62,7 +62,7 @@
         </mat-card>
     </mat-grid-tile>
 </mat-grid-list>
-
+<mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)" *ngIf="posts.length > 0"></mat-paginator>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
