@@ -9,10 +9,12 @@ import { UpdateUserProfileComponent } from './updateUserProfile/updateuserprofil
 import { ViewproductComponent } from './viewproduct/viewproduct.component';
 import { BookproductComponent } from './bookproduct/bookproduct.component';
 import { ProductCategorizeComponent } from './productCategorization/productcategorize.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   { path:'' ,component: HomeComponent},
   {path: 'homepage', component: HomeComponent},
+  {path: 'about', component: AboutComponent},
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'uploaditem', component: UploadItemComponent},

@@ -34,6 +34,7 @@ import { ViewproductComponent } from './viewproduct/viewproduct.component';
 import { BookproductComponent } from './bookproduct/bookproduct.component';
 import { User_item_service } from './services/user_item.service';
 import { ProductCategorizeComponent } from './productCategorization/productcategorize.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ProductCategorizeComponent } from './productCategorization/productcateg
     UpdateUserProfileComponent,
     ViewproductComponent,
     BookproductComponent,
-    ProductCategorizeComponent
+    ProductCategorizeComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
