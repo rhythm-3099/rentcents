@@ -10,6 +10,10 @@ example-card {
     margin-right: 12px;
   }
 
+  mat-paginator{
+    font-weight: bold;
+  }
+
   /* .post-image {
     width: 100%;
   } */

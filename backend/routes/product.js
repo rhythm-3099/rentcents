@@ -83,12 +83,26 @@ router.get("/:id", (req,res,next) => {
 
 //get all the products
 router.get("/", (req,res,next) => {
-  Product.find()
+  console.log(req.query);
+  const pageSize = +req.query.pagesize;
+  const currentPage = +req.query.page;
+  const postQuery = Product.find();
+  let fetchedPosts;
+  if(currentPage && pageSize) {
+    postQuery
+      .skip(pageSize * (currentPage - 1))
+      .limit(pageSize);
+  }
+  postQuery
     .then(documents => {
-      console.log(documents);
+      fetchedPosts = documents;
+      return Product.count();
+    }).then(count => {
+      //console.log(documents);
       res.status(200).json({
         message: 'Posts fetched',
-        posts: documents
+        posts: fetchedPosts,
+        maxPosts: count
       });
     });
 });

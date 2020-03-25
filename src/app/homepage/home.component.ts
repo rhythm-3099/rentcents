@@ -30,7 +30,10 @@ export class HomeComponent implements OnInit, OnDestroy{
   // }];
   posts: Product[] = [];
   private postsSub: Subscription;
-
+  totalPosts=10;
+  postsPerPage=4;
+  currentPage = 1;
+  pageSizeOptions = [4,8,12];
 
 
 
@@ -42,14 +45,22 @@ export class HomeComponent implements OnInit, OnDestroy{
   ngOnInit() {
     // console.log('1) ');
 
-    this.postsService.getPosts();
+    this.postsService.getPosts(this.postsPerPage,this.currentPage);
     this.postsSub = this.postsService.getPostUpdateListener()
-      .subscribe((products: Product[]) => {
-        this.posts = products;
-        console.log(this.posts);
+      .subscribe((productData: {posts: Product[], postCount: number}) => {
+        this.posts = productData.posts;
+        this.totalPosts = productData.postCount;
+        //console.log(this.posts);
       });
     //   console.log('2) ');
     // console.log('homeComponent ', this.posts);
+  }
+
+  onChangedPage(pageData: PageEvent){
+    console.log(pageData);
+    this.currentPage = pageData.pageIndex + 1;
+    this.postsPerPage = pageData.pageSize;
+    this.postsService.getPosts(this.postsPerPage,this.currentPage);
   }
 
   ngOnDestroy() {
@@ -101,16 +112,16 @@ export class HomeComponent implements OnInit, OnDestroy{
 // NOTE: here we have to fetch all the items from the server !! (not server side pagination)
 
     // pager object
-    pager: any = {totalItems: 17,
-      currentPage: 2,
-      pageSize: 5,
-      totalPages: 4,
-      startPage: 3,
-      endPage: 7,
-      startIndex: 6,
-      endIndex: 7,
-      pages: [3,4,5,6,7]
-    }
+    // pager: any = {totalItems: 17,
+    //   currentPage: 2,
+    //   pageSize: 5,
+    //   totalPages: 4,
+    //   startPage: 3,
+    //   endPage: 7,
+    //   startIndex: 6,
+    //   endIndex: 7,
+    //   pages: [3,4,5,6,7]
+    // }
     // paged items
     //pagedItems: any[];
 /*

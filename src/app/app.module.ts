@@ -23,6 +23,9 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
 
+import {MatPaginatorModule} from '@angular/material/paginator';
+
+
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -69,7 +72,8 @@ import { ProductCategorizeComponent } from './productCategorization/productcateg
     MatSelectModule,
     MatMenuModule,
     MatIconModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [User_item_service],
   bootstrap: [AppComponent]
