@@ -35,7 +35,6 @@ import { BookproductComponent } from './bookproduct/bookproduct.component';
 import { User_item_service } from './services/user_item.service';
 import { ProductCategorizeComponent } from './productCategorization/productcategorize.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

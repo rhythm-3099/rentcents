@@ -17,8 +17,21 @@ export class SignupComponent{
       if(form.invalid) {
         return;
       }
+      if(isNaN(Number(form.value.mob))){
+        alert('Please Enter Valid Phone Number.')
+        return;
+      }
+      let str: String = form.value.mob;
+      if(str.length != 10){
+        alert('Please Enter Valid Phone Number.')
+        return;
+      }
+      if(form.value.password != form.value.cn_password){
+        alert("Password and confirm password mismatch.");
+        return;
+      }
       this.isLoading = true;
-      this.authService.createUser(form.value.email,form.value.password);
+      this.authService.createUser(form.value.email,form.value.password,form.value.f_name + " " + form.value.l_name, form.value.mob, form.value.address);
       //console.log(form.value);
 
   }

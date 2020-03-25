@@ -30,13 +30,15 @@ export class User_item_service  {
             _id: post._id,
             name: post.name,
             description: post.description,
+            price : post.price,
             city: post.city,
             state: post.state,
             main_category: post.main_category,
             sub_cateegory: post.sub_cateegory,
+            imagePath: post.imagePath,
             owner: post.owner,
+            owner_name: post.owner_name,
             rating: post.rating,
-            imagePath: post.imagePath
           }
         });
       }))
@@ -72,21 +74,27 @@ export class User_item_service  {
     postData.append("main_category", main_category);
     postData.append("sub_category", sub_category);
     postData.append("image", image, name);
+    postData.append("userId", this.authService.userId);
+    postData.append("userName", this.authService.userName);
 
     this.http
         .post<{message: string, post: Product}>('http://localhost:3000/api/product',postData)
         .subscribe(responseData => {
           const product: Product = {
-            id: responseData.post.id,
-            name: name,
-            price: price,
-            description: description,
-            city: city,
-            state: state,
-            main_category: main_category,
-            sub_category: sub_category,
-            imagePath: responseData.post.imagePath
+            _id: responseData.post._id,
+            name: responseData.post.name,
+            price: responseData.post.price,
+            description: responseData.post.description,
+            city: responseData.post.city,
+            state: responseData.post.state,
+            main_category: responseData.post.main_category,
+            sub_category: responseData.post.sub_category,
+            imagePath: responseData.post.imagePath,
+            owner_id: responseData.post.owner_id,
+            owner_name: responseData.post.owner_name,
+            rating: responseData.post.rating
           }
+
           console.log(responseData.message);
           // const postId = responseData.postId;
           // product._id = postId;

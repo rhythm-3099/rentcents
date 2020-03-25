@@ -38,7 +38,10 @@ router.post("/", multer({storage: storage}).single("image"), (req,res,next) => {
     state: req.body.state,
     main_category: req.body.main_category,
     sub_category: req.body.sub_category,
-    imagePath:  url + "/images/" + req.file.filename
+    imagePath:  url + "/images/" + req.file.filename,
+    owner_id: req.body.userId,
+    owner_name : req.body.userName,
+    rating : "0"
   });
 
   post.save().then(result => {
@@ -63,6 +66,21 @@ router.post("/", multer({storage: storage}).single("image"), (req,res,next) => {
 
 });
 
+// get a product by its id
+router.get("/:id", (req,res,next) => {
+  Product.findById(req.params.id)
+  .exec()
+  .then(doc => {
+      console.log(doc);
+      res.status(200).json({
+          message : "product fetched successfully",
+          product : doc
+      });
+    })
+    .catch(err => console.log(err));
+});
+
+
 //get all the products
 router.get("/", (req,res,next) => {
   Product.find()
@@ -75,16 +93,6 @@ router.get("/", (req,res,next) => {
     });
 });
 
-// get a product by its id
-router.get("/:id", (req,res,next) => {
-  Product.findById(req.params._id).then(post => {
-    if(post) {
-      res.status(200).json(post);
-    } else {
-      res.status(404).json({ message: "Post not found!" });
-    }
-  });
-});
 
 // delete a product by its id
 router.delete("/:id",(req,res,next) => {

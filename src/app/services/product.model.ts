@@ -1,5 +1,5 @@
 export interface Product {
-  id: string,
+  _id : string;
   name: string;
   description: string;
   price: string;
@@ -8,5 +8,7 @@ export interface Product {
   main_category: string;
   sub_category: string;
   imagePath: string;
-  //userId: string;
+  owner_id: string;
+  owner_name: string;
+  rating: string;
 }

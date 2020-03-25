@@ -1,23 +1,23 @@
 <mat-card>
-    <mat-card class="card-container">
+    <mat-card class="card-container" >
         <mat-spinner *ngIf="isLoading"></mat-spinner>
-        <mat-card-header>  
-            <mat-card-title><h1>Product Name:</h1></mat-card-title>
-        </mat-card-header> 
+        <mat-card-header>
+            <mat-card-title><h1>Product Name : {{product.name}}</h1></mat-card-title>
+        </mat-card-header>
          <div  class="card-container card side back">
-            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-         </div>   
-         
+            <img mat-card-image [src]="product.imagePath" alt="Photo of a Shiba Inu">
+         </div>
+
         <mat-card-content>
             <div>
-                <h2>Description</h2>
+                <h2>Description : {{product.description}}</h2>
                 <section>
                     <a class="a1" (click)="showButton()">
                     <h1>Category Info</h1>
                     </a>
                     <div *ngIf="show1" align="center" style="background-color: rgba(137,188,255,0.5); color: #0066cc;  font-size: 25px">
-                    Main: <br>
-                    Sub: <br>
+                    Main: {{product.main_category}}<br>
+                    Sub: {{product.sub_category}}<br>
                     </div>
                 </section>
                 <br>
@@ -26,10 +26,9 @@
                     <h1>Owner Info</h1>
                     </a>
                     <div *ngIf="show2" align="center" style="background-color: rgba(137,188,255,0.5); color: #0066cc;  font-size: 25px">
-                    Owner Name: <br>
-                    Owner Email: <br>
-                    City:  <br>
-                    State: <br>
+                    Owner Name: {{product.owner_name}}<br>
+                    City:  {{product.city}}<br>
+                    State: {{product.state}}<br>
                     </div>
                 </section>
                 <br>
@@ -38,15 +37,13 @@
                     <h1>Other Info</h1>
                     </a>
                     <div *ngIf="show3" align="center" style="background-color: rgba(137,188,255,0.5); color: #0066cc ; font-size: 25px">
-                    Price:  <br>
-                    Rating: <br>
-                    Initial Time: <br>
-                    End Time: <br>
+                    Price:  {{product.price}} ₹<br>
+                    Rating: {{product.rating}}<br>
                     </div>
-                </section>  
+                </section>
             </div>
             </mat-card-content>
-        
+
         <mat-spinner *ngIf="isLoading"></mat-spinner>
     </mat-card>
 
@@ -62,7 +59,7 @@
           <mat-card-actions>
             <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading" (click)="book()"><a mat-button routerLink="/bookproduct" routerLinkActive="mat-accent">Book product</a></button>
             <button mat-raised-button color="primary" type="button" *ngIf="!isLoading" (click)="chat1()"><mat-icon>chat</mat-icon>&nbsp;&nbsp;Chat</button>
-          </mat-card-actions>  
+          </mat-card-actions>
     <mat-spinner *ngIf="isLoading"></mat-spinner>
     </mat-card>
 </mat-card>

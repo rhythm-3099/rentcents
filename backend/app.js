@@ -42,11 +42,6 @@ app.use((req, res, next) => {
 
 
 app.use("/api/user", userRoutes);
-
 app.use("/api/product",productRoutes);
-
-
-
-
 
 module.exports = app;
