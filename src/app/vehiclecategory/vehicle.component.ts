@@ -18,6 +18,8 @@ export interface product {
 })
 
 export class VehicleComponent implements OnInit, OnDestroy{
+  searchterm: string;
+  search: string;
   posts: Product[] = [];
   private postsSub: Subscription;
   totalPosts=10;

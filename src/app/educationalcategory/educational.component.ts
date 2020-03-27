@@ -17,6 +17,8 @@ export interface product {
   styleUrls: ['./educational.component.css']
 })
 export class EducationalComponent implements OnInit, OnDestroy{
+  searchterm: string;
+  search: string;
   posts: Product[] = [];
   private postsSub: Subscription;
   totalPosts=10;

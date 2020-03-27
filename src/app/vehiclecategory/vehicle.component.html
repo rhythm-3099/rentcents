@@ -2,19 +2,20 @@
   <button mat-raised-button color="primary" (click)="gotoRealestate()">Real Estate</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoVehicles()">Vehicles</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoElectronics()">Electronics</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoSports()">Sports</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoFurniture()">Furniture</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoBooks()">Books</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoEducational()">Educational</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoHobby()">Hobby</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoClothing()">Clothing</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoOthers()">Others</button>
 </mat-card>
 <mat-card>
-  <input  placeholder="Enter items to Search..."><button class="button">SEARCH</button>
+  <input  placeholder="Enter items to Search..." [(ngModel)]="searchterm" term="term" [ngModelOptions]="{standalone: true}"><button class="button">SEARCH</button>
   <br>
   <br>
   <br>
   <br>
-  <input type="text" placeholder="Enter the maximum budget that you can afford..."><button>FILTER</button>
+  <input type="text" placeholder="Enter the maximum budget that you can afford..." [(ngModel)]="search" term="search" [ngModelOptions]="{standalone: true}"><button>FILTER</button>
 </mat-card>
+
 
 <mat-grid-list cols="4" rowHeight="1:2" guttersize="5px" *ngIf="posts.length > 0">
   <!-- items being paged -->
 <!-- <div *ngFor="let item of pagedItems">{{item.name}}</div> -->
 
- <mat-grid-tile *ngFor="let tile of posts">
+ <mat-grid-tile *ngFor="let tile of posts | productFilter: searchterm | productPriceFilter: search">
       <mat-card class="example-card">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>

@@ -50,6 +50,8 @@ import { BooksComponent } from './bookscategory/books.component';
 import { ClothingComponent } from './clothingcategory/clothing.component';
 import { HobbyComponent } from './hobbycategory/hobby.component';
 import { HelppageComponent } from './helppage/helppage.component';
+import { ProductFilterPipe } from './bookscategory/product-filter.pipe';
+import { FilterPricePipe } from './bookscategory/product-price-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -76,7 +78,9 @@ import { HelppageComponent } from './helppage/helppage.component';
     OthersComponent,
     ClothingComponent,
     HobbyComponent,
-    HelppageComponent
+    HelppageComponent,
+    ProductFilterPipe,
+    FilterPricePipe
   ],
   imports: [
     BrowserModule,
