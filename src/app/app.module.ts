@@ -49,6 +49,7 @@ import { OthersComponent } from './otherscategory/others.component';
 import { BooksComponent } from './bookscategory/books.component';
 import { ClothingComponent } from './clothingcategory/clothing.component';
 import { HobbyComponent } from './hobbycategory/hobby.component';
+import { HelppageComponent } from './helppage/helppage.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { HobbyComponent } from './hobbycategory/hobby.component';
     BooksComponent,
     OthersComponent,
     ClothingComponent,
-    HobbyComponent
+    HobbyComponent,
+    HelppageComponent
   ],
   imports: [
     BrowserModule,
