@@ -11,6 +11,16 @@ import { BookproductComponent } from './bookproduct/bookproduct.component';
 import { ProductCategorizeComponent } from './productCategorization/productcategorize.component';
 import { AboutComponent } from './about/about.component';
 import { PaymentComponent } from './payment/payment.component';
+import { VehicleComponent } from './vehiclecategory/vehicle.component';
+import { RealestateComponent } from './realestatecategory/realestate.component';
+import { EducationalComponent } from './educationalcategory/educational.component';
+import { SportsComponent } from './sportscategory/sports.component';
+import { ElectronicsComponent } from './electronicscategory/electronics.component';
+import { FurnitureComponent } from './furniturecategory/furniture.component';
+import { BooksComponent } from './bookscategory/books.component';
+import { OthersComponent } from './otherscategory/others.component';
+import { ClothingComponent } from './clothingcategory/clothing.component';
+import { HobbyComponent } from './hobbycategory/hobby.component';
 const routes: Routes = [
   { path:'' ,component: HomeComponent},
   {path: 'homepage', component: HomeComponent},
@@ -23,8 +33,18 @@ const routes: Routes = [
   {path: 'viewproduct', component: ViewproductComponent},
   {path: 'bookproduct', component: BookproductComponent},
   {path: 'productcategorize', component: ProductCategorizeComponent},
-  {path: 'payment', component: PaymentComponent}
-  
+  {path: 'payment', component: PaymentComponent},
+  {path: 'vehicles', component: VehicleComponent},
+  {path: 'realestate', component: RealestateComponent},
+  {path: 'educational', component: EducationalComponent},
+  {path: 'sports', component: SportsComponent},
+  {path: 'electronics', component: ElectronicsComponent},
+  {path: 'furniture', component: FurnitureComponent},
+  {path: 'books', component: BooksComponent},
+  {path: 'others', component: OthersComponent},
+  {path: 'clothing', component: ClothingComponent},
+  {path: 'hobby', component: HobbyComponent}
+
 ];
 
 @NgModule({
