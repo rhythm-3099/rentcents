@@ -4,7 +4,7 @@
     <div style="margin-left: 10px ; margin-right: 10px ; " class="form-group">
     <div >
       <mat-form-field appearance="legacy">
-        <mat-label style="color : white; font-size: 1rem;">Email</mat-label>
+        <mat-label style="font-size: 1rem;">Email</mat-label>
         <input matInput name="email" ngModel type="email" placeholder="Email" #emailInput="ngModel" class="form-control" required email>
         <mat-error *ngIf="emailInput.invalid">Please enter a valid email</mat-error>
 
@@ -12,15 +12,16 @@
     </div>
     <div>
       <mat-form-field>
-        <mat-label style="color : white; font-size: 1rem;">Password</mat-label>
+        <mat-label style="font-size: 1rem;">Password</mat-label>
         <input matInput name="password" ngModel type="password" placeholder="Password" #passwordInput="ngModel" class="form-control" required>
         <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
       </mat-form-field>
     </div>
-    <div>
+    <mat-card-actions>
       <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading">Login</button>
-    </div>
+    </mat-card-actions>
   </div>
+  
     <mat-spinner *ngIf="isLoading"></mat-spinner>
 
   </form>
