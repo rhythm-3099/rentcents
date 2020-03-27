@@ -1,0 +1,85 @@
+<div class="back">
+<mat-card>
+    <mat-card class="card-container" >
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+        <mat-card-header>
+            <mat-card-title>
+                <h1>Product Name : {{product.name}}</h1> 
+                Price: <strong> {{product.price}} ₹</strong></mat-card-title>
+        </mat-card-header>
+         <div  class="card-container card side back">
+            <img mat-card-image [src]="product.imagePath" alt="Photo of a Shiba Inu">
+         </div>
+        <mat-card-content>
+            <div>
+                <h2>Description : {{product.description}}</h2>
+                <section>
+                    <a class="a1" (click)="showButton()">
+                    <h1>Category Info</h1>
+                    </a>
+                    <div *ngIf="show1" align="center" style="background-color: rgba(137,188,255,0.5); color: #0066cc;  font-size: 25px">
+                    Main: {{product.main_category}}<br>
+                    Sub: {{product.sub_category}}<br>
+                    </div>
+                </section>
+                <br>
+                <section>
+                    <a class="a1" (click)="showButton2()">
+                    <h1>Owner Info</h1>
+                    </a>
+                    <div *ngIf="show2" align="center" style="background-color: rgba(137,188,255,0.5); color: #0066cc;  font-size: 25px">
+                    Owner Name: {{product.owner_name}}<br>
+                    City:  {{product.city}}<br>
+                    State: {{product.state}}<br>
+                    </div>
+                </section>
+                <br>
+                <section>
+                    <a class="a1" (click)="showButton3()" >
+                    <h1>Other Info</h1>
+                    </a>
+                    <div *ngIf="show3" align="center" style="background-color: rgba(137,188,255,0.5); color: #0066cc ; font-size: 25px">
+                
+                    Rating: {{product.rating}}<br>
+                    </div>
+                </section>
+            </div>
+            </mat-card-content>
+
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+    </mat-card>
+
+
+    <mat-card class="card-container">
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+        <h1>Seller description</h1>
+        <mat-card-header>
+            <div mat-card-avatar class="seller-image"></div>
+            <mat-card-title>Seller name</mat-card-title>
+            <mat-card-subtitle (click)="doStuff()">View Profile</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading" (click)="book()"><a mat-button routerLink="/bookproduct" routerLinkActive="mat-accent">Book product</a></button>
+            <button mat-raised-button color="primary" type="button" *ngIf="!isLoading" (click)="chat1()"><mat-icon>chat</mat-icon>&nbsp;&nbsp;Chat</button>
+          </mat-card-actions>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    </mat-card>
+    <mat-card class="card-container">
+        <mat-card-header>
+            <mat-card-title>Comments and Reviews</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div *ngFor="let cas of postcomment">
+                <p>{{cas.username}}: {{cas.comment}}</p>
+            </div>
+            <div>
+                <div>
+                    <textarea [(ngModel)]="comment" style="width: 100%; margin-bottom: 10px; height:100px;" placeholder="Enter your comments"></textarea>
+                </div>
+                    <button mat-raised-button color="primary" style="float:;" type="button" (click)="post1()" style="margin-bottom: 5px;"><mat-icon>comment</mat-icon>&nbsp;&nbsp;Comment</button>
+            </div>
+            
+        </mat-card-content>
+    </mat-card>
+</mat-card>
+</div>

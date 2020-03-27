@@ -1,0 +1,76 @@
+.side {
+    backface-visibility: hidden;
+    border-radius: 8px;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+
+  }
+  .seller-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+
+  .card-container {
+    cursor: pointer;
+    height: auto;
+    perspective: 600;
+    position: relative;
+    width:800px;
+    margin-top: 50px;
+   /* left: 33%;*/
+   margin-right: auto;
+   margin-left: auto;
+   /*text-align: center;*/
+  }
+  .a1 {
+    display:block;
+    height:40px;
+    line-height:40px;
+    background:-webkit-gradient(
+      linear, 0 0, 0 100%,
+      from(#eee), to(#ccc)
+    );
+    background:-moz-linear-gradient(#eee, #ccc);
+    background:-o-linear-gradient(#eee, #ccc);
+    background:-ms-linear-gradient(#eee, #ccc);
+    background:linear-gradient(#eee, #ccc);
+    color:#333;
+    text-decoration:none;
+    text-align:center;
+    text-shadow:0 1px 0 rgba(255,255,255,.5);
+    border-bottom:1px solid #aaa;
+  }
+  .card .back {
+    background-color: rgba(137, 188, 255, 0.5);
+      color: white;
+    /*line-height: 150px;*/
+    height: 300px;
+    width: 400px;
+    padding-left: 5px;
+    transform: rotateY(180deg);
+  }
+  textarea{
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  .comdiv{
+    height: 1px;
+  }
+  #myDIV {
+    
+    color: black;
+    /* margin-left: 30% ; */
+    margin-top: 20px;  
+    width: 100%;
+  
+    align: center;
+    -webkit-animation: mymove 4s infinite; 
+    animation: mymove 2s infinite;
+    background-color: aqua;
+  }
+.back{
+
+}

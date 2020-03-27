@@ -6,6 +6,9 @@ const mongoose = require("mongoose");
 //const postsRoutes = require("./routes/posts");
 const userRoutes = require("./routes/user");
 const productRoutes = require("./routes/product");
+const categoryRoutes = require("./routes/category");
+
+const Post = require('../backend/models/product');
 
 const app = express();
 
@@ -33,12 +36,14 @@ app.use((req, res, next) => {
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+    "GET, POST, PATCH, DELETE, OPTIONS"
   );
   next();
 });
 
 
 app.use("/api/user", userRoutes);
-app.use("/api/product", productRoutes);
+app.use("/api/product",productRoutes);
+app.use("/api/category",categoryRoutes);
+
 module.exports = app;

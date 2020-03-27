@@ -8,8 +8,10 @@ const productSchema = mongoose.Schema({
   state: { type: String, required: true },
   main_category: { type: String, required: true },
   sub_category: { type: String},
+  imagePath: { type: String, required: true},
+  owner : { type: String },
+  owner_name : { type: String },
   rating: { type: String },
-  owner : { type: String }
 });
 
-module.exports =  mongoose.model('Product',productSchema);
+module.exports = mongoose.model("Product", productSchema);

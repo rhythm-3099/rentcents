@@ -9,11 +9,12 @@ mat-spinner {
 
 #myDIV {
   border:1px solid black;
-  background-color: #073642 !important;
+  background-color:#e0e0d1 !important;
+  color: black;
   margin-left: 30% ;
   margin-top: 20px;  
-  color: white;
   width: 40%;
+
   align: center;
   -webkit-animation: mymove 4s infinite; 
   animation: mymove 2s infinite;
@@ -21,22 +22,9 @@ mat-spinner {
 .form-group {
   margin-bottom: 1rem;
 }
-.form-control {
-  display: block;
-  width: 100%;
-  height: calc(1.5em + 0.75rem + 2px);
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  margin-right: 10px;
-  color: #495057;
-  background-color: #A9BDBD;
-  background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 0.25rem;
-  -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
-}
+
+
+.mat-raised-button{
+  background-color:#595959;
+  color: white;
+} 

@@ -1,4 +1,74 @@
+<mat-card>
+  <mat-card-header><h1>Hello Ganesh,</h1></mat-card-header>
+  <mat-card-content>
+      <mat-card>
+          <ul class="list-group">
+              <li class="list-group-item"><b>NAME:</b> Ganesh Gaitonde</li>
+              <li class="list-group-item"><b>EMAIL:</b> ganesh@gmail.com</li>
+              <li class="list-group-item"><b>MOBILE NO.:</b> 1234567890</li>
+          </ul>
+          <button mat-raised-button routerLink="/updateuserprofile" color="primary" type="submit" >Update Profile</button>
+      </mat-card>
+      <mat-card>
+          <mat-card-content>
+              <p>On this page you would be able  to see your profile as well as opt to change your profile as and when you wish.</p>
+              <p>Also this page will show you the things that have been rented by you as well as the things that you have put on rent and also their statuses.</p>
+              <div class="center">
+                  <h1>STATUS OF YOUR PROFILE</h1>
+              </div>
+          </mat-card-content>
+      </mat-card>
+      <mat-card>
+          <mat-card-header>
+              <mat-card-title><h1>PRODUCTS THAT I HAVE RENTED OUT:</h1></mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+              <table cellpadding = "5" cellspacing = "5" >
+                  <tr>
+                  <th>PRODUCT NAME</th>
+                  <th>IMAGE</th>
+                  <th>NAME OF OWNER</th>
+                  <th>DATE OF RENT</th>
+                  <th>DATE OF RETURN</th>
+                  <th>PAYMENT STATUS</th>
+                  </tr>
 
-<div>
-    <button mat-button routerLink="/updateuserprofile" color="white" type="submit" >Update User Profile</button>
-    </div>
+                  <tr>
+                  <td>TV</td>
+                  <td>TV Image</td>
+                  <td>Bunty</td>
+                  <td>12-02-2019</td>
+                  <td>12-03-2020</td>
+                  <td>NOT PAID</td>
+                  </tr>
+              </table>
+          </mat-card-content>
+      </mat-card>
+      <mat-card>
+          <mat-card-header>
+              <mat-card-title><h1>PRODUCTS THAT I HAVE RENTED OUT:</h1></mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+              <table cellpadding = "5" cellspacing = "5">
+                  <tr>
+                  <th>PRODUCT NAME</th>
+                  <th>IMAGE</th>
+                  <th>NAME OF LENDER</th>
+                  <th>DATE OF RENT</th>
+                  <th>DATE OF RETURN</th>
+                  <th>PAYMENT STATUS</th>
+                  </tr>
+
+                  <tr>
+                  <td>TV</td>
+                  <td>TV Image</td>
+                  <td>Bunty</td>
+                  <td>12-02-2019</td>
+                  <td>12-03-2020</td>
+                  <td>NOT PAID</td>
+                  </tr>
+              </table>
+          </mat-card-content>
+      </mat-card>
+  </mat-card-content>
+</mat-card>

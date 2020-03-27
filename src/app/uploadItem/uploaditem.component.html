@@ -1,42 +1,42 @@
 <mat-card id="myitem">
   <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
-  <form (submit)="onUpload(signupForm)" #signupForm="ngForm" >
-    <h1>Upload items</h1>
+  <form [formGroup]="form" (submit)="onUpload()"  >
+    <h1><strong> Upload Item</strong></h1>
     <div style="margin-left: 10px ; margin-right: 10px ; " class="form-group">
     <div>
       <mat-form-field>
         <mat-label >Product Name</mat-label>
-        <input matInput name="name" ngModel type="text" placeholder="Enter the name of the item" #mobInput="ngModel"required>
+        <input matInput name="name" formControlName="name" type="text" placeholder="Enter the name of the item">
       </mat-form-field>
     </div>
     <div>
       <mat-form-field>
         <mat-label>Expected price</mat-label>
-        <input matInput name="price" ngModel type="text" placeholder="Enter the expected price" #mobInput="ngModel" required>
+        <input matInput name="price" formControlName="price" type="text" placeholder="Enter the expected price" >
       </mat-form-field>
     </div>
     <div>
       <mat-form-field>
         <mat-label>Description</mat-label>
-        <input matInput name="description" ngModel type="text" placeholder="Enter the description of the item" #mobInput="ngModel" required>
+        <input matInput name="description" formControlName="description" type="text" placeholder="Enter the description of the item" >
       </mat-form-field>
     </div>
     <div>
       <mat-form-field>
         <mat-label>City</mat-label>
-        <input matInput name="city" ngModel type="text" placeholder="Enter the city" #mobInput="ngModel" required>
+        <input matInput name="city" formControlName="city" type="text" placeholder="Enter the city">
       </mat-form-field>
     </div>
     <div>
       <mat-form-field>
         <mat-label>State</mat-label>
-        <input matInput name="state" ngModel type="text" placeholder="Enter the state" #mobInput="ngModel" required>
+        <input matInput name="state" formControlName="state" type="text" placeholder="Enter the state">
       </mat-form-field>
     </div>
     <div>
       <mat-form-field>
 
-        <mat-select placeholder="Main Category" name="main_category" (selectionChange)="findSUB(catef)" [(ngModel)]="catef">
+        <mat-select placeholder="Main Category" name="main_category" formControlName="main_category" (selectionChange)="findSUB()">
 
           <mat-option *ngFor="let cas of cat_main" [value]="cas">
             {{cas}}
@@ -48,7 +48,7 @@
     <div>
       <mat-form-field>
 
-        <mat-select placeholder="Sub Category" name="sub_category" [(ngModel)]="categ">
+        <mat-select placeholder="Sub Category" name="sub_category" formControlName="sub_category">
           <mat-option *ngFor="let cas of cat_sub" [value]="cas">
             {{cas}}
           </mat-option>
@@ -62,9 +62,16 @@
         <input name="productimage" ngModel type="file" #mobInput="ngModel" required>
 
     </div> -->
+    <div>
+      <button mat-stroked-button type="button" (click)="filePicker.click()">Pick image</button>
+      <input type="file" #filePicker (change)="onImagePicked($event)">
+    </div>
+    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
+      <img [src]="imagePreview" [alt]="form.value.name">
+    </div>
 
     <div>
-      <button mat-raised-button color="primary" type="submit" >Upload for rent</button>
+      <button mat-raised-button color="custom" type="submit" >Upload for rent</button>
     </div>
     <!-- <mat-spinner *ngIf="isLoading"></mat-spinner>
     </div>-->

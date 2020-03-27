@@ -10,7 +10,11 @@ router.post("/signup", (req, res, next) => {
   bcrypt.hash(req.body.password, 10).then(hash => {
     const user = new User({
       email: req.body.email,
-      password: hash
+      password: hash,
+      userName: req.body.name,
+      number:req.body.number,
+      address:req.body.address,
+      rating: "0"
     });
     user
       .save()
@@ -35,7 +39,7 @@ router.post("/login", (req,res,next) => {
 
       if(!user){
         return res.status(401).json({
-          message: 'Auth failed'
+          message: 'Auth failed 1'
         });
       }
       fetchedUser = user;
@@ -46,24 +50,43 @@ router.post("/login", (req,res,next) => {
       if(!result) {
         fetchedUser = null;
         return res.status(401).json({
-          message: 'Auth failed'
+          message: 'Auth failed 2'
         });
       }
+
+      console.log(fetchedUser);
        user_id = "" + fetchedUser._id;
+       user_name = "" + fetchedUser.userName;
       const token = jwt.sign({email: fetchedUser.email, userId: fetchedUser._id}, 'secret_this_should_be_longer', {expiresIn: "1h"});
       res.status(200).json({
         token: token,
         userId : user_id,
+        userName : user_name,
         expiresIn: "3600"
       });
       console.log(fetchedUser);
     })
     .catch(err => {
       return res.status(401).json({
-        message: 'Auth failed'
+        message: 'Auth failed 3'
       });
     });
 });
+
+router.get("/:productId", (req,res,next) => {
+  const id = req.params.productId;
+  console.log(id);
+  User.findById(id)
+  .exec()
+  .then(doc => {
+      console.log(doc, "hii");
+      res.status(200).json({
+          message : "product fetched successfully",
+          product : doc
+      });
+    })
+    .catch(err => console.log(err));
+})
 
 router.get("/", (req, res, next) => {
   User.find().then(documents => {

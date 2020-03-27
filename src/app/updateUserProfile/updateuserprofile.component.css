@@ -1,13 +1,24 @@
 mat-card{
-    width: 95%;
-    margin: auto;
-  }
+  width: 95%;
+  margin: auto;
+}
+
+input, mat-form-field{
+  width: 95%;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+#myDIV {
+  border:1px solid black;
+  color: black;
+  /* margin-left: 30% ; */
+  margin-top: 20px;  
+  width: 90%;
   
-  input, mat-form-field{
-    width: 95%;
-  }
-  
-  mat-spinner {
-    margin: auto;
-  }
-    
+  align: center;
+  -webkit-animation: mymove 4s infinite; 
+  animation: mymove 2s infinite;
+}
