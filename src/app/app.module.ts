@@ -38,6 +38,16 @@ import { BookproductComponent } from './bookproduct/bookproduct.component';
 import { User_item_service } from './services/user_item.service';
 import { ProductCategorizeComponent } from './productCategorization/productcategorize.component';
 import { AboutComponent } from './about/about.component';
+import { VehicleComponent } from './vehiclecategory/vehicle.component';
+import { RealestateComponent } from './realestatecategory/realestate.component';
+import { EducationalComponent } from './educationalcategory/educational.component';
+import { SportsComponent } from './sportscategory/sports.component';
+import { ElectronicsComponent } from './electronicscategory/electronics.component';
+import { FurnitureComponent } from './furniturecategory/furniture.component';
+import { OthersComponent } from './otherscategory/others.component';
+import { BooksComponent } from './bookscategory/books.component';
+import { ClothingComponent } from './clothingcategory/clothing.component';
+import { HobbyComponent } from './hobbycategory/hobby.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +62,17 @@ import { AboutComponent } from './about/about.component';
     ViewproductComponent,
     BookproductComponent,
     ProductCategorizeComponent,
-    AboutComponent
+    AboutComponent,
+    VehicleComponent,
+    RealestateComponent,
+    EducationalComponent,
+    ElectronicsComponent,
+    SportsComponent,
+    FurnitureComponent,
+    BooksComponent,
+    OthersComponent,
+    ClothingComponent,
+    HobbyComponent
   ],
   imports: [
     BrowserModule,

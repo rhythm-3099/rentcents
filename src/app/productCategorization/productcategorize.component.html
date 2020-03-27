@@ -1,7 +1,7 @@
 <div>
-<mat-card>
-<button mat-raised-button color="primary">Real Estate</button>&nbsp;&nbsp;<button mat-raised-button color="primary">Vehicles</button>&nbsp;&nbsp;<button mat-raised-button color="primary">Electronics</button>&nbsp;&nbsp;<button mat-raised-button color="primary">Sports</button>&nbsp;&nbsp;<button mat-raised-button color="primary">Furniture</button>&nbsp;&nbsp;<button mat-raised-button color="primary">Books</button>&nbsp;&nbsp;<button mat-raised-button color="primary">Educational</button>&nbsp;&nbsp;<button mat-raised-button color="primary">Hobby</button>&nbsp;&nbsp;<button mat-raised-button color="primary">Clothing</button>&nbsp;&nbsp;<button mat-raised-button color="primary">Others</button>
-</mat-card>
+  <mat-card>
+    <button mat-raised-button color="primary" (click)="gotoRealestate()">Real Estate</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoVehicles()">Vehicles</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoElectronics()">Electronics</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoSports()">Sports</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoFurniture()">Furniture</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoBooks()">Books</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoEducational()">Educational</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoHobby()">Hobby</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoClothing()">Clothing</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoOthers()">Others</button>
+  </mat-card>
 </div>
 <div>
 <mat-grid-list cols="5" rowHeight="2:2" guttersize="5px">
@@ -13,11 +13,11 @@
          <button mat-raised-button color="no" routerLink="/viewproduct"><img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="product pic unavailable"></button>
         <p><b>Price:</b></p>{{tile.Price}}
         <p><b>No. of years used:</b></p>{{tile.Age}}
-        
-        
-          
+
+
+
 
         </mat-card>
-    </mat-grid-tile> 
+    </mat-grid-tile>
 </mat-grid-list>
 </div>
