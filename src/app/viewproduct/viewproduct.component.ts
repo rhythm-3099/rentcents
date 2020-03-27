@@ -14,13 +14,14 @@ export class ViewproductComponent implements OnInit, OnDestroy {
 
   product: Product;
   private productsub: Subscription;
-
+  comment;
 
 
   isLoading = false;
   show1 = false;
   show2 = false;
   show3 = false;
+  postcomment =[];
   private product_id: string;
   constructor(public serach_service : Search_service,private router: Router) {
     this.product_id = this.router.getCurrentNavigation().extras.state.product_id;
@@ -76,5 +77,9 @@ export class ViewproductComponent implements OnInit, OnDestroy {
   }
   chat1(){
 
+  }
+  post1(){
+    this.postcomment.push(this.comment);
+    this.comment='';
   }
 }

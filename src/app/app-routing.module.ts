@@ -10,7 +10,7 @@ import { ViewproductComponent } from './viewproduct/viewproduct.component';
 import { BookproductComponent } from './bookproduct/bookproduct.component';
 import { ProductCategorizeComponent } from './productCategorization/productcategorize.component';
 import { AboutComponent } from './about/about.component';
-
+import { PaymentComponent } from './payment/payment.component';
 const routes: Routes = [
   { path:'' ,component: HomeComponent},
   {path: 'homepage', component: HomeComponent},
@@ -22,7 +22,8 @@ const routes: Routes = [
   {path: 'updateuserprofile', component: UpdateUserProfileComponent},
   {path: 'viewproduct', component: ViewproductComponent},
   {path: 'bookproduct', component: BookproductComponent},
-  {path: 'productcategorize', component: ProductCategorizeComponent}
+  {path: 'productcategorize', component: ProductCategorizeComponent},
+  {path: 'payment', component: PaymentComponent}
   
 ];
 

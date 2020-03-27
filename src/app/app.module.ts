@@ -38,6 +38,7 @@ import { BookproductComponent } from './bookproduct/bookproduct.component';
 import { User_item_service } from './services/user_item.service';
 import { ProductCategorizeComponent } from './productCategorization/productcategorize.component';
 import { AboutComponent } from './about/about.component';
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { AboutComponent } from './about/about.component';
     ViewproductComponent,
     BookproductComponent,
     ProductCategorizeComponent,
-    AboutComponent
+    AboutComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
