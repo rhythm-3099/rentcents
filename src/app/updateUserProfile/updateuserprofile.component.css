@@ -17,8 +17,14 @@ mat-spinner {
   /* margin-left: 30% ; */
   margin-top: 20px;  
   width: 90%;
-  
+  background-color:#e0e0d1 !important;
   align: center;
   -webkit-animation: mymove 4s infinite; 
   animation: mymove 2s infinite;
 }
+
+
+.mat-raised-button{
+  background-color:#595959;
+  color: white;
+} 

@@ -59,18 +59,4 @@
   .comdiv{
     height: 1px;
   }
-  #myDIV {
-    
-    color: black;
-    /* margin-left: 30% ; */
-    margin-top: 20px;  
-    width: 100%;
   
-    align: center;
-    -webkit-animation: mymove 4s infinite; 
-    animation: mymove 2s infinite;
-    background-color: aqua;
-  }
-.back{
-
-}

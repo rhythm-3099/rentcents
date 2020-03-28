@@ -17,6 +17,8 @@ export interface product {
   styleUrls: ['./realestate.component.css']
 })
 export class RealestateComponent implements OnInit, OnDestroy{
+  searchterm: string;
+  search: string;
   posts: Product[] = [];
   private postsSub: Subscription;
   totalPosts=10;

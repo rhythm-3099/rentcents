@@ -14,13 +14,8 @@ example-card {
     font-weight: bold;
   }
 
-.custom{
-    /* object-fit: cover; this makes the image in src fit to the size specified below */
-    /* width: 100%;
-    margin: 30px auto; */
-   
-  }
-  .mat-card-image {
-    padding: 0 10px;
-    box-sizing: border-box;
-  }
+  /* .post-image {
+    width: 100%;
+  } */
+  
+
