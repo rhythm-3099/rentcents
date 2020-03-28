@@ -22,10 +22,10 @@ export class OthersComponent implements OnInit, OnDestroy{
   search: string;
   posts: Product[] = [];
   private postsSub: Subscription;
-  totalPosts=10;
-  postsPerPage=4;
-  currentPage = 1;
-  pageSizeOptions = [4,8,12];
+  // totalPosts=10;
+  // postsPerPage=4;
+  // currentPage = 1;
+  // pageSizeOptions = [4,8,12];
 
   constructor(public postsService: Others_category_service,private router: Router) {
 
@@ -34,23 +34,22 @@ export class OthersComponent implements OnInit, OnDestroy{
   ngOnInit() {
     // console.log('1) ');
 
-    this.postsService.getOthersPosts(this.postsPerPage,this.currentPage);
+    this.postsService.getOthersPosts();
     this.postsSub = this.postsService.getPostUpdateListener()
       .subscribe((productData: {posts: Product[], postCount: number}) => {
         this.posts = productData.posts;
-        this.totalPosts = productData.postCount;
         //console.log(this.posts);
       });
     //   console.log('2) ');
     // console.log('homeComponent ', this.posts);
   }
 
-  onChangedPage(pageData: PageEvent){
-    console.log(pageData);
-    this.currentPage = pageData.pageIndex + 1;
-    this.postsPerPage = pageData.pageSize;
-    this.postsService.getOthersPosts(this.postsPerPage,this.currentPage);
-  }
+  // onChangedPage(pageData: PageEvent){
+  //   console.log(pageData);
+  //   this.currentPage = pageData.pageIndex + 1;
+  //   this.postsPerPage = pageData.pageSize;
+  //   this.postsService.getOthersPosts(this.postsPerPage,this.currentPage);
+  // }
 
   ngOnDestroy() {
     this.postsSub.unsubscribe();

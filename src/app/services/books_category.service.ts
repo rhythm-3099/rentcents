@@ -17,12 +17,12 @@ export class Books_category_service  {
 
   constructor(private http:HttpClient,public authService: AuthService, private router: Router) {}
 
-  getBooksPosts(postsPerPage: number, currentPage: number) {
-    const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
-    console.log(queryParams);
+  getBooksPosts() {
+    // const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
+    // console.log(queryParams);
 
 
-    this.http.get<{message: string, posts: any, maxPosts: number}>('http://localhost:3000/api/category/books' + queryParams)
+    this.http.get<{message: string, posts: any, maxPosts: number}>('http://localhost:3000/api/category/books')
       .pipe(
         map(postData => {
           return { posts: postData.posts.map(post => {

@@ -17,12 +17,11 @@ export class Clothing_category_service  {
 
   constructor(private http:HttpClient,public authService: AuthService, private router: Router) {}
 
-  getClothingPosts(postsPerPage: number, currentPage: number) {
-    const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
-    console.log(queryParams);
+  getClothingPosts() {
 
 
-    this.http.get<{message: string, posts: any, maxPosts: number}>('http://localhost:3000/api/category/clothing' + queryParams)
+
+    this.http.get<{message: string, posts: any, maxPosts: number}>('http://localhost:3000/api/category/clothing')
       .pipe(
         map(postData => {
           return { posts: postData.posts.map(post => {

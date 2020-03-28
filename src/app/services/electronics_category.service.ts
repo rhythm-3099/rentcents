@@ -17,12 +17,11 @@ export class Electronics_category_service  {
 
   constructor(private http:HttpClient,public authService: AuthService, private router: Router) {}
 
-  getElectronicsPosts(postsPerPage: number, currentPage: number) {
-    const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
-    console.log(queryParams);
+  getElectronicsPosts() {
 
 
-    this.http.get<{message: string, posts: any, maxPosts: number}>('http://localhost:3000/api/category/electronics' + queryParams)
+
+    this.http.get<{message: string, posts: any, maxPosts: number}>('http://localhost:3000/api/category/electronics')
       .pipe(
         map(postData => {
           return { posts: postData.posts.map(post => {

@@ -17,12 +17,10 @@ export class Vehicle_category_service  {
 
   constructor(private http:HttpClient,public authService: AuthService, private router: Router) {}
 
-  getVehiclePosts(postsPerPage: number, currentPage: number) {
-    const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
-    console.log(queryParams);
+  getVehiclePosts() {
 
 
-    this.http.get<{message: string, posts: any, maxPosts: number}>('http://localhost:3000/api/category/vehicle' + queryParams)
+    this.http.get<{message: string, posts: any, maxPosts: number}>('http://localhost:3000/api/category/vehicle')
       .pipe(
         map(postData => {
           return { posts: postData.posts.map(post => {

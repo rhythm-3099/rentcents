@@ -17,12 +17,10 @@ export class Educational_category_service  {
 
   constructor(private http:HttpClient,public authService: AuthService, private router: Router) {}
 
-  getEducationalPosts(postsPerPage: number, currentPage: number) {
-    const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
-    console.log(queryParams);
+  getEducationalPosts() {
 
 
-    this.http.get<{message: string, posts: any, maxPosts: number}>('http://localhost:3000/api/category/educational' + queryParams)
+    this.http.get<{message: string, posts: any, maxPosts: number}>('http://localhost:3000/api/category/educational')
       .pipe(
         map(postData => {
           return { posts: postData.posts.map(post => {
