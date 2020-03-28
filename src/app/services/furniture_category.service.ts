@@ -17,12 +17,11 @@ export class Furniture_category_service  {
 
   constructor(private http:HttpClient,public authService: AuthService, private router: Router) {}
 
-  getFurniturePosts(postsPerPage: number, currentPage: number) {
-    const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
-    console.log(queryParams);
+  getFurniturePosts() {
 
 
-    this.http.get<{message: string, posts: any, maxPosts: number}>('http://localhost:3000/api/category/furniture' + queryParams)
+
+    this.http.get<{message: string, posts: any, maxPosts: number}>('http://localhost:3000/api/category/furniture')
       .pipe(
         map(postData => {
           return { posts: postData.posts.map(post => {
@@ -34,7 +33,7 @@ export class Furniture_category_service  {
               city: post.city,
               state: post.state,
               main_category: post.main_category,
-              sub_cateegory: post.sub_cateegory,
+              sub_category: post.sub_category,
               imagePath: post.imagePath,
               owner: post.owner,
               owner_name: post.owner_name,

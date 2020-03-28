@@ -15,11 +15,7 @@ export class ViewproductComponent implements OnInit, OnDestroy {
   product: Product;
   private productsub: Subscription;
   comment;
-<<<<<<< HEAD
   username="chintu";
-=======
-
->>>>>>> 255558e5027e3cd33e23aa709d6f1d14f56a0a6d
 
   isLoading = false;
   show1 = false;
@@ -83,11 +79,7 @@ export class ViewproductComponent implements OnInit, OnDestroy {
 
   }
   post1(){
-<<<<<<< HEAD
     this.postcomment.push({username: this.username,comment: this.comment});
-=======
-    this.postcomment.push(this.comment);
->>>>>>> 255558e5027e3cd33e23aa709d6f1d14f56a0a6d
     this.comment='';
   }
 }

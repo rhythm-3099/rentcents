@@ -10,11 +10,11 @@ router.get("/vehicle", (req,res,next) => {
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
   let newCount;
-  Product.find({ "main_category": { $eq: "Vehicles" } }).exec(function (err, results) {
-    var newCount = results.length;
-    console.log(newCount);
+  // Product.find({ "main_category": { $eq: "Vehicles" } }).exec(function (err, results) {
+  //   // var newCount = results.length;
+  //   // console.log(newCount);
 
-  });
+  // });
   const postQuery = Product.find({ "main_category": { $eq: "Vehicles" } });
   console.log('hiiiiiii');
 
