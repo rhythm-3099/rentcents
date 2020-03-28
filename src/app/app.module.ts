@@ -39,6 +39,19 @@ import { User_item_service } from './services/user_item.service';
 import { ProductCategorizeComponent } from './productCategorization/productcategorize.component';
 import { AboutComponent } from './about/about.component';
 import { PaymentComponent } from './payment/payment.component';
+import { VehicleComponent } from './vehiclecategory/vehicle.component';
+import { RealestateComponent } from './realestatecategory/realestate.component';
+import { EducationalComponent } from './educationalcategory/educational.component';
+import { SportsComponent } from './sportscategory/sports.component';
+import { ElectronicsComponent } from './electronicscategory/electronics.component';
+import { FurnitureComponent } from './furniturecategory/furniture.component';
+import { OthersComponent } from './otherscategory/others.component';
+import { BooksComponent } from './bookscategory/books.component';
+import { ClothingComponent } from './clothingcategory/clothing.component';
+import { HobbyComponent } from './hobbycategory/hobby.component';
+import { HelppageComponent } from './helppage/helppage.component';
+import { ProductFilterPipe } from './bookscategory/product-filter.pipe';
+import { FilterPricePipe } from './bookscategory/product-price-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -54,7 +67,20 @@ import { PaymentComponent } from './payment/payment.component';
     BookproductComponent,
     ProductCategorizeComponent,
     AboutComponent,
-    PaymentComponent
+    PaymentComponent,
+    VehicleComponent,
+    RealestateComponent,
+    EducationalComponent,
+    ElectronicsComponent,
+    SportsComponent,
+    FurnitureComponent,
+    BooksComponent,
+    OthersComponent,
+    ClothingComponent,
+    HobbyComponent,
+    HelppageComponent,
+    ProductFilterPipe,
+    FilterPricePipe
   ],
   imports: [
     BrowserModule,

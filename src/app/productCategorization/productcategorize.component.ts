@@ -7,8 +7,10 @@ export interface product {
     Price: number;
     Age: number;
   }
-  
+
 import {User_item_service} from "../services/user_item.service";
+
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-productcategorize',
@@ -18,8 +20,12 @@ import {User_item_service} from "../services/user_item.service";
 
 export class ProductCategorizeComponent{
     // pagedItem here is used just to check pager will habe all pageditems
+
+    constructor(private router: Router) {
+
+    }
   pagedItems: Array<product> = [
-    { 
+    {
       Price: 200,
       Age: 23
     },
@@ -61,7 +67,7 @@ export class ProductCategorizeComponent{
     }
   ];
 
-    // array of all items to be paged 
+    // array of all items to be paged
     private allItems: any[];
 // NOTE: here we have to fetch all the items from the server !! (not server side pagination)
 
@@ -104,5 +110,45 @@ export class ProductCategorizeComponent{
         this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
     }
   */
-    
+
+ gotoRealestate(){
+  this.router.navigate(['/realestate']);
+}
+
+gotoVehicles(){
+  this.router.navigate(['/vehicles']);
+}
+
+gotoElectronics(){
+  this.router.navigate(['/electronics']);
+}
+
+gotoSports(){
+  this.router.navigate(['/sports']);
+}
+
+gotoFurniture(){
+  this.router.navigate(['/furniture']);
+}
+
+gotoBooks(){
+  this.router.navigate(['/books']);
+}
+
+gotoEducational(){
+  this.router.navigate(['/educational']);
+}
+
+gotoHobby(){
+  this.router.navigate(['/hobby']);
+}
+
+gotoClothing(){
+  this.router.navigate(['/clothing']);
+}
+
+gotoOthers(){
+  this.router.navigate(['/others']);
+}
+
 }

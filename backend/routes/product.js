@@ -107,6 +107,32 @@ router.get("/", (req,res,next) => {
     });
 });
 
+//get 'vehicle' categorized products
+// router.get("/vehicle", (req,res,next) => {
+//   console.log(req.query);
+//   const pageSize = +req.query.pagesize;
+//   const currentPage = +req.query.page;
+//   const postQuery = Product.find();
+//   let fetchedPosts;
+//   if(currentPage && pageSize) {
+//     postQuery
+//       .skip(pageSize * (currentPage - 1))
+//       .limit(pageSize);
+//   }
+//   postQuery
+//     .then(documents => {
+//       fetchedPosts = documents;
+//       return Product.count();
+//     }).then(count => {
+//       //console.log(documents);
+//       res.status(200).json({
+//         message: 'Posts fetched',
+//         posts: fetchedPosts,
+//         maxPosts: count
+//       });
+//     });
+// });
+
 
 // delete a product by its id
 router.delete("/:id",(req,res,next) => {
