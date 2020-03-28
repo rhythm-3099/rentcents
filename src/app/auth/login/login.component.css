@@ -9,7 +9,10 @@ mat-spinner {
 
 #myDIV {
   border:1px solid black;
+<<<<<<< HEAD
   background-color:#e0e0d1 !important;
+=======
+>>>>>>> 255558e5027e3cd33e23aa709d6f1d14f56a0a6d
   color: black;
   margin-left: 30% ;
   margin-top: 20px;  
@@ -23,8 +26,11 @@ mat-spinner {
   margin-bottom: 1rem;
 }
 
+<<<<<<< HEAD
 
 .mat-raised-button{
   background-color:#595959;
   color: white;
 } 
+=======
+>>>>>>> 255558e5027e3cd33e23aa709d6f1d14f56a0a6d

@@ -10,6 +10,7 @@ input, mat-form-field{
 mat-spinner {
   margin: auto;
 }
+<<<<<<< HEAD
 
 #myDIV {
   border:1px solid black;
@@ -28,3 +29,5 @@ mat-spinner {
   background-color:#595959;
   color: white;
 } 
+=======
+>>>>>>> 255558e5027e3cd33e23aa709d6f1d14f56a0a6d
