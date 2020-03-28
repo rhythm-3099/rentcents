@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card id="myDIV">
 
   <h2><b>Update Your Profile Information:</b></h2>
   <form>
@@ -8,21 +8,21 @@
         <input matInput name="f_name" ngModel type="text" placeholder="Enter your first name" #mobInput="ngModel" required>
       </mat-form-field>
     </div>
-
+    <br>
     <div>
       <mat-form-field>
         <mat-label>Last Name</mat-label>
         <input matInput name="l_name" ngModel type="text" placeholder="Enter your last name" #mobInput="ngModel" required>
       </mat-form-field>
     </div>
-
+    <br>
     <div>
       <mat-form-field>
         <mat-label>Mobile Number</mat-label>
         <input matInput name="mob" ngModel type="text" placeholder="Enter your mobile number" #mobInput="ngModel" required>
       </mat-form-field>
     </div>
-
+    <br>
     <div>
       <mat-form-field appearance="legacy">
         <mat-label>Email</mat-label>
@@ -31,7 +31,7 @@
 
       </mat-form-field>
     </div>
-
+    <br>
     <div>
       <mat-form-field>
         <mat-label>Password</mat-label>
@@ -39,7 +39,7 @@
         <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
       </mat-form-field>
     </div>
-
+    <br>
     <div>
       <mat-form-field>
         <mat-label>Confirm Password</mat-label>
@@ -47,7 +47,7 @@
         <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
       </mat-form-field>
     </div>
-
+    <br>
     <div>
       <button mat-raised-button color="primary" type="updateinfo">Update Information</button>
     </div>

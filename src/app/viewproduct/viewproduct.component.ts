@@ -15,7 +15,7 @@ export class ViewproductComponent implements OnInit, OnDestroy {
   product: Product;
   private productsub: Subscription;
   comment;
-
+  username="chintu";
 
   isLoading = false;
   show1 = false;
@@ -79,7 +79,7 @@ export class ViewproductComponent implements OnInit, OnDestroy {
 
   }
   post1(){
-    this.postcomment.push(this.comment);
+    this.postcomment.push({username: this.username,comment: this.comment});
     this.comment='';
   }
 }

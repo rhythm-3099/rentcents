@@ -10,3 +10,23 @@ input, mat-form-field{
 mat-spinner {
   margin: auto;
 }
+
+
+#myDIV {
+  border:0.5px solid black;
+  background-color:#e0e0d1 !important;
+  color: black;
+  margin-left: 30% ;
+  margin-top: 10px;  
+  width: 40%;
+
+  align: center;
+  -webkit-animation: mymove 4s infinite; 
+  animation: mymove 2s infinite;
+}
+
+
+.mat-raised-button{
+  background-color:#595959;
+  color: white;
+} 

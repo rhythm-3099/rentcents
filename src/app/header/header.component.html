@@ -3,15 +3,16 @@
   <div style="width: 100%;">
     RentsCents
     <a mat-button routerLink="/homepage" routerLinkActive="mat-accent" *ngIf="al"><mat-icon>home</mat-icon> Home</a>
-    <a mat-button routerLink="/uploaditem" routerLinkActive="mat-accent" *ngIf="userIsAuthenticated">Upload an item</a>
-    <a mat-button routerLink="/payment" routerLinkActive="mat-accent" *ngIf="userIsAuthenticated">payment</a>
-    <a mat-button routerLink="/helppage" routerLinkActive="mat-accent" *ngIf="al"> Help</a>
+    
+    <!-- <a mat-button routerLink="/payment" routerLinkActive="mat-accent" *ngIf="userIsAuthenticated">payment</a> -->
+    <!-- <a mat-button routerLink="/helppage" routerLinkActive="mat-accent" *ngIf="al"> Help</a> -->
     
     
     <span style="float: right;"> 
-      <a mat-button routerLink="/about" routerLinkActive="mat-accent" *ngIf="al">About us</a>
+      <a mat-button routerLink="/uploaditem" routerLinkActive="mat-accent" *ngIf="userIsAuthenticated">Upload an item</a>
       <a mat-button routerLink="/login" routerLinkActive="mat-accent" *ngIf="!userIsAuthenticated" >Login</a>
       <a mat-button routerLink="/signup" routerLinkActive="mat-accent" *ngIf="!userIsAuthenticated">Signup</a>
+      <a mat-button routerLink="/about" routerLinkActive="mat-accent" *ngIf="al">About us</a>
       
      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"*ngIf="userIsAuthenticated">
       <mat-icon>account_circle</mat-icon>
@@ -23,19 +24,25 @@
         <span>Profile</span>
       </a>
       </button>
-      <button mat-menu-item disabled>
+      <!-- <button mat-menu-item disabled>
         <mat-icon>email</mat-icon>
         <span>Email</span>
       </button>
       <button mat-menu-item>
         <mat-icon>notifications</mat-icon>
         <span>Disable alerts</span>
-      </button>
+      </button> -->
       <button mat-menu-item>
         <button mat-button *ngIf="userIsAuthenticated" (click)="onLogout()">
         <mat-icon>power_setting</mat-icon>
         <span>Logout</span>
         </button>
+      </button>
+
+      <button mat-menu-item>
+        <a mat-button routerLink="/helppage" routerLinkActive="mat-accent" >
+        <span>Help</span>
+      </a>
       </button>
     </mat-menu>
     </span>
