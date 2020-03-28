@@ -34,7 +34,7 @@ export class Electronics_category_service  {
               city: post.city,
               state: post.state,
               main_category: post.main_category,
-              sub_cateegory: post.sub_cateegory,
+              sub_category: post.sub_category,
               imagePath: post.imagePath,
               owner: post.owner,
               owner_name: post.owner_name,
