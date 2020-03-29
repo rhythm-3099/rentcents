@@ -6,7 +6,8 @@ mat-card{
     border: 2px solid black;
     font-weight: bold;
     text-decoration: underline;
-    height: 100px;
+    height: 75px;
+    background-color: #e0e0d1;
   }
 #my{
   margin-left: 15px;

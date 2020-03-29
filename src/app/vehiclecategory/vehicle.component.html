@@ -2,12 +2,12 @@
   <button mat-raised-button color="primary" (click)="gotoRealestate()">Real Estate</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoVehicles()">Vehicles</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoElectronics()">Electronics</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoSports()">Sports</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoFurniture()">Furniture</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoBooks()">Books</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoEducational()">Educational</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoHobby()">Hobby</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoClothing()">Clothing</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoOthers()">Others</button>
 </mat-card>
 <mat-card>
-  <input  placeholder="Enter items to Search..." [(ngModel)]="searchterm" term="term" [ngModelOptions]="{standalone: true}"><button class="button">SEARCH</button>
+  <input  placeholder="Enter items to Search..." [(ngModel)]="searchterm" term="term" [ngModelOptions]="{standalone: true}">
   <br>
   <br>
   <br>
   <br>
-  <input type="text" placeholder="Enter the maximum budget that you can afford..." [(ngModel)]="search" term="search" [ngModelOptions]="{standalone: true}"><button>FILTER</button>
+  <input type="text" placeholder="Enter the maximum budget that you can afford..." [(ngModel)]="search" term="search" [ngModelOptions]="{standalone: true}">
 </mat-card>
 
 
@@ -22,7 +22,7 @@
           <mat-card-title>{{tile.name}}</mat-card-title>
         </mat-card-header>
 
-        <img mat-card-image class='post-image' [src]="tile.imagePath" [alt]="tile.name">
+        <img  style="width: 267px; height: 300px;" mat-card-image class='post-image' [src]="tile.imagePath" [alt]="tile.name">
 
         <mat-card-content>
           <p> Price : {{tile.price}}  </p>
