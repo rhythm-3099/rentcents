@@ -4,6 +4,7 @@ import {PageEvent} from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { Product } from '../services/product.model';
 import { User_item_service } from '../services/user_item.service';
+import { AuthService } from '../auth/auth.service';
 
 import { Router } from '@angular/router';
 export interface product {
@@ -34,11 +35,12 @@ export class HomeComponent implements OnInit, OnDestroy{
   postsPerPage=4;
   currentPage = 1;
   pageSizeOptions = [4,8,12];
+  userIsAuthenticated = false;
+  private authListenerSubs: Subscription;
 
 
 
-
-  constructor(public postsService: User_item_service,private router: Router) {
+  constructor(public postsService: User_item_service,private router: Router,private authService: AuthService) {
 
   }
 
@@ -52,6 +54,10 @@ export class HomeComponent implements OnInit, OnDestroy{
         this.totalPosts = productData.postCount;
         //console.log(this.posts);
       });
+      this.userIsAuthenticated = this.authService.getIsAuth();
+    this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
+      this.userIsAuthenticated = isAuthenticated;
+    }) ;
     //   console.log('2) ');
     // console.log('homeComponent ', this.posts);
   }
@@ -107,46 +113,10 @@ export class HomeComponent implements OnInit, OnDestroy{
     }
   ];
 
-    // array of all items to be paged
-    //private allItems: any[];
-// NOTE: here we have to fetch all the items from the server !! (not server side pagination)
-
-    // pager object
-    // pager: any = {totalItems: 17,
-    //   currentPage: 2,
-    //   pageSize: 5,
-    //   totalPages: 4,
-    //   startPage: 3,
-    //   endPage: 7,
-    //   startIndex: 6,
-    //   endIndex: 7,
-    //   pages: [3,4,5,6,7]
-    // }
-    // paged items
-    //pagedItems: any[];
-/*
-    ngOnInit() {
-        // get dummy data
-        this.http.get('./dummy-data.json')
-            .map((response: Response) => response.json())
-            .subscribe(data => {
-                // set items to json response
-                this.allItems = data;
-                // initialize to page 1
-                this.setPage(1);
-            });
-    }
-    setPage(page: number) {
-        if (page < 1 || page > this.pager.totalPages) {
-            return;
-        }
-        // get pager object from service
-        this.pager = this.pagerService.getPager(this.allItems.length, page);
-        // get current page of items
-        this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    }
-  */
    book(){
-
+      if(!this.userIsAuthenticated)
+        this.router.navigate(['/login']);
+      else
+      this.router.navigate(['/bookproduct']);  
    }
 }

@@ -4,7 +4,7 @@ import {PageEvent} from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { Product } from '../services/product.model';
 import { Books_category_service } from '../services/books_category.service';
-
+import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 export interface product {
 
@@ -22,35 +22,25 @@ export class BooksComponent implements OnInit, OnDestroy{
   search: string
   posts: Product[] = [];
   private postsSub: Subscription;
-  // totalPosts=10;
-  // postsPerPage=4;
-  // currentPage = 1;
-  // pageSizeOptions = [4,8,12];
+  userIsAuthenticated = false;
+  private authListenerSubs: Subscription;
+  
 
-  constructor(public postsService: Books_category_service,private router: Router) {
+  constructor(public postsService: Books_category_service,private router: Router,private authService: AuthService) {
 
   }
 
   ngOnInit() {
-    // console.log('1) ');
-
-    // this.postsService.getBooksPosts(this.postsPerPage,this.currentPage);
-    // this.postsSub = this.postsService.getPostUpdateListener()
-    //   .subscribe((productData: {posts: Product[], postCount: number}) => {
-    //     this.posts = productData.posts;
-    //     this.totalPosts = productData.postCount;
-    //     //console.log(this.posts);
-    //   });
-    //   console.log('2) ');
-    // console.log('homeComponent ', this.posts);
-
-    //***************************************************************************
     this.postsService.getBooksPosts();
     this.postsSub = this.postsService.getPostUpdateListener()
       .subscribe((productData: {posts: Product[], postCount: number}) => {
         this.posts = productData.posts;
-        //console.log(this.posts);
+        
       });
+      this.userIsAuthenticated = this.authService.getIsAuth();
+    this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
+      this.userIsAuthenticated = isAuthenticated;
+    }) ;
   }
 
   // onChangedPage(pageData: PageEvent){
@@ -67,9 +57,11 @@ export class BooksComponent implements OnInit, OnDestroy{
   viewProduct(id: string){
     this.router.navigate(['/viewproduct'], { state: { product_id: id } });
   }
-
-  book() {
-
+  book(){
+    if(!this.userIsAuthenticated)
+        this.router.navigate(['/login']);
+      else
+      this.router.navigate(['/bookproduct']);
   }
 
   gotoRealestate(){

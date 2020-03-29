@@ -11,9 +11,6 @@ export class BookproductComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  book(){
-
-  }
   do1(){
 
   }
