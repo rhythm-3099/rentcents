@@ -14,8 +14,8 @@ example-card {
     font-weight: bold;
   }
 
-  /* .post-image {
-    width: 100%;
-  } */
   
-
+  body
+  {
+    background-color: #f2f2f2;
+  }

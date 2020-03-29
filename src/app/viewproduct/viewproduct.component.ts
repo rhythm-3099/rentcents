@@ -3,6 +3,7 @@ import { Router} from '@angular/router';
 import { Search_service } from '../services/search.service';
 import { Product } from '../services/product.model';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class ViewproductComponent implements OnInit, OnDestroy {
   product: Product;
   private productsub: Subscription;
   comment;
-  username="chintu";
+  username;
 
   isLoading = false;
   show1 = false;
@@ -23,7 +24,11 @@ export class ViewproductComponent implements OnInit, OnDestroy {
   show3 = false;
   postcomment =[];
   private product_id: string;
-  constructor(public serach_service : Search_service,private router: Router) {
+  userIsAuthenticated = false;
+  private authListenerSubs: Subscription;
+
+
+  constructor(public serach_service : Search_service,private router: Router,private authService: AuthService) {
     this.product_id = this.router.getCurrentNavigation().extras.state.product_id;
   }
 
@@ -35,6 +40,10 @@ export class ViewproductComponent implements OnInit, OnDestroy {
         console.log("heyy there");
        console.log(this.product);
       });
+      this.userIsAuthenticated = this.authService.getIsAuth();
+    this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
+      this.userIsAuthenticated = isAuthenticated;
+    }) ;
   }
 
   ngOnDestroy(){
@@ -70,10 +79,13 @@ export class ViewproductComponent implements OnInit, OnDestroy {
      }
   }
   book(){
-
+    if(!this.userIsAuthenticated)
+        this.router.navigate(['/login']);
+      else
+      this.router.navigate(['/bookproduct']);
   }
   doStuff(){
-
+    this.router.navigate(['/userprofile']);
   }
   chat1(){
 

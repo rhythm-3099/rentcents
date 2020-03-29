@@ -21,14 +21,14 @@
           <mat-card-title>{{tile.name}}</mat-card-title>
         </mat-card-header>
 
-        <img mat-card-image class='post-image' [src]="tile.imagePath" [alt]="tile.name">
+        <img style="width: 370px; height: 300px;" mat-card-image class='post-image' [src]="tile.imagePath" [alt]="tile.name">
 
         <mat-card-content>
           <p> Price : {{tile.price}}  </p>
         </mat-card-content>
 
         <mat-card-actions>
-          <button mat-raised-button color="primary" type="submit"  (click)="book()"><a mat-button routerLink="/bookproduct" routerLinkActive="mat-accent">BUY</a></button>
+          <button mat-raised-button color="primary" type="submit"  (click)="book()">BUY</button>
           <button mat-raised-button color="primary" (click)="viewProduct(tile._id)">VIEW</button>
         </mat-card-actions>
 
