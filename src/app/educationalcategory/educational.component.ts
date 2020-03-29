@@ -4,7 +4,7 @@ import {PageEvent} from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { Product } from '../services/product.model';
 import { Educational_category_service } from '../services/educational_category.service';
-
+import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 export interface product {
 
@@ -21,12 +21,14 @@ export class EducationalComponent implements OnInit, OnDestroy{
   search: string;
   posts: Product[] = [];
   private postsSub: Subscription;
+  userIsAuthenticated = false;
+  private authListenerSubs: Subscription;
   // totalPosts=10;
   // postsPerPage=4;
   // currentPage = 1;
   // pageSizeOptions = [4,8,12];
 
-  constructor(public postsService: Educational_category_service,private router: Router) {
+  constructor(public postsService: Educational_category_service,private router: Router,private authService: AuthService) {
 
   }
 
@@ -39,6 +41,10 @@ export class EducationalComponent implements OnInit, OnDestroy{
         this.posts = productData.posts;
         //console.log(this.posts);
       });
+      this.userIsAuthenticated = this.authService.getIsAuth();
+    this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
+      this.userIsAuthenticated = isAuthenticated;
+    }) ;
     //   console.log('2) ');
     // console.log('homeComponent ', this.posts);
   }
@@ -58,8 +64,11 @@ export class EducationalComponent implements OnInit, OnDestroy{
     this.router.navigate(['/viewproduct'], { state: { product_id: id } });
   }
 
-  book() {
-
+  book(){
+    if(!this.userIsAuthenticated)
+        this.router.navigate(['/login']);
+      else
+      this.router.navigate(['/bookproduct']);
   }
 
   gotoRealestate(){
