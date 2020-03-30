@@ -52,6 +52,7 @@ import { HobbyComponent } from './hobbycategory/hobby.component';
 import { HelppageComponent } from './helppage/helppage.component';
 import { ProductFilterPipe } from './bookscategory/product-filter.pipe';
 import { FilterPricePipe } from './bookscategory/product-price-filter.pipe';
+import { ChatpageComponent } from './chatpage/chatpage.component';
 
 
 @NgModule({
@@ -82,6 +83,7 @@ import { FilterPricePipe } from './bookscategory/product-price-filter.pipe';
     HelppageComponent,
     ProductFilterPipe,
     FilterPricePipe,
+    ChatpageComponent,
   ],
   imports: [
     BrowserModule,
