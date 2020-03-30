@@ -11,4 +11,5 @@ export interface Product {
   owner_id: string;
   owner_name: string;
   rating: string;
+  comments: string[];
 }

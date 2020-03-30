@@ -107,6 +107,52 @@ router.get("/", (req,res,next) => {
     });
 });
 
+router.put('/:id', function(req,res) {
+  let conditions = {_id: req.params.id};
+
+  Product.update(conditions, req.body)
+    .then(doc => {
+      if(!doc) { return res.status(404).end(); }
+      return res.status(200).json("Updated successfully");
+    })
+    .catch(err => next(err));
+})
+
+// router.put(
+//   "/:id",
+//   multer({ storage: storage }).single("image"),
+//   (req, res, next) => {
+//     let imagePath = req.body.imagePath;
+//     if (req.file) {
+//       const url = req.protocol + "://" + req.get("host");
+//       imagePath = url + "/images/" + req.file.filename;
+//     }
+//     const post = new Product({
+//       // _id: req.body.id,
+//       // title: req.body.title,
+//       // content: req.body.content,
+//       // imagePath: imagePath
+//       _id: req.body.id,
+//       name: req.body.name,
+//       price: req.body.price,
+//       description: req.body.description,
+//       city: req.body.city,
+//       state: req.body.state,
+//       main_category: req.body.main_category,
+//       sub_category: req.body.sub_category,
+//       imagePath:  req.body.imagePath,
+//       owner_id: req.body.userId,
+//       owner_name : req.body.userName,
+//       rating : req.body.rating,
+//       comments: req.body.comments
+//     });
+//     console.log(post);
+//     Product.updateOne({ _id: req.params.id }, post).then(result => {
+//       res.status(200).json({ message: "Update successful!" });
+//     });
+//   }
+// );
+
 //get 'vehicle' categorized products
 // router.get("/vehicle", (req,res,next) => {
 //   console.log(req.query);

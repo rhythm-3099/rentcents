@@ -1,20 +1,20 @@
 <mat-toolbar>
-  <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+  <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <div style="width: 100%;">
-    <img  style="width: 50px;height: 40px;" src="logo.jpg"/>
+    <img  style="width: 50px;height: 40px;" src=""/>
     RentsCents
     <a mat-button routerLink="/homepage" routerLinkActive="mat-accent" *ngIf="al"><mat-icon>home</mat-icon> Home</a>
-    
+
     <!-- <a mat-button routerLink="/payment" routerLinkActive="mat-accent" *ngIf="userIsAuthenticated">payment</a> -->
     <!-- <a mat-button routerLink="/helppage" routerLinkActive="mat-accent" *ngIf="al"> Help</a> -->
-    
-    
-    <span style="float: right;"> 
+
+
+    <span style="float: right;">
       <a mat-button routerLink="/uploaditem" routerLinkActive="mat-accent" *ngIf="userIsAuthenticated">Upload an item</a>
       <a mat-button routerLink="/login" routerLinkActive="mat-accent" *ngIf="!userIsAuthenticated" >Login</a>
       <a mat-button routerLink="/signup" routerLinkActive="mat-accent" *ngIf="!userIsAuthenticated">Signup</a>
       <a mat-button routerLink="/about" routerLinkActive="mat-accent" *ngIf="al">About us</a>
-      
+
      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"*ngIf="userIsAuthenticated">
       <mat-icon>account_circle</mat-icon>
     </button>

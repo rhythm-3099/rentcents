@@ -105,7 +105,7 @@ export class AuthService {
     localStorage.removeItem('userName');
   }
 
-  private getAuthData() {
+  getAuthData() {
     const token = localStorage.getItem('token');
     const expirationDate = localStorage.getItem('expiration');
     const userId = localStorage.getItem('userId');
