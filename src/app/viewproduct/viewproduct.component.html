@@ -17,7 +17,7 @@
                         <a class="a1" (click)="showButton()">
                         <h1>Category Info</h1>
                         </a>
-                        <div *ngIf="show1" align="center" style="background-color: rgba(137,188,255,0.5); color: #0066cc;  font-size: 25px">
+                        <div *ngIf="show1" align="center"  style="align-content: center; background-color: rgba(137,188,255,0.5); color: #0066cc;  font-size: 25px">
                         Main: {{product.main_category}}<br>
                         Sub: {{product.sub_category}}<br>
                         </div>
@@ -60,7 +60,7 @@
               </mat-card-header>
               <mat-card-actions>
                 <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading" (click)="book()">Book product</button>
-                <button mat-raised-button color="primary" type="button" *ngIf="!isLoading"><mat-icon>chat</mat-icon>&nbsp;&nbsp;Chat</button>
+                <button mat-raised-button routerLink="/chatpage" color="primary"  type="button" *ngIf="!isLoading"><mat-icon>chat</mat-icon>&nbsp;&nbsp;Chat</button>
               </mat-card-actions>
         <mat-spinner *ngIf="isLoading"></mat-spinner>
         </mat-card>
