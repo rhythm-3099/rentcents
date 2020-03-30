@@ -1,3 +1,4 @@
+
 <mat-card id="myDIV">
   <mat-spinner *ngIf="isLoading"></mat-spinner>
   <form (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
@@ -12,14 +13,14 @@
     <div>
       <mat-form-field>
         <mat-label>Last Name</mat-label>
-        <input matInput name="l_name" ngModel type="text" placeholder="Enter your last name" #mobInput="ngModel" required>
+        <input matInput name="l_name" ngModel type="text"  placeholder="Enter your last name" #mobInput="ngModel" required>
       </mat-form-field>
     </div>
 
     <div>
       <mat-form-field>
         <mat-label>Mobile Number</mat-label>
-        <input matInput name="mob" ngModel type="text" placeholder="Enter your mobile number" #mobInput="ngModel" required>
+        <input matInput name="mob" ngModel type="text" title="Error Message" pattern="[0-9]{10}" placeholder="Enter your mobile number" #mobInput="ngModel" required>
       </mat-form-field>
     </div>
 
@@ -42,10 +43,11 @@
     <div>
       <mat-form-field>
         <mat-label>Password</mat-label>
-        <input matInput name="password" ngModel type="password" placeholder="Password" #passwordInput="ngModel" required>
+        <input matInput name="password" ngModel type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" placeholder="Password" #passwordInput="ngModel" required>
         <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
       </mat-form-field>
     </div>
+
 
     <div>
       <mat-form-field>
@@ -53,6 +55,16 @@
         <input matInput name="cn_password" ngModel type="password" placeholder="Confirm Password" #passwordInput="ngModel" required>
         <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
       </mat-form-field>
+    </div>
+
+    <div>
+      <p style="font-family: quattrocento;"><b>NOTE: Password MUST HAVE the following:</b></p>
+      <ul>
+        <li style="font-family: quattrocento;">A lowercase letter</li>
+        <li style="font-family: quattrocento;">An uppercase letter</li>
+        <li style="font-family: quattrocento;">At least one numeral</li>
+        <li style="font-family: quattrocento;">Minimum 8 characters</li>
+      </ul>
     </div>
 
     <div>
