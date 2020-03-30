@@ -23,6 +23,7 @@ import { ClothingComponent } from './clothingcategory/clothing.component';
 import { HobbyComponent } from './hobbycategory/hobby.component';
 import { HelppageComponent } from './helppage/helppage.component';
 
+
 const routes: Routes = [
   { path:'' ,component: HomeComponent},
   {path: 'homepage', component: HomeComponent},
@@ -46,7 +47,8 @@ const routes: Routes = [
   {path: 'others', component: OthersComponent},
   {path: 'clothing', component: ClothingComponent},
   {path: 'hobby', component: HobbyComponent},
-  {path: 'helppage', component: HelppageComponent}
+  {path: 'helppage', component: HelppageComponent},
+  
 
 ];
 
