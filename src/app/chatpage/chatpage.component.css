@@ -1,0 +1,8 @@
+body {
+  padding: 10px;
+}
+#chat-output {
+  height: 600px;
+  overflow-y: scroll;
+  background-color: #f2f2f2;
+}
