@@ -1,4 +1,5 @@
-<div class="back">
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="back" *ngIf="!isLoading">
     <mat-card>
         <mat-card class="card-container" >
             <mat-spinner *ngIf="isLoading"></mat-spinner>

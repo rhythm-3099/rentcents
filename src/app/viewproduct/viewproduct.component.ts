@@ -16,7 +16,7 @@ export class ViewproductComponent implements OnInit, OnDestroy {
   product: Product;
   private productsub: Subscription;
 
-  isLoading = false;
+  isLoading = true;
   show1 = false;
   show2 = false;
   show3 = false;
@@ -38,6 +38,9 @@ export class ViewproductComponent implements OnInit, OnDestroy {
         console.log("heyy there");
        console.log(this.product);
        this.username = this.authService.getAuthData().userName;
+       if(this.product){
+         this.isLoading = false;
+       }
       });
       this.userIsAuthenticated = this.authService.getIsAuth();
     this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {

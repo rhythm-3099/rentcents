@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { resolve } from 'dns';
 
 @Component({
   selector: 'app-login',
@@ -11,23 +12,25 @@ export class LoginComponent{
   isLoading = false;
   validPassword="Aa123456";
   validUsername="abc@gmail.com";
+  invalid: Number;
 
   constructor(public authService: AuthService){}
 
-  onLogin(form: NgForm){
+  async onLogin(form: NgForm){
     if(form.invalid){
       return;
     }
-    if(form.value.password != this.validPassword){
-      alert('Please Enter Valid Password.')
-      return;
-    }
-    if(form.value.email != this.validUsername){
-      alert('Please Enter Valid Username.')
-      return;
-    }
+    // if(form.value.password != this.validPassword){
+    //   alert('Please Enter Valid Password.')
+    //   return;
+    // }
+    // if(form.value.email != this.validUsername){
+    //   alert('Please Enter Valid Username.')
+    //   return;
+    // }
     this.isLoading = true;
     this.authService.login(form.value.email,form.value.password);
+
     //console.log(form.value);
   }
 }

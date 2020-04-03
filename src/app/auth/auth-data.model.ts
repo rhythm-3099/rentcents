@@ -6,7 +6,7 @@ export interface AuthData{
 export interface UserData{
   email: string;
   password: string;
-  name: string;
+  userName: string;
   number : string;
   address : string;
 }
