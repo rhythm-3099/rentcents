@@ -53,6 +53,7 @@ import { HelppageComponent } from './helppage/helppage.component';
 import { ProductFilterPipe } from './bookscategory/product-filter.pipe';
 import { FilterPricePipe } from './bookscategory/product-price-filter.pipe';
 import { ChatpageComponent } from './chatpage/chatpage.component';
+import { PaydoneComponent } from './paydone/paydone.component';
 
 
 @NgModule({
@@ -84,6 +85,7 @@ import { ChatpageComponent } from './chatpage/chatpage.component';
     ProductFilterPipe,
     FilterPricePipe,
     ChatpageComponent,
+    PaydoneComponent,
   ],
   imports: [
     BrowserModule,

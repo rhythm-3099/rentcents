@@ -9,11 +9,21 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent{
   isLoading = false;
+  validPassword="Aa123456";
+  validUsername="abc@gmail.com";
 
   constructor(public authService: AuthService){}
 
   onLogin(form: NgForm){
     if(form.invalid){
+      return;
+    }
+    if(form.value.password != this.validPassword){
+      alert('Please Enter Valid Password.')
+      return;
+    }
+    if(form.value.email != this.validUsername){
+      alert('Please Enter Valid Username.')
       return;
     }
     this.isLoading = true;
