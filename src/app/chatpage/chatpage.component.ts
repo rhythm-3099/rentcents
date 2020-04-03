@@ -18,9 +18,9 @@ export class ChatpageComponent implements OnInit {
    email: String;
    chatroom;
    message: String;
-   roomId : String;   
+   roomId : String;
    isTyping = true;
-   currentUsername : string =''; // current user with whom is chating 
+   currentUsername : string =''; // current user with whom is chating
    nm : String;
    currentUser : user;
    allUsers = [
@@ -33,7 +33,7 @@ export class ChatpageComponent implements OnInit {
       name:'Rhythm',
       email:'tmp',
       status:true
-    },s
+    },
     {
       name:'Jay',
       email:'tmp',
@@ -49,16 +49,16 @@ export class ChatpageComponent implements OnInit {
       email:'tmp',
       status:true
     }
-    
+
    ];
-   messageArray: Array<{user: String, message: String}> 
+   messageArray: Array<{user: String, message: String}>
    = [    ];
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  
+
   sendMessage() {
     // this.webSocketService.sendMessage({room: this.chatroom, user: this.currentUsername, message: this.message});
     // this.message = '';
@@ -69,7 +69,7 @@ export class ChatpageComponent implements OnInit {
   getchat(uname:user) {
     this.currentUser=uname;
     this.currentUsername=(this.currentUser).name;
-    
+
 // get messages from db of this user temporaryly using
 this.messageArray=[{
   user:'chintu',
@@ -87,12 +87,12 @@ this.messageArray=[{
    user: 'chintu',
    message:'mkamskmsa'
  },
- 
+
  {
    user: 'chintu',
    message:'mkamskmsa'
  },
- 
+
  {
    user: 'akash',
    message:'mkamskmsa'
@@ -113,12 +113,12 @@ this.messageArray=[{
    user: 'chintu',
    message:'mkamskmsa'
  },
- 
+
  {
    user: 'chintu',
    message:'mkamskmsa'
  },
- 
+
  {
    user: 'akash',
    message:'mkamskmsa'

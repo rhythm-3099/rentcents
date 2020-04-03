@@ -32,6 +32,12 @@ router.post("/signup", (req, res, next) => {
   });
 });
 
+// router.put("updateprofile", (req,res,next) => {
+//   bcrypt.hash(req.body.password,10).then(hash => {
+
+//   })
+// })
+
 router.post("/login", (req,res,next) => {
   let fetchedUser;
   User.findOne({ email: req.body.email })
@@ -39,7 +45,7 @@ router.post("/login", (req,res,next) => {
 
       if(!user){
         return res.status(401).json({
-          message: 'Auth failed 1'
+          message: 'Mail wrong'
         });
       }
       fetchedUser = user;
@@ -50,7 +56,7 @@ router.post("/login", (req,res,next) => {
       if(!result) {
         fetchedUser = null;
         return res.status(401).json({
-          message: 'Auth failed 2'
+          message: 'Password wrong'
         });
       }
 
@@ -68,7 +74,7 @@ router.post("/login", (req,res,next) => {
     })
     .catch(err => {
       return res.status(401).json({
-        message: 'Auth failed 3'
+        message: 'Some other error'
       });
     });
 });

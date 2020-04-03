@@ -34,6 +34,11 @@ export class AuthService {
       });
   }
 
+  checkIfUserExists(email: string){
+    let notExists = true;
+    this.http.get
+  }
+
   login(email: string, password: string) {
     const authData : AuthData = {email: email, password: password};
     this.http.post<{token: string, userId: string, userName: string, expiresIn: number}>("http://localhost:3000/api/user/login", authData)
