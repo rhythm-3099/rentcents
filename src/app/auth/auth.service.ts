@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { AuthData } from './auth-data.model';
 import { UserData } from './auth-data.model';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import 'rxjs/add/operator/map';
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
@@ -119,6 +121,21 @@ export class AuthService {
 
   getIsAuth(){
     return this.isAuthenticated;
+  }
+
+
+  paymentRequest(payment){
+    let headers = new HttpHeaders();
+    // console.log("register");
+    headers.append('Content-Type','application/json');
+    return this.http.post('http://localhost:4000/users/pay',payment , {headers:headers}).map(res=>res.json());
+  }
+
+  paymentDetails(id){
+    return this.http.get('http://localhost:4000/users/paymentDetails/'+ id);
+  }
+  paymentSuccess(){
+    return this.http.get('http://localhost:4000/users/success');
   }
 
 }
