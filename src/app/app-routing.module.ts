@@ -23,6 +23,7 @@ import { ClothingComponent } from './clothingcategory/clothing.component';
 import { HobbyComponent } from './hobbycategory/hobby.component';
 import { HelppageComponent } from './helppage/helppage.component';
 import { ChatpageComponent } from './chatpage/chatpage.component';
+import { PaydoneComponent } from './paydone/paydone.component';
 
 
 const routes: Routes = [
@@ -51,6 +52,7 @@ const routes: Routes = [
   {path: 'helppage', component: HelppageComponent},
   {path: 'helppage', component: HelppageComponent},
   {path: 'chatpage', component: ChatpageComponent},
+  {path: 'paydone', component: PaydoneComponent}
     
 
 ];
