@@ -1,0 +1,47 @@
+
+#left
+{
+    /* background-color: #555; */
+}
+#right
+{
+ /* background-color: #0C491B; */
+}
+
+body {
+    padding: 10px;
+  }
+
+  .container {
+    border: 2px solid #dedede;
+    background-color:white;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    width: auto;
+    height: 75px;
+  }
+  
+  .darker {
+    border-color: gray;
+    background-color: #ddd;
+  }
+  
+
+  #right {
+    height:100%;
+    background-color: #f1c40f;
+    text-align: center;
+    position: absolute;
+    top: 42px;
+    bottom: 0;
+    right: 0;
+    overflow-y: scroll;
+    width: 25%;
+  }
+  
+  #chatbox
+  {
+     background-color:#f2f2f2; 
+  /* background-image: url("https://i.pinimg.com/564x/ab/ab/60/abab60f06ab52fa7846593e6ae0c9a0b.jpg"); */
+  }

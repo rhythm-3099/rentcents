@@ -22,6 +22,9 @@ import { OthersComponent } from './otherscategory/others.component';
 import { ClothingComponent } from './clothingcategory/clothing.component';
 import { HobbyComponent } from './hobbycategory/hobby.component';
 import { HelppageComponent } from './helppage/helppage.component';
+import { ChatpageComponent } from './chatpage/chatpage.component';
+import { PaydoneComponent } from './paydone/paydone.component';
+
 
 const routes: Routes = [
   { path:'' ,component: HomeComponent},
@@ -46,7 +49,11 @@ const routes: Routes = [
   {path: 'others', component: OthersComponent},
   {path: 'clothing', component: ClothingComponent},
   {path: 'hobby', component: HobbyComponent},
-  {path: 'helppage', component: HelppageComponent}
+  {path: 'helppage', component: HelppageComponent},
+  {path: 'helppage', component: HelppageComponent},
+  {path: 'chatpage', component: ChatpageComponent},
+  {path: 'paydone', component: PaydoneComponent}
+    
 
 ];
 

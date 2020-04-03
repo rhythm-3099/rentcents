@@ -4,7 +4,7 @@
             <mat-spinner *ngIf="isLoading"></mat-spinner>
             <mat-card-header>
                 <mat-card-title>
-                    <h1>Product Name : {{product.name}}</h1> 
+                    <h1>Product Name : {{product.name}}</h1>
                     Price: <strong> {{product.price}} ₹</strong></mat-card-title>
             </mat-card-header>
              <div  class="card-container card side back">
@@ -17,7 +17,7 @@
                         <a class="a1" (click)="showButton()">
                         <h1>Category Info</h1>
                         </a>
-                        <div *ngIf="show1" align="center" style="background-color: rgba(137,188,255,0.5); color: #0066cc;  font-size: 25px">
+                        <div *ngIf="show1" align="center"  style="align-content: center; background-color: rgba(137,188,255,0.5); color: #0066cc;  font-size: 25px">
                         Main: {{product.main_category}}<br>
                         Sub: {{product.sub_category}}<br>
                         </div>
@@ -39,17 +39,17 @@
                         <h1>Other Info</h1>
                         </a>
                         <div *ngIf="show3" align="center" style="background-color: rgba(137,188,255,0.5); color: #0066cc ; font-size: 25px">
-                    
+
                         Rating: {{product.rating}}<br>
                         </div>
                     </section>
                 </div>
                 </mat-card-content>
-    
+
             <mat-spinner *ngIf="isLoading"></mat-spinner>
         </mat-card>
-    
-    
+
+
         <mat-card class="card-container">
             <mat-spinner *ngIf="isLoading"></mat-spinner>
             <h1>Seller description</h1>
@@ -60,7 +60,7 @@
               </mat-card-header>
               <mat-card-actions>
                 <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading" (click)="book()">Book product</button>
-                <button mat-raised-button color="primary" type="button" *ngIf="!isLoading" (click)="chat1()"><mat-icon>chat</mat-icon>&nbsp;&nbsp;Chat</button>
+                <button mat-raised-button routerLink="/chatpage" color="primary"  type="button" *ngIf="!isLoading"><mat-icon>chat</mat-icon>&nbsp;&nbsp;Chat</button>
               </mat-card-actions>
         <mat-spinner *ngIf="isLoading"></mat-spinner>
         </mat-card>
@@ -69,16 +69,16 @@
                 <mat-card-title>Comments and Reviews</mat-card-title>
             </mat-card-header>
             <mat-card-content>
-                <div *ngFor="let cas of postcomment">
-                    <p>{{cas.username}}: {{cas.comment}}</p>
+                <div *ngFor="let cas of postcomments">
+                    <p>{{cas}}</p>
                 </div>
                 <div>
                     <div>
                         <textarea [(ngModel)]="comment" style="width: 100%; margin-bottom: 10px; height:100px;" placeholder="Enter your comments"></textarea>
                     </div>
-                        <button mat-raised-button color="primary" style="float:;" type="button" (click)="post1()" style="margin-bottom: 5px;"><mat-icon>comment</mat-icon>&nbsp;&nbsp;Comment</button>
+                        <button mat-raised-button color="primary" style="float:right;" type="button" (click)="post1()" style="margin-bottom: 5px;"><mat-icon>comment</mat-icon>&nbsp;&nbsp;Comment</button>
                 </div>
-                
+
             </mat-card-content>
         </mat-card>
     </mat-card>

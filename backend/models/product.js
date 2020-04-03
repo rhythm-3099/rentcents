@@ -12,6 +12,7 @@ const productSchema = mongoose.Schema({
   owner : { type: String },
   owner_name : { type: String },
   rating: { type: String },
+  comments: [{ type: String }]
 });
 
 module.exports = mongoose.model("Product", productSchema);

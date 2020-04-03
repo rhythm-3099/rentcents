@@ -15,30 +15,29 @@ export class ViewproductComponent implements OnInit, OnDestroy {
 
   product: Product;
   private productsub: Subscription;
-  comment;
-  username;
 
   isLoading = false;
   show1 = false;
   show2 = false;
   show3 = false;
-  postcomment =[];
+  postcomments =[];
+  comment;
   private product_id: string;
   userIsAuthenticated = false;
+  username: string;
   private authListenerSubs: Subscription;
 
 
   constructor(public serach_service : Search_service,private router: Router,private authService: AuthService) {
     this.product_id = this.router.getCurrentNavigation().extras.state.product_id;
-  }
-
-  ngOnInit(): void {
     this.serach_service.getProduct(this.product_id);
     this.productsub = this.serach_service.getProductUpdateListener()
       .subscribe((product: Product) => {
         this.product = product;
+        this.postcomments = product.comments;
         console.log("heyy there");
        console.log(this.product);
+       this.username = this.authService.getAuthData().userName;
       });
       this.userIsAuthenticated = this.authService.getIsAuth();
     this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
@@ -46,7 +45,24 @@ export class ViewproductComponent implements OnInit, OnDestroy {
     }) ;
   }
 
+  ngOnInit(): void {
+    // this.serach_service.getProduct(this.product_id);
+    // this.productsub = this.serach_service.getProductUpdateListener()
+    //   .subscribe((product: Product) => {
+    //     this.product = product;
+    //     this.postcomments = product.comments;
+    //     console.log("heyy there");
+    //    console.log(this.product);
+    //    this.username = this.authService.getAuthData().userName;
+    //   });
+    //   this.userIsAuthenticated = this.authService.getIsAuth();
+    // this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
+    //   this.userIsAuthenticated = isAuthenticated;
+    // }) ;
+  }
+
   ngOnDestroy(){
+    this.serach_service.updateProductComments(this.product_id, this.postcomments);
     this.productsub.unsubscribe();
   }
 
@@ -91,7 +107,8 @@ export class ViewproductComponent implements OnInit, OnDestroy {
 
   }
   post1(){
-    this.postcomment.push({username: this.username,comment: this.comment});
+    let newcomment = this.username + " : " + this.comment;
+    this.postcomments.push(newcomment);
     this.comment='';
   }
 }
