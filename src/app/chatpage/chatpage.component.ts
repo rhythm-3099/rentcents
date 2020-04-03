@@ -14,7 +14,7 @@ export interface user {
 })
 export class ChatpageComponent implements OnInit {
 
-   username: String ='chintu'; //user using the app
+   username: String ='Chintu'; //user using the app
    email: String;
    chatroom;
    message: String;
@@ -25,7 +25,7 @@ export class ChatpageComponent implements OnInit {
    currentUser : user;
    allUsers = [
      {
-       name:'akash',
+       name:'Akash',
        email:'tmp',
        status: true
      },
