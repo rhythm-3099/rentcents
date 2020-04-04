@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit, OnDestroy{
         this.totalPosts = productData.postCount;
         //console.log(this.posts);
       });
-      this.userIsAuthenticated = this.authService.getIsAuth();
+    this.userIsAuthenticated = this.authService.getIsAuth();
     this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
     }) ;
@@ -117,6 +117,6 @@ export class HomeComponent implements OnInit, OnDestroy{
       if(!this.userIsAuthenticated)
         this.router.navigate(['/login']);
       else
-      this.router.navigate(['/bookproduct']);  
+      this.router.navigate(['/bookproduct']);
    }
 }

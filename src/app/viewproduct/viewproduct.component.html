@@ -60,8 +60,8 @@
                 <mat-card-subtitle (click)="doStuff()">View Profile</mat-card-subtitle>
               </mat-card-header>
               <mat-card-actions>
-                <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading" (click)="book()">Book product</button>
-                <button mat-raised-button routerLink="/chatpage" color="primary"  type="button" *ngIf="!isLoading"><mat-icon>chat</mat-icon>&nbsp;&nbsp;Chat</button>
+                <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading && userIsAuthenticated" (click)="book()">Book product</button>
+                <button mat-raised-button routerLink="/chatpage" color="primary"  type="button" *ngIf="!isLoading && userIsAuthenticated"><mat-icon>chat</mat-icon>&nbsp;&nbsp;Chat</button>
               </mat-card-actions>
         <mat-spinner *ngIf="isLoading"></mat-spinner>
         </mat-card>
@@ -73,7 +73,7 @@
                 <div *ngFor="let cas of postcomments">
                     <p>{{cas}}</p>
                 </div>
-                <div>
+                <div *ngIf="userIsAuthenticated">
                     <div>
                         <textarea [(ngModel)]="comment" style="width: 100%; margin-bottom: 10px; height:100px;" placeholder="Enter your comments"></textarea>
                     </div>

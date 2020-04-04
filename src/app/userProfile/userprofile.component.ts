@@ -21,7 +21,7 @@ export class UserProfileComponent implements OnInit, OnDestroy{
 
   async ngOnInit(){
     this.currentUserEmail = this.authService.getAuthData().userEmail;
-    console.log(this.currentUserEmail);
+    //console.log(this.currentUserEmail);
 
     // currethis.search_service.getUserObject(this.currentUserEmail).then(response => {
     //   let currUser: User = response;
@@ -32,7 +32,7 @@ export class UserProfileComponent implements OnInit, OnDestroy{
     //})
     this.search_service.getUserObject(this.currentUserEmail).subscribe(data => {
       this.currentUser = data;
-      console.log(this.currentUser);
+      //console.log(this.currentUser);
 
       if(this.currentUser){
         this.title="Hello "+this.currentUser.userName.toUpperCase();

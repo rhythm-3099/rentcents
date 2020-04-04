@@ -16,8 +16,8 @@ export class AuthService {
   public userName: string;
   public userEmail: string;
   private token: string;
-  private authStatusListener = new Subject<boolean>();
-  private isAuthenticated: boolean;
+  public authStatusListener = new Subject<boolean>();
+  public isAuthenticated: boolean;
   private tokenTimer: any;
 
   getToken(){
@@ -30,13 +30,23 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  createUser(email: string, password: string, name : string, phnNUmber : string, address : string) {
+  // createUser(email: string, password: string, name : string, phnNUmber : string, address : string) {
+  //   const userData : UserData = {email: email, password: password, userName: name, number : phnNUmber, address : address};
+  //   this.http.post("http://localhost:3000/api/user/signup", userData)
+  //     .subscribe(response => {
+  //       console.log(response);
+  //       this.router.navigate(['/login']);
+  //     });
+  // }
+
+  createUser(email: string, password: string, name : string, phnNUmber : string, address : string): Observable<{message: string, result: any}> {
     const userData : UserData = {email: email, password: password, userName: name, number : phnNUmber, address : address};
-    this.http.post("http://localhost:3000/api/user/signup", userData)
-      .subscribe(response => {
-        console.log(response);
-        this.router.navigate(['/login']);
-      });
+    return this.http.post<{message: string, result: any}>("http://localhost:3000/api/user/signup", userData)
+      .catch(this.signupErrorHandler);
+  }
+
+  signupErrorHandler(error: HttpErrorResponse){
+    return Observable.throw(error.message || "server error :(");
   }
 
   async checkIfUserExists(email: string){
@@ -50,43 +60,53 @@ export class AuthService {
       })
   }
 
-  login(email: string, password: string): Number {
-    //this.checkIfUserExists(email);
-    let rhythm=0;
+  // login(email: string, password: string): Number {
+  //   //this.checkIfUserExists(email);
+  //   let rhythm=0;
+  //   const authData : AuthData = {email: email, password: password};
+  //   this.http.post<{token: string, userId: string, userName: string, expiresIn: number, message: string, userEmail: string}>("http://localhost:3000/api/user/login", authData)
+  //     .toPromise().then(response => {
+  //       // if(response == 'login error') {
+
+  //       // }
+  //       console.log('why no response',response.message);
+  //       if(response.message == 'Mail wrong'){
+  //         rhythm = 0;
+  //       } else if(response.message == 'Password wrong'){
+  //         rhythm = 1;
+  //       }
+  //       const token = response.token;
+  //       this.token = token;
+  //       if(this.token){
+  //         const userId = response.userId;
+  //         const userName = response.userName;
+  //         const email = response.userEmail;
+  //         this.userId = userId;
+  //         this.userName = userName;
+
+  //         const expiresInDuration = response.expiresIn;
+  //         this.setAuthTimer(expiresInDuration);
+  //         this.authStatusListener.next(true);
+  //         this.isAuthenticated = true;
+  //         const now = new Date();
+  //         const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
+  //         this.saveAuthData(token,expirationDate,userId,userName,email);
+  //         this.router.navigate(['/']);
+  //         rhythm = 8;
+  //       }
+  //       console.log('In the login dep');
+  //     });
+  //     return rhythm;
+  // }
+
+  login(email:string, password: string): Observable<{token: string, userId: string, userName: string, userEmail: string, expiresIn: number, message: string}> {
     const authData : AuthData = {email: email, password: password};
-    this.http.post<{token: string, userId: string, userName: string, expiresIn: number, message: string, userEmail: string}>("http://localhost:3000/api/user/login", authData)
-      .toPromise().then(response => {
-        // if(response == 'login error') {
+    return this.http.post<{token: string, userId: string, userName: string, userEmail: string, expiresIn: number, message: string}>("http://localhost:3000/api/user/login",authData)
+      .catch(this.loginErrorHandler);
+  }
 
-        // }
-        console.log('why no response',response.message);
-        if(response.message == 'Mail wrong'){
-          rhythm = 0;
-        } else if(response.message == 'Password wrong'){
-          rhythm = 1;
-        }
-        const token = response.token;
-        this.token = token;
-        if(this.token){
-          const userId = response.userId;
-          const userName = response.userName;
-          const email = response.userEmail;
-          this.userId = userId;
-          this.userName = userName;
-
-          const expiresInDuration = response.expiresIn;
-          this.setAuthTimer(expiresInDuration);
-          this.authStatusListener.next(true);
-          this.isAuthenticated = true;
-          const now = new Date();
-          const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
-          this.saveAuthData(token,expirationDate,userId,userName,email);
-          this.router.navigate(['/']);
-          rhythm = 8;
-        }
-        console.log('In the login dep');
-      });
-      return rhythm;
+  loginErrorHandler(error: HttpErrorResponse) {
+    return Observable.throw(error.message || "server error");
   }
 
   updateUserInfo(email: string, password: string, name : string, phnNUmber : string, address : string) : Observable<User>{
@@ -101,24 +121,31 @@ export class AuthService {
   }
 
   autoAuthUser() {
+    //console.log('get till here');
+
     const authInformation = this.getAuthData();
+
+
     if(!authInformation){
       return;
     }
     const now = new Date();
     const expiresIn = authInformation.expirationData.getTime() - now.getTime();
+    console.log('expires ', expiresIn);
     if(expiresIn > 0){
+      console.log('herer?');
       this.token = authInformation.token;
       this.isAuthenticated = true;
       this.userId = authInformation.userId;
       this.userName = authInformation.userName;
+      console.log('naam ', this.userName);
       this.userEmail = authInformation.userEmail;
       this.setAuthTimer(expiresIn / 1000);
       this.authStatusListener.next(true);
     }
   }
 
-  private setAuthTimer(duration: number){
+  setAuthTimer(duration: number){
     this.tokenTimer = setTimeout(() => {
       this.logout();
     }, duration * 1000); // => this is the time in milliseconds
@@ -133,7 +160,7 @@ export class AuthService {
     clearTimeout(this.tokenTimer);
   }
 
-  private saveAuthData(token: string, expirationDate: Date, userId: string, userName: string, userEmail: string) {
+  saveAuthData(token: string, expirationDate: Date, userId: string, userName: string, userEmail: string) {
     localStorage.setItem('token',token);
     localStorage.setItem('expiration',expirationDate.toISOString());
     localStorage.setItem('userId',userId);
