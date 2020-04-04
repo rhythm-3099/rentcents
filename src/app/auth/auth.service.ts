@@ -4,17 +4,25 @@ import { HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 import { AuthData } from './auth-data.model';
 import { UserData } from './auth-data.model';
 import { Subject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { Router } from '@angular/router';
 import { UserProfileComponent } from 'app/userProfile/userprofile.component';
 import "rxjs/add/operator/catch";
 import "rxjs/add/observable/throw";
+import 'rxjs/add/operator/map';
 import { User } from '../services/user.model';
+
+export interface urlLink {
+  url : string;
+  success : boolean;
+}
+
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
 
+  private urlUpdated = new Subject<urlLink>();
+  private url : urlLink;
   public userId: string;
   public userEmail: string;
   public userName: string;
@@ -170,13 +178,12 @@ export class AuthService {
   }
 
 
-  paymentRequest(payment){
+  paymentRequest(payment):Observable<urlLink>{
     let headers = new HttpHeaders();
-    // console.log("register");
+    console.log("register");
     headers.append('Content-Type','application/json');
-    return  this.http.post('http://localhost:3000/api/payment/pay',payment , {headers:headers}).pipe(map((res: any) => res.json())).subscribe(result => {
-      console.log(result);
-    });;
+    return this.http.post<urlLink>('http://localhost:3000/api/payment/pay',payment , {headers:headers});
+
   }
 
   paymentDetails(id){

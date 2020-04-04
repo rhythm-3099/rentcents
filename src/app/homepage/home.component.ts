@@ -81,7 +81,7 @@ export class HomeComponent implements OnInit, OnDestroy{
 
     if(!this.userIsAuthenticated)
         this.router.navigate(['/login']);
-      else
+    else
         this.router.navigate(['/bookproduct'], { state: { product: product } });
   }
 

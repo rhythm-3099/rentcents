@@ -53,8 +53,11 @@
         <input matInput name="redate" ngModel type="date" class="form-control" required>
        </div>
        <mat-card-actions>
-        <button mat-raised-button (click)="bookProduct()" color="primary" type="submit">Book product</button>
+        <button mat-raised-button (click)="payment()" color="primary" type="submit">Book product</button>
       </mat-card-actions>
+      <div *ngIf="flag_" style="background-color: paleturquoise">
+        <a href={{url_payment}}> CLICK HERE TO PAYMENT</a>
+      </div>
    </mat-card>
 
   <!--  <mat-spinner *ngIf="isLoading"></mat-spinner>-->

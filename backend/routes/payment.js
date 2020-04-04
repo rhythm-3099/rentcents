@@ -1,17 +1,21 @@
 const express = require("express");
-
+const mongoose = require('mongoose');
 const paypal = require('paypal-rest-sdk');
+
+
+const Payment = require("../models/payment");
+const Product = require("../models/product");
 
 paypal.configure({
   'mode': 'sandbox', //sandbox or live
-  'client_id': 'ARnIB36gmVQVudXCSEvGUf_JNN35-jgG2F-bMYgwtnItSsVhRPGxqNL0bHediVCuGvvV_LgZwdVu1NCg',
-  'client_secret': 'EKjXTh_U4R4C1YOR_mCzn9RdaDulT4W9exmGwEXYilCFND0e7_4Oz1il5BGnl3bpG82Iugvpm6yu653y'
+  'client_id': 'AWCh8QB5eBlKoxbRk90XKmOBB4mZ21wo0TM40Pbc3ESDa7FriE47qOeRMmXzCHNegW3xH4E6jsoHmyFx',
+  'client_secret': 'EP8w5kBiOijFAkKzJknB4buc5ooVbrzpbRM4HfB8Drg_GRWsOEaI0UE9LfVhS1btVOeMgIf6WYQZXmXf'
 });
 
 const routers = express.Router();
 
 routers.post('/pay', (req, res) => {
-  // console.log("paying");
+   console.log("paying");console.log(req.body);
 
   const create_payment_json = {
     "intent": "sale",
@@ -19,8 +23,8 @@ routers.post('/pay', (req, res) => {
         "payment_method": "paypal"
     },
     "redirect_urls": {
-        "return_url": "http://localhost:4000/users/success/"+req.body.price,
-        "cancel_url": "http://localhost:4000/users/cancel"
+        "return_url": "http://localhost:3000/api/payment/success/"+req.body.price,
+        "cancel_url": "http://localhost:3000/api/payment/cancel"
     },
     "transactions": [{
         "item_list": {
@@ -36,9 +40,9 @@ routers.post('/pay', (req, res) => {
             "currency": "USD",
             "total": req.body.price
         },
-        "description": req.body.discription
+        "description": req.body.description
     }]
-  }
+  };
 
 paypal.payment.create(create_payment_json, function (error, payment) {
   if (error) {
@@ -49,8 +53,9 @@ paypal.payment.create(create_payment_json, function (error, payment) {
   } else {
 
       for(let i = 0;i < payment.links.length;i++){
-        if(payment.links[i].rel === 'approval_url'){
-          // console.log("URL : " + payment.links[i].hrefs);
+        //console.log(payment.links[i].href);
+        if(payment.links[i].rel == 'approval_url'){
+           console.log("URL : " + payment.links[i].href);
           console.log(payment.links[i].href);
           res.send({url :payment.links[i].href,
                     success: true});
@@ -62,11 +67,11 @@ paypal.payment.create(create_payment_json, function (error, payment) {
 });
 
 routers.get('/success/:money', (req, res) => {
-  let money_ = req.param("money");
-  // console.log(money_);
+  let money_ = req.params.money;
+   console.log(money_);
   const payerId = req.query.PayerID;
   const paymentId = req.query.paymentId;
-  // console.log(req.query);
+   console.log(req.query);
   const execute_payment_json = {
     "payer_id": payerId,
     "transactions": [{
@@ -82,33 +87,29 @@ routers.get('/success/:money', (req, res) => {
         console.log(error.response);
         throw error;
     } else {
-      // console.log(JSON.stringify(payment));
-      //res.send('Success');
-     /* MongoClient.connect('mongodb://localhost:27017/renting_system', function(err, db) {
-          var db1 = db.db('renting_system');
-          let payment_ = db1.collection("payment");
-          payment_.insertOne(payment , (err,res)=>{
-              if(err){
-                  console.log("Err " + err);
-              }else {
-                  console.log("REs " + res);
-              }
-          });
-          var myquery = {
-              // _id : new ObjectId(req.body.id),
-              product_name : payment.transactions[0].item_list.items[0].name
-          };
-          var newvalues2 =  { $set: {payment : true} }
-          db1.collection("product").updateOne(myquery,newvalues2,(err)=>{
-                  if(err) throw err;
-          });
-          var newvalues3 =  { $set: {payment_type : true} }
-          db1.collection("product").updateOne(myquery,newvalues3,(err)=>{
-                  if(err) throw err;
-          });
+       console.log(JSON.stringify(payment));
+
+       const pay = new Payment({
+        id: payment.id,
+        payer_email : payment.payer.payer_info.email,
+        payer_firstName:payment.payer.payer_info.first_name,
+        payer_lastName: payment.payer.payer_info.last_name,
+        payerid: payment.payer.payer_info.payer_id,
+        merchantid: payment.transactions[0].payee.merchant_id,
+        merchantName: payment.transactions[0].payee.email,
+        procuctName: payment.transactions[0].item_list.items[0].name,
+        procuctQuantity: payment.transactions[0].item_list.items[0].sku,
+        price:  payment.transactions[0].item_list.items[0].price,
+        description: payment.transactions[0].description,
+        fees : payment.transactions[0].related_resources[0].sale.transaction_fee.value,
+        paymentMode : payment.transactions[0].related_resources[0].sale.payment_mode,
+        time: payment.create_time,
+        parentPaymentId : payment.transactions[0].related_resources[0].sale.parent_payment
       });
-      // console.log(payment.id);*/
-      res.redirect("http://localhost:4200/payment/" + payment.id);
+
+        console.log(pay);
+        pay.save();
+        res.redirect("http://localhost:4200/payment/" + payment.id);
     }
 });
 });
@@ -116,6 +117,18 @@ routers.get('/success/:money', (req, res) => {
 routers.get('/cancel', (req, res) => res.send('Cancelled'));
 
 routers.get('/paymentDetails/:id',(req,res,next)=>{
+
+
+  console.log(req.params.id);
+  Payment.find({ id : req.params.id})
+  .exec()
+  .then(doc => {
+      console.log(doc);
+      res.status(200).json(doc);
+    })
+    .catch(err => console.log(err));
+
+
   // console.log("start");
   /*let id_ = req.param("id");
   // console.log(id_);

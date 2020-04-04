@@ -15,20 +15,22 @@ export class PaydoneComponent implements OnInit {
   sanddox_url = "https://www.sandbox.paypal.com/myaccount/home";
   constructor(private authService : AuthService,
     private router : Router,
-    private Route:  ActivatedRoute) {
+    private Route:  ActivatedRoute) {/*
       this.Route.params.subscribe((res)=>{
         this.authService.paymentDetails(this.nm).subscribe(res =>{
           this.payment_obj = res;  // res.json() was here
+          console.log(this.payment_obj);
         })
         // console.log("answer "+ this.answer);
-      });
+      });*/
      }
 
   ngOnInit() {
     this.Route.params.subscribe((res)=>{
       this.nm   = this.Route.snapshot.paramMap.get('pid');
       this.authService.paymentDetails(this.nm).subscribe(res =>{
-        this.payment_obj = res;  // res.json() was here
+        this.payment_obj = res[0];  // res.json() was here
+        console.log(this.payment_obj);
       })
     });
   }
