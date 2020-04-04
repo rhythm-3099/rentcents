@@ -127,9 +127,10 @@ router.post("/login", (req,res,next) => {
         userId : user_id,
         userName : user_name,
         userEmail : user_email,
-        expiresIn: "3600"
+        expiresIn: "3600",
+        message : "successfully logged in"
       });
-      //console.log('fetcheduser' , fetchedUser);
+      console.log('fetcheduser' , fetchedUser);
       console.log('in the user route');
     })
     .catch(err => {
