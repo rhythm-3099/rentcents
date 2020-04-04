@@ -8,27 +8,58 @@ const router = express.Router();
 
 router.post("/signup", (req, res, next) => {
   bcrypt.hash(req.body.password, 10).then(hash => {
-    const user = new User({
-      email: req.body.email,
-      password: hash,
-      userName: req.body.userName,
-      number:req.body.number,
-      address:req.body.address,
-      rating: "0"
-    });
-    user
-      .save()
-      .then(result => {
+    User.findOne({email: req.body.email}).then(use => {
+      if(use) {
         res.status(201).json({
-          message: "User created!",
-          result: result
-        });
-      })
-      .catch(err => {
-        res.status(500).json({
-          error: err
-        });
+          message: "User email already exists",
+          result: null
+        })
+      }
+
+      const user = new User({
+        email: req.body.email,
+        password: hash,
+        userName: req.body.userName,
+        number:req.body.number,
+        address:req.body.address,
+        rating: "0"
       });
+      user
+        .save()
+        .then(result => {
+          res.status(201).json({
+            message: "User created!",
+            result: result
+          });
+        })
+        .catch(err => {
+          // res.status(500).json({
+          //   error: err
+          // });
+        });
+
+    })
+    // const user = new User({
+    //   email: req.body.email,
+    //   password: hash,
+    //   userName: req.body.userName,
+    //   number:req.body.number,
+    //   address:req.body.address,
+    //   rating: "0"
+    // });
+    // user
+    //   .save()
+    //   .then(result => {
+    //     res.status(201).json({
+    //       message: "User created!",
+    //       result: result
+    //     });
+    //   })
+    //   .catch(err => {
+    //     res.status(500).json({
+    //       error: err
+    //     });
+    //   });
   });
 });
 
@@ -42,9 +73,9 @@ router.post("/login", (req,res,next) => {
   let fetchedUser;
   User.findOne({ email: req.body.email })
     .then(user => {
-      console.log('wehere i am supposed to be');
+
       if(!user){
-        console.log('wrong useremail part');
+        //console.log('wrong useremail part');
         return res.status(201).json({
           token:null,
           userId: null,
@@ -55,9 +86,19 @@ router.post("/login", (req,res,next) => {
         });
       }
       fetchedUser = user;
+      console.log('wehere i am supposed to be');
       return bcrypt.compare(req.body.password, user.password);
     })
+    // .catch(error => {
+    //   console.log('here???  ', error);
+
+    //   res.json(error);
+    // })
+
+    // console.log('i am here', );
+    // bcrypt.compare(req.body.password, fetchedUser.password)
     .then(result => {
+
 
       if(!result) {
         fetchedUser = null;
@@ -71,7 +112,12 @@ router.post("/login", (req,res,next) => {
         });
       }
 
-      console.log(fetchedUser);
+      //console.log(fetchedUser);
+      // ****************************************
+      // if(!fetchedUser.isVerified)
+      //   return res.json();
+
+      // ****************************************
        user_id = "" + fetchedUser._id;
        user_name = "" + fetchedUser.userName;
        user_email = "" + fetchedUser.email;
@@ -87,7 +133,7 @@ router.post("/login", (req,res,next) => {
       console.log('in the user route');
     })
     .catch(err => {
-      //
+      //res.json(err);
     });
 });
 

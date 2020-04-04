@@ -29,22 +29,29 @@ export class ViewproductComponent implements OnInit, OnDestroy {
 
   constructor(public serach_service : Search_service,private router: Router,private authService: AuthService) {
     this.product_id = this.router.getCurrentNavigation().extras.state.product_id;
+    this.userIsAuthenticated = this.authService.getIsAuth();
+      this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
+        this.userIsAuthenticated = isAuthenticated;
+      });
+    if(this.userIsAuthenticated)
+      this.username = this.authService.getAuthData().userName;
+
     this.serach_service.getProduct(this.product_id);
     this.productsub = this.serach_service.getProductUpdateListener()
       .subscribe((product: Product) => {
         this.product = product;
         this.postcomments = product.comments;
         console.log("heyy there");
-       console.log(this.product);
-       this.username = this.authService.getAuthData().userName;
-       if(this.product){
-         this.isLoading = false;
-       }
+        console.log(this.product);
+
+        if(this.product){
+          this.isLoading = false;
+        }
       });
-      this.userIsAuthenticated = this.authService.getIsAuth();
-    this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
-      this.userIsAuthenticated = isAuthenticated;
-    }) ;
+      // this.userIsAuthenticated = this.authService.getIsAuth();
+      // this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
+      //   this.userIsAuthenticated = isAuthenticated;
+      // });
   }
 
 
