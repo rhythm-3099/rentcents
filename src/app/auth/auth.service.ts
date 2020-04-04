@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 import { AuthData } from './auth-data.model';
 import { UserData } from './auth-data.model';
 import { Subject, Observable } from 'rxjs';
@@ -7,14 +8,20 @@ import { Router } from '@angular/router';
 import { UserProfileComponent } from 'app/userProfile/userprofile.component';
 import "rxjs/add/operator/catch";
 import "rxjs/add/observable/throw";
+import 'rxjs/add/operator/map';
 import { User } from '../services/user.model';
+
+export interface urlLink {
+    url : string;
+    success: boolean;
+}
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
 
   public userId: string;
-  public userName: string;
   public userEmail: string;
+  public userName: string;
   private token: string;
   public authStatusListener = new Subject<boolean>();
   public isAuthenticated: boolean;
@@ -101,6 +108,7 @@ export class AuthService {
 
   login(email:string, password: string): Observable<{token: string, userId: string, userName: string, userEmail: string, expiresIn: number, message: string}> {
     const authData : AuthData = {email: email, password: password};
+
     return this.http.post<{token: string, userId: string, userName: string, userEmail: string, expiresIn: number, message: string}>("http://localhost:3000/api/user/login",authData)
       .catch(this.loginErrorHandler);
   }
@@ -160,7 +168,7 @@ export class AuthService {
     clearTimeout(this.tokenTimer);
   }
 
-  saveAuthData(token: string, expirationDate: Date, userId: string, userName: string, userEmail: string) {
+  public saveAuthData(token: string, expirationDate: Date, userId: string, userName: string,userEmail: string) {
     localStorage.setItem('token',token);
     localStorage.setItem('expiration',expirationDate.toISOString());
     localStorage.setItem('userId',userId);
@@ -168,7 +176,7 @@ export class AuthService {
     localStorage.setItem('userEmail',userEmail);
   }
 
-  private clearAuthData() {
+  public clearAuthData() {
     localStorage.removeItem('token');
     localStorage.removeItem('expiration');
     localStorage.removeItem('userId');
@@ -190,6 +198,22 @@ export class AuthService {
 
   getIsAuth(){
     return this.isAuthenticated;
+  }
+
+
+  paymentRequest(payment):Observable<urlLink>{
+    let headers = new HttpHeaders();
+    console.log("register");
+    headers.append('Content-Type','application/json');
+    return this.http.post<urlLink>('http://localhost:3000/api/payment/pay',payment , {headers:headers});
+
+  }
+
+  paymentDetails(id){
+    return this.http.get('http://localhost:3000/api/payment/paymentDetails/'+ id);
+  }
+  paymentSuccess(){
+    return this.http.get('http://localhost:3000/api/payment/success');
   }
 
 }

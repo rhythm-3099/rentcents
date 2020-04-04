@@ -1,21 +1,21 @@
 <mat-card>
    <!-- <mat-spinner *ngIf="isLoading"></mat-spinner>-->
    <mat-card-header>
-    <mat-card-title>Booking a Product :name of product jythi apade view kari ne aya ta</mat-card-title>
+    <mat-card-title>Booking of Product </mat-card-title>
    </mat-card-header>
    <mat-card >
     <mat-card-header>
         <mat-card-title>Product details:</mat-card-title>
-    </mat-card-header> 
+    </mat-card-header>
       <mat-card-content>
-        
-        <mat-list role="list">  
-            <mat-list-item role="listitem"> Product Name &nbsp;: </mat-list-item>
-            <mat-list-item role="listitem"> Category &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;: </mat-list-item>
-            <mat-list-item role="listitem"> Sub Category &nbsp;&nbsp;&nbsp;: </mat-list-item>
-            <mat-list-item role="listitem"> Located &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </mat-list-item>
-            <mat-list-item role="listitem"> Ratting &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </mat-list-item>
-            <mat-list-item role="listitem"> Landed &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </mat-list-item>
+
+        <mat-list role="list">
+            <mat-list-item role="listitem"> Product Name &nbsp;:&nbsp;&nbsp; {{product.name}}  </mat-list-item>
+            <mat-list-item role="listitem"> Category &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; {{product.main_category}}</mat-list-item>
+            <mat-list-item role="listitem"> Sub Category &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; {{product.sub_category}} </mat-list-item>
+            <mat-list-item role="listitem"> Located &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp; {{product.city}},{{product.state}}</mat-list-item>
+            <mat-list-item role="listitem"> Rating &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;{{product.rating}} </mat-list-item>
+           <!-- <mat-list-item role="listitem"> Landed &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{product.name}} </mat-list-item>-->
         </mat-list>
       </mat-card-content>
    </mat-card>
@@ -26,11 +26,11 @@
        </mat-card-header>
        <mat-card-content>
         <mat-list role="list">
-            <mat-list-item>Available &nbsp;:</mat-list-item>
-            <mat-list-item>Price &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</mat-list-item>
+            <mat-list-item>Available &nbsp;: &nbsp;&nbsp;Available</mat-list-item>
+            <mat-list-item>Price &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;{{product.price}}</mat-list-item>
         </mat-list>
-        <p> Before booking if you have any doubt or query related to product then you can contact 
-            owner  via phone , email and chat. options given below : </p>   
+        <p> Before booking if you have any doubt or query related to product then you can contact
+            owner  via phone , email and chat. options given below : </p>
        </mat-card-content>
        <mat-card-actions>
         <button mat-raised-button color="primary" type="button"  (click)="chat1()"><mat-icon>chat</mat-icon>&nbsp;&nbsp;Chat Box</button>
@@ -44,8 +44,8 @@
        </mat-card-header>
        <mat-card-content>
         <mat-list role="list">
-            <mat-list-item>Your Name &nbsp;:</mat-list-item>
-            <mat-list-item>Your Email&nbsp;&nbsp;&nbsp;:</mat-list-item>
+            <mat-list-item>Your Name &nbsp;:  &nbsp;&nbsp;{{userName}}</mat-list-item>
+            <mat-list-item>Your Email&nbsp;&nbsp;&nbsp;:  &nbsp;&nbsp;{{userEmail}}</mat-list-item>
         </mat-list>
        </mat-card-content>
        <div style="margin-left:15px;">
@@ -53,9 +53,12 @@
         <input matInput name="redate" ngModel type="date" class="form-control" required>
        </div>
        <mat-card-actions>
-        <button mat-raised-button routerLink="/paydone" color="primary" type="submit">Book product</button>
+        <button mat-raised-button (click)="payment()" color="primary" type="submit">Book product</button>
       </mat-card-actions>
+      <div *ngIf="flag_" style="background-color: paleturquoise">
+        <a href={{url_payment}}> CLICK HERE TO PAYMENT</a>
+      </div>
    </mat-card>
-    
+
   <!--  <mat-spinner *ngIf="isLoading"></mat-spinner>-->
 </mat-card>

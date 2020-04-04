@@ -38,7 +38,6 @@ import { BookproductComponent } from './bookproduct/bookproduct.component';
 import { User_item_service } from './services/user_item.service';
 import { ProductCategorizeComponent } from './productCategorization/productcategorize.component';
 import { AboutComponent } from './about/about.component';
-import { PaymentComponent } from './payment/payment.component';
 import { VehicleComponent } from './vehiclecategory/vehicle.component';
 import { RealestateComponent } from './realestatecategory/realestate.component';
 import { EducationalComponent } from './educationalcategory/educational.component';
@@ -70,7 +69,6 @@ import { PaydoneComponent } from './paydone/paydone.component';
     BookproductComponent,
     ProductCategorizeComponent,
     AboutComponent,
-    PaymentComponent,
     VehicleComponent,
     RealestateComponent,
     EducationalComponent,

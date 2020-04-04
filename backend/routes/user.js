@@ -120,16 +120,17 @@ router.post("/login", (req,res,next) => {
       // ****************************************
        user_id = "" + fetchedUser._id;
        user_name = "" + fetchedUser.userName;
+       user_email = "" + fetchedUser.email;
       const token = jwt.sign({email: fetchedUser.email, userId: fetchedUser._id}, 'secret_this_should_be_longer', {expiresIn: "1h"});
       res.status(200).json({
         token: token,
         userId : user_id,
         userName : user_name,
-        userEmail: fetchedUser.email,
+        userEmail : user_email,
         expiresIn: "3600",
-        message: 'successfully logged in'
+        message : "successfully logged in"
       });
-      //console.log('fetcheduser' , fetchedUser);
+      console.log('fetcheduser' , fetchedUser);
       console.log('in the user route');
     })
     .catch(err => {

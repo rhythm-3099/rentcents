@@ -81,6 +81,14 @@ export class HomeComponent implements OnInit, OnDestroy{
     this.router.navigate(['/viewproduct', product._id]);
   }
 
+  buyProduct(product: Product){
+
+    if(!this.userIsAuthenticated)
+        this.router.navigate(['/login']);
+    else
+        this.router.navigate(['/bookproduct'], { state: { product: product } });
+  }
+
   // pagedItem here is used just to check pager will habe all pageditems
 
   pagedItems: Array<product> = [
@@ -117,10 +125,4 @@ export class HomeComponent implements OnInit, OnDestroy{
     }
   ];
 
-   book(){
-      if(!this.userIsAuthenticated)
-        this.router.navigate(['/login']);
-      else
-      this.router.navigate(['/bookproduct']);
-   }
 }
