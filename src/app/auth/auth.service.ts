@@ -5,12 +5,13 @@ import { AuthData } from './auth-data.model';
 import { UserData } from './auth-data.model';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
-import 'rxjs/add/operator/map';
+import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
 
   public userId: string;
+  public userEmail: string;
   public userName: string;
   private token: string;
   private authStatusListener = new Subject<boolean>();
@@ -38,7 +39,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     const authData : AuthData = {email: email, password: password};
-    this.http.post<{token: string, userId: string, userName: string, expiresIn: number}>("http://localhost:3000/api/user/login", authData)
+    this.http.post<{token: string, userId: string, userName: string, userEmail: string, expiresIn: number}>("http://localhost:3000/api/user/login", authData)
       .subscribe(response => {
 
         const token = response.token;
@@ -46,8 +47,10 @@ export class AuthService {
         if(this.token){
           const userId = response.userId;
           const userName = response.userName;
+          const userEmail = response.userEmail;
           this.userId = userId;
           this.userName = userName;
+          this.userEmail = userEmail;
 
           const expiresInDuration = response.expiresIn;
           this.setAuthTimer(expiresInDuration);
@@ -55,7 +58,7 @@ export class AuthService {
           this.isAuthenticated = true;
           const now = new Date();
           const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
-          this.saveAuthData(token,expirationDate,userId,userName);
+          this.saveAuthData(token,expirationDate,userId,userName,userEmail);
           this.router.navigate(['/']);
         }
       });
@@ -73,6 +76,7 @@ export class AuthService {
       this.isAuthenticated = true;
       this.userId = authInformation.userId;
       this.userName = authInformation.userName;
+      this.userEmail = authInformation.userEmail;
       this.setAuthTimer(expiresIn / 1000);
       this.authStatusListener.next(true);
     }
@@ -93,11 +97,12 @@ export class AuthService {
     clearTimeout(this.tokenTimer);
   }
 
-  private saveAuthData(token: string, expirationDate: Date, userId: string, userName: string) {
+  private saveAuthData(token: string, expirationDate: Date, userId: string, userName: string,userEmail: string) {
     localStorage.setItem('token',token);
     localStorage.setItem('expiration',expirationDate.toISOString());
     localStorage.setItem('userId',userId);
     localStorage.setItem('userName',userName);
+    localStorage.setItem('userEmail',userEmail);
   }
 
   private clearAuthData() {
@@ -105,6 +110,7 @@ export class AuthService {
     localStorage.removeItem('expiration');
     localStorage.removeItem('userId');
     localStorage.removeItem('userName');
+    localStorage.removeItem('userEmail');
   }
 
   getAuthData() {
@@ -112,11 +118,12 @@ export class AuthService {
     const expirationDate = localStorage.getItem('expiration');
     const userId = localStorage.getItem('userId');
     const userName = localStorage.getItem('userName');
+    const userEmail = localStorage.getItem('userEmail');
 
     if(!token || !expirationDate) {
       return;
     }
-    return { token: token, expirationData: new Date(expirationDate), userId: userId, userName: userName }
+    return { token: token, expirationData: new Date(expirationDate), userId: userId, userName: userName, userEmail: userEmail }
   }
 
   getIsAuth(){
@@ -128,14 +135,16 @@ export class AuthService {
     let headers = new HttpHeaders();
     // console.log("register");
     headers.append('Content-Type','application/json');
-    return this.http.post('http://localhost:4000/users/pay',payment , {headers:headers}).map(res=>res.json());
+    return  this.http.post('http://localhost:3000/api/payment/pay',payment , {headers:headers}).pipe(map((res: any) => res.json())).subscribe(result => {
+      console.log(result);
+    });;
   }
 
   paymentDetails(id){
-    return this.http.get('http://localhost:4000/users/paymentDetails/'+ id);
+    return this.http.get('http://localhost:3000/api/payment/paymentDetails/'+ id);
   }
   paymentSuccess(){
-    return this.http.get('http://localhost:4000/users/success');
+    return this.http.get('http://localhost:3000/api/payment/success');
   }
 
 }

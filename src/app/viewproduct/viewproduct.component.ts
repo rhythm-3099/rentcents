@@ -5,7 +5,6 @@ import { Product } from '../services/product.model';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 
-
 @Component({
   selector: 'app-viewproduct',
   templateUrl: './viewproduct.component.html',
@@ -44,6 +43,7 @@ export class ViewproductComponent implements OnInit, OnDestroy {
       this.userIsAuthenticated = isAuthenticated;
     }) ;
   }
+
 
   ngOnInit(): void {
     // this.serach_service.getProduct(this.product_id);
@@ -98,7 +98,7 @@ export class ViewproductComponent implements OnInit, OnDestroy {
     if(!this.userIsAuthenticated)
         this.router.navigate(['/login']);
       else
-      this.router.navigate(['/bookproduct']);
+        this.router.navigate(['/bookproduct'], { state: { product: this.product } });
   }
   doStuff(){
     this.router.navigate(['/userprofile']);

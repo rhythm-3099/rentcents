@@ -10,7 +10,6 @@ import { ViewproductComponent } from './viewproduct/viewproduct.component';
 import { BookproductComponent } from './bookproduct/bookproduct.component';
 import { ProductCategorizeComponent } from './productCategorization/productcategorize.component';
 import { AboutComponent } from './about/about.component';
-import { PaymentComponent } from './payment/payment.component';
 import { VehicleComponent } from './vehiclecategory/vehicle.component';
 import { RealestateComponent } from './realestatecategory/realestate.component';
 import { EducationalComponent } from './educationalcategory/educational.component';
@@ -38,7 +37,7 @@ const routes: Routes = [
   {path: 'viewproduct', component: ViewproductComponent},
   {path: 'bookproduct', component: BookproductComponent},
   {path: 'productcategorize', component: ProductCategorizeComponent},
-  {path: 'payment', component: PaymentComponent},
+  //{path: 'payment', component: PaymentComponent},
   {path: 'vehicles', component: VehicleComponent},
   {path: 'realestate', component: RealestateComponent},
   {path: 'educational', component: EducationalComponent},
@@ -53,7 +52,7 @@ const routes: Routes = [
   {path: 'helppage', component: HelppageComponent},
   {path: 'chatpage', component: ChatpageComponent},
   {path: 'paydone', component: PaydoneComponent}
-    
+
 
 ];
 

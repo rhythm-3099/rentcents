@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService} from '../services/auth.service';
+import { AuthService} from '../auth/auth.service';
 import { Router} from '@angular/router';
 import { Alert } from 'selenium-webdriver';
 import { ActivatedRoute } from '@angular/router';
@@ -18,7 +18,7 @@ export class PaydoneComponent implements OnInit {
     private Route:  ActivatedRoute) {
       this.Route.params.subscribe((res)=>{
         this.authService.paymentDetails(this.nm).subscribe(res =>{
-          this.payment_obj = res.json();
+          this.payment_obj = res;  // res.json() was here
         })
         // console.log("answer "+ this.answer);
       });
@@ -28,7 +28,7 @@ export class PaydoneComponent implements OnInit {
     this.Route.params.subscribe((res)=>{
       this.nm   = this.Route.snapshot.paramMap.get('pid');
       this.authService.paymentDetails(this.nm).subscribe(res =>{
-        this.payment_obj = res.json();
+        this.payment_obj = res;  // res.json() was here
       })
     });
   }

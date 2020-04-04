@@ -18,14 +18,14 @@ export class LoginComponent{
     if(form.invalid){
       return;
     }
-    if(form.value.password != this.validPassword){
+    /*if(form.value.password != this.validPassword){
       alert('Please Enter Valid Password.')
       return;
     }
     if(form.value.email != this.validUsername){
       alert('Please Enter Valid Username.')
       return;
-    }
+    }*/
     this.isLoading = true;
     this.authService.login(form.value.email,form.value.password);
     //console.log(form.value);

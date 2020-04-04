@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+/*import { Injectable } from '@angular/core';
 import { Http , Headers, ResponseContentType } from '@angular/http';
 import { tokenNotExpired } from 'angular2-jwt';
 import 'rxjs/add/operator/map';
@@ -11,7 +11,7 @@ export class AuthService {
   product: any;
   reqProduct : any;
   getset: any;
-  
+
 
   constructor(private http : Http) { }
 
@@ -37,7 +37,7 @@ export class AuthService {
 
   getImages(){
     return this.http.get('http://localhost:4000/users/files');
-  } 
+  }
 
   findImageById(id){
     return this.http.get('http://localhost:4000/users/image'+id);
@@ -47,7 +47,7 @@ export class AuthService {
     return this.http.get('http://localhost:4000/users/chatroom/' + room);
   }
 
-  
+
   sendEmails(email){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
@@ -64,44 +64,44 @@ export class AuthService {
     let headers = new Headers();
     headers.append('Content-Type','application/json');
     return this.http.post('http://localhost:4000/users/addProduct', product , {headers:headers}).map(res=>res.json());
-  } 
+  }
 
   bookProduct(bookProduct_){
     console.log("booking form auth "+ bookProduct_)
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.post('http://localhost:4000/users/bookingProduct', bookProduct_ , {headers:headers}).map(res=>res.json());  
+    return this.http.post('http://localhost:4000/users/bookingProduct', bookProduct_ , {headers:headers}).map(res=>res.json());
   }
 
   bookReqProduct(bookProduct_){
     console.log("bboking req prod " + bookProduct_);
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.post('http://localhost:4000/users/bookingReqProduct', bookProduct_ , {headers:headers}).map(res=>res.json());  
+    return this.http.post('http://localhost:4000/users/bookingReqProduct', bookProduct_ , {headers:headers}).map(res=>res.json());
   }
 
   approveProduct(product){
     console.log(product);
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.post('http://localhost:4000/users/updateBookedProduct', product , {headers:headers}).map(res=>res.json());  
+    return this.http.post('http://localhost:4000/users/updateBookedProduct', product , {headers:headers}).map(res=>res.json());
   }
 
   approveReqProduct(product){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.post('http://localhost:4000/users/updateBookingReqProduct', product , {headers:headers}).map(res=>res.json());  
+    return this.http.post('http://localhost:4000/users/updateBookingReqProduct', product , {headers:headers}).map(res=>res.json());
   }
   addReqProduct(reqProduct){
     console.log("adding is under process");
     let headers = new Headers();
     headers.append('Content-Type','application/json');
     return this.http.post('http://localhost:4000/users/addReqProduct', reqProduct , {headers:headers}).map(res=>res.json());
-  } 
+  }
 
   getBookProducts(){
     // return this.http.get('http://localhost:4000/users/getBookProduct');
-    return this.http.get('http://localhost:4000/users/getProduct'); 
+    return this.http.get('http://localhost:4000/users/getProduct');
   }
   unmarkProduct(prod){
     let headers = new Headers();
@@ -136,7 +136,7 @@ export class AuthService {
   offlinePayment(product){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    return this.http.post('http://localhost:4000/users/paymentRecived', product , {headers:headers}).map(res=>res.json());  
+    return this.http.post('http://localhost:4000/users/paymentRecived', product , {headers:headers}).map(res=>res.json());
   }
   getProfile(){
     let headers = new Headers();
@@ -144,10 +144,10 @@ export class AuthService {
     headers.append('Authorization',this.authToken);
     //headers.append('Content-Type','application/json');
     return this.http.get('http://localhost:4000/users/profile' , {headers:headers}).map(res=>res.json());
-    
+
   }
 
- 
+
   storeUserData(token ,user){
 
     localStorage.setItem('id_token',token);
@@ -164,8 +164,8 @@ loadToken(){
 }
 
 checkToken(){
-  if(localStorage.getItem('user') == null){ 
-    //console.log("returning null..."); 
+  if(localStorage.getItem('user') == null){
+    //console.log("returning null...");
     return null;}
   else{
   let user1 = localStorage.getItem('user').toString();
@@ -186,4 +186,4 @@ loggedIn() {
     localStorage.clear();
     //console.log("clear memory !!");
   }
-}
+}*/
