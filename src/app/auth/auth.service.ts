@@ -56,16 +56,16 @@ export class AuthService {
     return Observable.throw(error.message || "server error :(");
   }
 
-  async checkIfUserExists(email: string){
-    let notExists = true;
-    console.log('rhythm here');
+  // async checkIfUserExists(email: string){
+  //   let notExists = true;
+  //   //console.log('rhythm here');
 
-    this.http.get("http://localhost:3000/api/user/checkuser/"+email)
-      .subscribe(response => {
-        console.log(response);
-        //this.router.navigate(['/signup']);
-      })
-  }
+  //   this.http.get("http://localhost:3000/api/user/checkuser/"+email)
+  //     .subscribe(response => {
+  //       console.log(response);
+  //       //this.router.navigate(['/signup']);
+  //     })
+  // }
 
   // login(email: string, password: string): Number {
   //   //this.checkIfUserExists(email);
@@ -139,14 +139,14 @@ export class AuthService {
     }
     const now = new Date();
     const expiresIn = authInformation.expirationData.getTime() - now.getTime();
-    console.log('expires ', expiresIn);
+    //console.log('expires ', expiresIn);
     if(expiresIn > 0){
-      console.log('herer?');
+      //console.log('herer?');
       this.token = authInformation.token;
       this.isAuthenticated = true;
       this.userId = authInformation.userId;
       this.userName = authInformation.userName;
-      console.log('naam ', this.userName);
+      //console.log('naam ', this.userName);
       this.userEmail = authInformation.userEmail;
       this.setAuthTimer(expiresIn / 1000);
       this.authStatusListener.next(true);

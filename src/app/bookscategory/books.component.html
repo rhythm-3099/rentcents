@@ -2,7 +2,7 @@
   <button mat-raised-button color="primary" (click)="gotoRealestate()">Real Estate</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoVehicles()">Vehicles</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoElectronics()">Electronics</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoSports()">Sports</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoFurniture()">Furniture</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoBooks()">Books</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoEducational()">Educational</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoHobby()">Hobby</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoClothing()">Clothing</button>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="gotoOthers()">Others</button>
 </mat-card>
 <mat-card>
-  <input  placeholder="Enter items to Search..." [(ngModel)]="searchterm" term="term" [ngModelOptions]="{standalone: true}">  
+  <input  placeholder="Enter items to Search..." [(ngModel)]="searchterm" term="term" [ngModelOptions]="{standalone: true}">
   <br>
   <br>
   <br>
@@ -29,7 +29,7 @@
 
         <mat-card-actions>
           <button mat-raised-button color="primary" type="submit"  (click)="book()">BUY</button>
-          <button mat-raised-button color="primary" (click)="viewProduct(tile._id)">VIEW</button>
+          <button mat-raised-button color="primary" (click)="viewProduct(tile)">VIEW</button>
         </mat-card-actions>
 
       </mat-card>

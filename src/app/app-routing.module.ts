@@ -23,10 +23,12 @@ import { HobbyComponent } from './hobbycategory/hobby.component';
 import { HelppageComponent } from './helppage/helppage.component';
 import { ChatpageComponent } from './chatpage/chatpage.component';
 import { PaydoneComponent } from './paydone/paydone.component';
+import { PageNotFoundComponent } from './page-not-found/pagenotfound.component';
 
 
 const routes: Routes = [
-  { path:'' ,component: HomeComponent},
+  // { path:'' ,component: HomeComponent},
+  { path: '', redirectTo: '/homepage', pathMatch: 'full'},
   {path: 'homepage', component: HomeComponent},
   {path: 'about', component: AboutComponent},
   {path: 'login', component: LoginComponent},
@@ -34,7 +36,7 @@ const routes: Routes = [
   {path: 'uploaditem', component: UploadItemComponent},
   {path: 'userprofile', component: UserProfileComponent},
   {path: 'updateuserprofile', component: UpdateUserProfileComponent},
-  {path: 'viewproduct', component: ViewproductComponent},
+  {path: 'viewproduct/:id', component: ViewproductComponent},
   {path: 'bookproduct', component: BookproductComponent},
   {path: 'productcategorize', component: ProductCategorizeComponent},
   //{path: 'payment', component: PaymentComponent},
@@ -53,6 +55,8 @@ const routes: Routes = [
   {path: 'helppage', component: HelppageComponent},
   {path: 'chatpage', component: ChatpageComponent},
 
+  {path: 'paydone', component: PaydoneComponent},
+  {path: "**", component: PageNotFoundComponent}
 
 ];
 
