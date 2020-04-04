@@ -4,7 +4,7 @@ import { Search_service } from '../services/search.service';
 import { Product } from '../services/product.model';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
-
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-viewproduct',
@@ -28,8 +28,8 @@ export class ViewproductComponent implements OnInit, OnDestroy {
   private authListenerSubs: Subscription;
 
 
-  constructor(public serach_service : Search_service,private router: Router,private authService: AuthService) {
-    this.product_id = this.router.getCurrentNavigation().extras.state.product_id;
+  constructor(public serach_service : Search_service,private router: Router,private authService: AuthService, private activatedRoute: ActivatedRoute) {
+    this.product_id = this.activatedRoute.snapshot.paramMap.get('id');
     this.userIsAuthenticated = this.authService.getIsAuth();
       this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;

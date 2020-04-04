@@ -73,8 +73,12 @@ export class HomeComponent implements OnInit, OnDestroy{
     this.postsSub.unsubscribe();
   }
 
-  viewProduct(id: string){
-    this.router.navigate(['/viewproduct'], { state: { product_id: id } });
+  // viewProduct(id: string){
+  //   this.router.navigate(['/viewproduct'], { state: { product_id: id } });
+  // }
+
+  viewProduct(product: Product){
+    this.router.navigate(['/viewproduct', product._id]);
   }
 
   // pagedItem here is used just to check pager will habe all pageditems

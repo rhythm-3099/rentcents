@@ -24,7 +24,7 @@ export class BooksComponent implements OnInit, OnDestroy{
   private postsSub: Subscription;
   userIsAuthenticated = false;
   private authListenerSubs: Subscription;
-  
+
 
   constructor(public postsService: Books_category_service,private router: Router,private authService: AuthService) {
 
@@ -35,7 +35,7 @@ export class BooksComponent implements OnInit, OnDestroy{
     this.postsSub = this.postsService.getPostUpdateListener()
       .subscribe((productData: {posts: Product[], postCount: number}) => {
         this.posts = productData.posts;
-        
+
       });
       this.userIsAuthenticated = this.authService.getIsAuth();
     this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
@@ -54,9 +54,10 @@ export class BooksComponent implements OnInit, OnDestroy{
     this.postsSub.unsubscribe();
   }
 
-  viewProduct(id: string){
-    this.router.navigate(['/viewproduct'], { state: { product_id: id } });
+  viewProduct(product: Product){
+    this.router.navigate(['/viewproduct', product._id]);
   }
+
   book(){
     if(!this.userIsAuthenticated)
         this.router.navigate(['/login']);
