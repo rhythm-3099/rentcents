@@ -11,7 +11,7 @@ router.post("/signup", (req, res, next) => {
     const user = new User({
       email: req.body.email,
       password: hash,
-      userName: req.body.name,
+      userName: req.body.userName,
       number:req.body.number,
       address:req.body.address,
       rating: "0"
@@ -32,14 +32,26 @@ router.post("/signup", (req, res, next) => {
   });
 });
 
+// router.put("updateprofile", (req,res,next) => {
+//   bcrypt.hash(req.body.password,10).then(hash => {
+
+//   })
+// })
+
 router.post("/login", (req,res,next) => {
   let fetchedUser;
   User.findOne({ email: req.body.email })
     .then(user => {
-
+      console.log('wehere i am supposed to be');
       if(!user){
-        return res.status(401).json({
-          message: 'Auth failed 1'
+        console.log('wrong useremail part');
+        return res.status(201).json({
+          token:null,
+          userId: null,
+          userName: null,
+          expiresIn:null,
+          userEmail:null,
+          message: 'Mail wrong'
         });
       }
       fetchedUser = user;
@@ -49,8 +61,13 @@ router.post("/login", (req,res,next) => {
 
       if(!result) {
         fetchedUser = null;
-        return res.status(401).json({
-          message: 'Auth failed 2'
+        return res.status(201).json({
+          token:null,
+          userId: null,
+          userName: null,
+          userEmail:null,
+          expiresIn: null,
+          message: 'Password wrong'
         });
       }
 
@@ -66,28 +83,37 @@ router.post("/login", (req,res,next) => {
         userEmail : user_email,
         expiresIn: "3600"
       });
-      console.log(fetchedUser);
+      //console.log('fetcheduser' , fetchedUser);
+      console.log('in the user route');
     })
     .catch(err => {
-      return res.status(401).json({
-        message: 'Auth failed 3'
-      });
+      //
     });
 });
 
-router.get("/:productId", (req,res,next) => {
-  const id = req.params.productId;
-  console.log(id);
-  User.findById(id)
+// router.get("/checkuser/:email", (req,res,next) => {
+//   let em = req.params.email;
+//   console.log('parasite');
+
+//   console.log(User.findOne({email: em}).count());
+// })
+
+router.get("/:userEmail", (req,res,next) => {
+  const email = req.params.userEmail;
+  User.findOne({email: email})
   .exec()
   .then(doc => {
-      console.log(doc, "hii");
-      res.status(200).json({
-          message : "product fetched successfully",
-          product : doc
-      });
+      //console.log(doc, "hii");
+      res.status(200).json(doc);
     })
-    .catch(err => console.log(err));
+  //   .catch(err => console.log(err));
+  // User.findOne({email: email}).toArray((err,user) => {
+  //   if(err){
+  //     console.log(err);
+  //     return false;
+  //   }
+  //   res.json(user);
+  // });
 })
 
 router.get("/", (req, res, next) => {
@@ -97,6 +123,41 @@ router.get("/", (req, res, next) => {
       users: documents
     });
   });
+})
+
+router.put("/updateuser/:id", (req,res,next) => {
+  let id = req.params.id;
+  console.log('the password is', req.body.password);
+  bcrypt.hash(req.body.password, 10).then(hash => {
+    const user = {
+      email: req.body.email,
+      password: hash,
+      userName: req.body.userName,
+      number:req.body.number,
+      address:req.body.address,
+      rating: "0"
+    };
+    console.log('you');
+
+    User.findByIdAndUpdate({_id: id}, user,{new: true}).then(newuser => {
+      console.log('hey')
+      console.log('new user' , newuser);
+      res.json(newuser);
+    }).catch(err => {
+      console.log(err);
+      res.json(err);
+    })
+  }).catch(err => {
+    console.log('the error is ', err);
+  });
+  console.log('body that is sent ', req.body);
+
+  // User.findByIdAndUpdate({_id: id}, user,{new: true}).then(newuser => {
+  //   console.log(newuser);
+  //   res.json(newuser);
+  // }).catch(err => {
+  //   res.json(err);
+  // })
 })
 
 

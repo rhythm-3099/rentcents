@@ -1,11 +1,13 @@
-<mat-card style="background-color: #f2f2f2;">
-    <mat-card-header><h1 style="font-family: quattrocento;">Hello Ganesh,</h1></mat-card-header>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<mat-card style="background-color: #f2f2f2;" *ngIf="!isLoading">
+    <mat-card-header><h1 style="font-family: quattrocento;">{{title}}</h1></mat-card-header>
     <mat-card-content>
         <mat-card>
             <ul class="list-group">
-                <li style="font-family: quattrocento;" class="list-group-item"><b>NAME:</b> Ganesh Gaitonde</li>
-                <li style="font-family: quattrocento;" class="list-group-item"><b>EMAIL:</b> ganesh@gmail.com</li>
-                <li style="font-family: quattrocento;" class="list-group-item"><b>MOBILE NO.:</b> 1234567890</li>
+                <li style="font-family: quattrocento;" class="list-group-item"><b>NAME:</b>{{currentUser.userName}}</li>
+                <li style="font-family: quattrocento;" class="list-group-item"><b>EMAIL:</b>{{currentUser.email}}</li>
+                <li style="font-family: quattrocento;" class="list-group-item"><b>MOBILE NO.:</b>{{currentUser.number}}</li>
             </ul>
             <button style="font-family: quattrocento;" mat-raised-button routerLink="/updateuserprofile" color="primary" type="submit" >Update Profile</button>
             <!-- <button style="font-family: quattrocento;"mat-raised-button routerLink="/payment" color="primary" type="submit" >Payment Details</button> -->
@@ -34,7 +36,7 @@
                     <th style="font-family: quattrocento;">DATE OF RETURN</th>
                     <th style="font-family: quattrocento;">PAYMENT STATUS</th>
                     </tr>
-  
+
                     <tr>
                     <td style="font-family: quattrocento;">TV</td>
                     <td style="font-family: quattrocento;">TV Image</td>
@@ -60,7 +62,7 @@
                     <th style="font-family: quattrocento;">DATE OF RETURN</th>
                     <th style="font-family: quattrocento;">PAYMENT STATUS</th>
                     </tr>
-  
+
                     <tr>
                     <td style="font-family: quattrocento;">TV</td>
                     <td style="font-family: quattrocento;">TV Image</td>
@@ -74,4 +76,3 @@
         </mat-card>
     </mat-card-content>
   </mat-card>
-  

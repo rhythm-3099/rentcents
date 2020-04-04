@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 import { AuthData } from './auth-data.model';
 import { UserData } from './auth-data.model';
-import { Subject } from 'rxjs';
-import { Router } from '@angular/router';
+import { Subject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { Router } from '@angular/router';
+import { UserProfileComponent } from 'app/userProfile/userprofile.component';
+import "rxjs/add/operator/catch";
+import "rxjs/add/observable/throw";
+import { User } from '../services/user.model';
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
@@ -29,7 +34,7 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
   createUser(email: string, password: string, name : string, phnNUmber : string, address : string) {
-    const userData : UserData = {email: email, password: password, name: name, number : phnNUmber, address : address};
+    const userData : UserData = {email: email, password: password, userName: name, number : phnNUmber, address : address};
     this.http.post("http://localhost:3000/api/user/signup", userData)
       .subscribe(response => {
         console.log(response);
@@ -37,11 +42,32 @@ export class AuthService {
       });
   }
 
-  login(email: string, password: string) {
-    const authData : AuthData = {email: email, password: password};
-    this.http.post<{token: string, userId: string, userName: string, userEmail: string, expiresIn: number}>("http://localhost:3000/api/user/login", authData)
-      .subscribe(response => {
+  async checkIfUserExists(email: string){
+    let notExists = true;
+    console.log('rhythm here');
 
+    this.http.get("http://localhost:3000/api/user/checkuser/"+email)
+      .subscribe(response => {
+        console.log(response);
+        //this.router.navigate(['/signup']);
+      })
+  }
+
+  login(email: string, password: string): Number {
+    //this.checkIfUserExists(email);
+    let rhythm=0;
+    const authData : AuthData = {email: email, password: password};
+    this.http.post<{token: string, userId: string, userName: string, expiresIn: number, message: string, userEmail: string}>("http://localhost:3000/api/user/login", authData)
+      .toPromise().then(response => {
+        // if(response == 'login error') {
+
+        // }
+        console.log('why no response',response.message);
+        if(response.message == 'Mail wrong'){
+          rhythm = 0;
+        } else if(response.message == 'Password wrong'){
+          rhythm = 1;
+        }
         const token = response.token;
         this.token = token;
         if(this.token){
@@ -60,8 +86,22 @@ export class AuthService {
           const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
           this.saveAuthData(token,expirationDate,userId,userName,userEmail);
           this.router.navigate(['/']);
+          rhythm = 8;
         }
+        console.log('In the login dep');
       });
+      return rhythm;
+  }
+
+  updateUserInfo(email: string, password: string, name : string, phnNUmber : string, address : string) : Observable<User>{
+    const userData: UserData = {email:email, password: password, userName: name, number: phnNUmber, address: address};
+    const userId = localStorage.getItem('userId');
+    return this.http.put<User>("http://localhost:3000/api/user/updateuser/" + userId,userData)
+      .catch(this.updateUserErrorHandler);
+  }
+
+  updateUserErrorHandler(error: HttpErrorResponse){
+    return Observable.throw(error.message || "server error");
   }
 
   autoAuthUser() {
@@ -119,7 +159,6 @@ export class AuthService {
     const userId = localStorage.getItem('userId');
     const userName = localStorage.getItem('userName');
     const userEmail = localStorage.getItem('userEmail');
-
     if(!token || !expirationDate) {
       return;
     }
