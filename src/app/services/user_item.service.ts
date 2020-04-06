@@ -125,7 +125,9 @@ export class User_item_service  {
     postData.append("sub_category", sub_category);
     postData.append("image", image, name);
     postData.append("userId", this.authService.userId);
-    postData.append("userName", this.authService.userName);
+    postData.append("userName", this.authService.getAuthData().userName);
+    console.log('last one please ', this.authService.getAuthData().userName);
+
 
     this.http
         .post<{message: string, post: Product}>('http://localhost:3000/api/product',postData)

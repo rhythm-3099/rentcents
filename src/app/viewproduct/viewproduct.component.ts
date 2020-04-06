@@ -35,9 +35,11 @@ export class ViewproductComponent implements OnInit, OnDestroy {
       this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;
       });
-    if(this.userIsAuthenticated)
+    if(this.userIsAuthenticated){
       this.username = this.authService.getAuthData().userName;
+      console.log(this.username, " last one");
 
+    }
     this.serach_service.getProduct(this.product_id);
     this.productsub = this.serach_service.getProductUpdateListener()
       .subscribe((product: Product) => {
