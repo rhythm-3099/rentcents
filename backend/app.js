@@ -9,7 +9,8 @@ const productRoutes = require("./routes/product");
 const paymenttRoutes = require("./routes/payment");
 
 const categoryRoutes = require("./routes/category");
-
+const wishlistRoutes = require("./routes/wishlist");
+const extraRoutes = require("./routes/extra");
 const Post = require('../backend/models/product');
 
 const app = express();
@@ -48,4 +49,6 @@ app.use("/api/user", userRoutes);
 app.use("/api/product",productRoutes);
 app.use("/api/category",categoryRoutes);
 app.use("/api/payment",paymenttRoutes);
+app.use("/api/wishlist",wishlistRoutes);
+app.use("/api/extra",extraRoutes);
 module.exports = app;

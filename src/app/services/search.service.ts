@@ -70,6 +70,31 @@ export class Search_service  {
     return Observable.throw(error.message || "server error");
   }
 
-  
+  getWishlist(id : string) : Observable<{message: string, docs: any}>{
+    return this.http.get<{message: string, docs: any}>("http://localhost:3000/api/wishlist/"+id)
+      .catch(this.wishlistErrorHandler);
+  }
+
+  wishlistErrorHandler(error: HttpErrorResponse){
+    return Observable.throw(error.message || "server error");
+  }
+
+  addToWishlist(products: Product[], id: string) :Observable<{message: string, doc: any}>{
+    return this.http.put<{message: string, doc: any}>("http://localhost:3000/api/wishlist/"+id, products)
+      .catch(this.addToWishlistErrorHandler);
+  }
+
+  addToWishlistErrorHandler(error : HttpErrorResponse) {
+    return Observable.throw(error.message || "server error");
+  }
+
+  getWishlistExpanded(id : string) : Observable<{message: string, docs: any}>{
+    return this.http.get<{message: string, docs: any}>("http://localhost:3000/api/extra/"+id)
+      .catch(this.wishlistExpandedErrorHandler);
+  }
+
+  wishlistExpandedErrorHandler(error: HttpErrorResponse){
+    return Observable.throw(error.message || "server error");
+  }
 
 }

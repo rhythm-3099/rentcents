@@ -74,5 +74,33 @@
                 </table>
             </mat-card-content>
         </mat-card>
+        <mat-grid-list cols="4" rowHeight="1:2" guttersize="5px" *ngIf="wishlist.length > 0">
+          <!-- items being paged -->
+        <!-- <div *ngFor="let item of pagedItems">{{item.name}}</div> -->
+
+         <mat-grid-tile *ngFor="let tile of wishlist">
+              <mat-card class="example-card">
+                <mat-card-header>
+                  <div mat-card-avatar class="example-header-image"></div>
+                  <mat-card-title>{{tile.name}}</mat-card-title>
+                </mat-card-header>
+
+                <img  style="width: 370px; height: 300px;" mat-card-image class='post-image' [src]="tile.imagePath" [alt]="tile.name">
+
+                <mat-card-content>
+                  <p> Price : {{tile.price}}  </p>
+                </mat-card-content>
+
+                <mat-card-actions>
+
+                  <!-- <button mat-raised-button color="primary" (click)="buyProduct(tile)" *ngIf="userIsAuthenticated">BUY</button> -->
+                  <button mat-raised-button color="primary" (click)="viewProduct(tile)">VIEW</button>
+
+                </mat-card-actions>
+
+              </mat-card>
+          </mat-grid-tile>
+      </mat-grid-list>
+      <p *ngIf="wishlist.length == 0">No wishlist till now</p>
     </mat-card-content>
   </mat-card>
