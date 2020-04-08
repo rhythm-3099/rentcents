@@ -36,9 +36,12 @@ export class UserProfileComponent implements OnInit, OnDestroy{
 
         this.search_service.getAddedProducts(this.authService.getAuthData().userId).subscribe(val => {
           if(val.message == 'empty here') {
+            //console.log('herererererer  ????');
+
             this.addedProducts = [];
           } else {
-            this.addedProducts = val.docs;
+            //console.log('Orrrrrrrrrr  herererererer  ???? ', val.product);
+            this.addedProducts = val.product;
           }
           //console.log('addedProducts ', this.addedProducts);
 
@@ -62,6 +65,16 @@ export class UserProfileComponent implements OnInit, OnDestroy{
     this.router.navigate(['/viewproduct', product._id]);
   }
 
+  deleteProduct(product: Product) {
+    //console.log('id of deleting product ', product._id);
+
+    this.search_service.deleteProduct(product._id).subscribe(data => {
+      alert('product deleted, refresh the page');
+      this.ngOnInit();
+      this.router.navigate(['/userprofile']);
+    })
+  }
+
   removeFromWishlist(product: Product){
     let itr = 0;
     let startPos = 0;
@@ -80,7 +93,7 @@ export class UserProfileComponent implements OnInit, OnDestroy{
       if(data.message == "Wishlist Updated successfully"){
         alert("Wishlist updated! :)");
         //console.log(data.doc);
-        this.router.navigate(['/userprofile']);
+        this.ngOnInit();
       } else {
         alert("data.message");
       }

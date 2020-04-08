@@ -126,7 +126,7 @@ router.put('/:id', function(req,res) {
 
 // delete a product by its id
 router.delete("/:id",(req,res,next) => {
-  Product.deleteOne({ _id: req.params._id }).then(result => {
+  Product.deleteOne({ _id: req.params.id }).then(result => {
     console.log('result');
     res.status(200).json({ message: 'Post deleted! '});
   });

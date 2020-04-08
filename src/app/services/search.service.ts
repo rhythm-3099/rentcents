@@ -97,13 +97,23 @@ export class Search_service  {
     return Observable.throw(error.message || "server error");
   }
 
-  getAddedProducts(user_id : string) : Observable<{message: string, docs: any}>{
-    return this.http.get<{message: string, docs: any}>("http://localhost:3000/api/product/myproducts/"+ user_id)
+  getAddedProducts(user_id : string) : Observable<{message: string, product: Product[]}>{
+    return this.http.get<{message: string, product: Product[]}>("http://localhost:3000/api/product/myproducts/"+ user_id)
       .catch(this.addedProductsErrorHandler);
   }
 
   addedProductsErrorHandler(error: HttpErrorResponse){
     return Observable.throw(error.message || "server error");
   }
+
+  deleteProduct(id: string){
+    return this.http.delete<{message: string, docs: any}>("http://localhost:3000/api/product/"+ id)
+      .catch(this.deleteProductErrorHandler);
+  }
+
+  deleteProductErrorHandler(error: HttpErrorResponse){
+    return Observable.throw(error.message || "server error :(" );
+  }
+
 
 }
