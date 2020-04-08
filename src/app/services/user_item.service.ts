@@ -124,7 +124,7 @@ export class User_item_service  {
     postData.append("main_category", main_category);
     postData.append("sub_category", sub_category);
     postData.append("image", image, name);
-    postData.append("userId", this.authService.userId);
+    postData.append("userId", this.authService.getAuthData().userId);
     postData.append("userName", this.authService.getAuthData().userName);
     console.log('last one please ', this.authService.getAuthData().userName);
 

@@ -104,7 +104,13 @@ router.get("/", (req,res,next) => {
         posts: fetchedPosts,
         maxPosts: count
       });
-    });
+    }).catch(error => {
+      res.status(200).json({
+        message: 'Error',
+        posts: null,
+        maxPosts: 0
+      })
+    })
 });
 
 router.put('/:id', function(req,res) {
@@ -118,68 +124,6 @@ router.put('/:id', function(req,res) {
     .catch(err => next(err));
 })
 
-// router.put(
-//   "/:id",
-//   multer({ storage: storage }).single("image"),
-//   (req, res, next) => {
-//     let imagePath = req.body.imagePath;
-//     if (req.file) {
-//       const url = req.protocol + "://" + req.get("host");
-//       imagePath = url + "/images/" + req.file.filename;
-//     }
-//     const post = new Product({
-//       // _id: req.body.id,
-//       // title: req.body.title,
-//       // content: req.body.content,
-//       // imagePath: imagePath
-//       _id: req.body.id,
-//       name: req.body.name,
-//       price: req.body.price,
-//       description: req.body.description,
-//       city: req.body.city,
-//       state: req.body.state,
-//       main_category: req.body.main_category,
-//       sub_category: req.body.sub_category,
-//       imagePath:  req.body.imagePath,
-//       owner_id: req.body.userId,
-//       owner_name : req.body.userName,
-//       rating : req.body.rating,
-//       comments: req.body.comments
-//     });
-//     console.log(post);
-//     Product.updateOne({ _id: req.params.id }, post).then(result => {
-//       res.status(200).json({ message: "Update successful!" });
-//     });
-//   }
-// );
-
-//get 'vehicle' categorized products
-// router.get("/vehicle", (req,res,next) => {
-//   console.log(req.query);
-//   const pageSize = +req.query.pagesize;
-//   const currentPage = +req.query.page;
-//   const postQuery = Product.find();
-//   let fetchedPosts;
-//   if(currentPage && pageSize) {
-//     postQuery
-//       .skip(pageSize * (currentPage - 1))
-//       .limit(pageSize);
-//   }
-//   postQuery
-//     .then(documents => {
-//       fetchedPosts = documents;
-//       return Product.count();
-//     }).then(count => {
-//       //console.log(documents);
-//       res.status(200).json({
-//         message: 'Posts fetched',
-//         posts: fetchedPosts,
-//         maxPosts: count
-//       });
-//     });
-// });
-
-
 // delete a product by its id
 router.delete("/:id",(req,res,next) => {
   Product.deleteOne({ _id: req.params._id }).then(result => {
@@ -188,5 +132,33 @@ router.delete("/:id",(req,res,next) => {
   });
 });
 
+// delete a product by its owner
+router.delete("/myproducts/:id",(req,res,next) => {
+  Product.deleteOne({ _id: req.params.id }).then(result => {
+    console.log('result');
+    res.status(200).json({ message: 'Post deleted! '});
+  });
+});
+
+// get a product uploaded by the owner
+router.get("/myproducts/:user_id", (req,res,next) => {
+  Product.find({owner_id: req.params.user_id})
+  .exec()
+  .then(doc => {
+
+      if(doc.length > 0){
+        res.status(200).json({
+            message : "product fetched successfully",
+            product : doc
+        });
+      } else {
+        res.status(200).json({
+          message : "empty here",
+          product : null
+        });
+      }
+    })
+    .catch(err => console.log(err));
+});
 
 module.exports = router;

@@ -50,9 +50,9 @@
         </mat-card>
         <mat-card>
             <mat-card-header>
-                <mat-card-title><h1 style="font-family: quattrocento;">PRODUCTS THAT I HAVE RENTED OUT:</h1></mat-card-title>
+                <mat-card-title><h1 style="font-family: quattrocento;">PRODUCTS THAT I HAVE PUT ON RENT:</h1></mat-card-title>
             </mat-card-header>
-            <mat-card-content>
+            <!-- <mat-card-content>
                 <table cellpadding = "5" cellspacing = "5">
                     <tr>
                     <th style="font-family: quattrocento;">PRODUCT NAME</th>
@@ -72,8 +72,39 @@
                     <td style="font-family: quattrocento;">NOT PAID</td>
                     </tr>
                 </table>
-            </mat-card-content>
+            </mat-card-content> -->
+
+            <mat-grid-list cols="4" rowHeight="1:2" guttersize="5px" *ngIf="addedProducts.length > 0">
+          <!-- items being paged -->
+        <!-- <div *ngFor="let item of pagedItems">{{item.name}}</div> -->
+
+         <mat-grid-tile *ngFor="let tile of addedProducts">
+              <mat-card class="example-card">
+                <mat-card-header>
+                  <div mat-card-avatar class="example-header-image"></div>
+                  <mat-card-title>{{tile.name}}</mat-card-title>
+                </mat-card-header>
+
+                <img  style="width: 370px; height: 300px;" mat-card-image class='post-image' [src]="tile.imagePath" [alt]="tile.name">
+
+                <mat-card-content>
+                  <p> Price : {{tile.price}}  </p>
+                </mat-card-content>
+
+                <mat-card-actions>
+
+                  <!-- <button mat-raised-button color="primary" (click)="buyProduct(tile)" *ngIf="userIsAuthenticated">BUY</button> -->
+                  <button mat-raised-button color="primary" (click)="viewProduct(tile)">VIEW</button>
+
+                </mat-card-actions>
+
+              </mat-card>
+          </mat-grid-tile>
+      </mat-grid-list>
+      <h1 *ngIf="addedProducts.length == 0">No products Put on Rent yet</h1>
         </mat-card>
+
+        <h1>My Wishlist</h1>
         <mat-grid-list cols="4" rowHeight="1:2" guttersize="5px" *ngIf="wishlist.length > 0">
           <!-- items being paged -->
         <!-- <div *ngFor="let item of pagedItems">{{item.name}}</div> -->
@@ -95,6 +126,7 @@
 
                   <!-- <button mat-raised-button color="primary" (click)="buyProduct(tile)" *ngIf="userIsAuthenticated">BUY</button> -->
                   <button mat-raised-button color="primary" (click)="viewProduct(tile)">VIEW</button>
+                  <button mat-raised-button color="primary" (click)="removeFromWishlist(tile)">Remove from wishlist</button>
 
                 </mat-card-actions>
 

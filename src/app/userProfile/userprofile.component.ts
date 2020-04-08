@@ -19,31 +19,34 @@ export class UserProfileComponent implements OnInit, OnDestroy{
   currentUserEmail: string;
   title: string;
   wishlist = [];
+  addedProducts = [];
   public isLoading = true;
   constructor(public search_service: Search_service, private authService: AuthService, private router: Router){}
 
   async ngOnInit(){
     this.currentUserEmail = this.authService.getAuthData().userEmail;
-    //console.log(this.currentUserEmail);
-
-    // currethis.search_service.getUserObject(this.currentUserEmail).then(response => {
-    //   let currUser: User = response;
-    //   this.currentUser = currUser;
-    // });
-
-
-    //})
     this.search_service.getUserObject(this.currentUserEmail).subscribe(data => {
       this.currentUser = data;
-      console.log(this.currentUser._id);
+      //console.log(this.currentUser._id);
       this.search_service.getWishlistExpanded(this.currentUser._id).subscribe(response => {
-        if(response.docs){
+        if(response.message == 'fetched successfully'){
           this.wishlist = response.docs;
         }
-        if(this.currentUser){
-          this.title="Hello "+this.currentUser.userName.toUpperCase();
-          this.isLoading = false;
-        }
+        //console.log('userid ', this.authService.getAuthData().userId);
+
+        this.search_service.getAddedProducts(this.authService.getAuthData().userId).subscribe(val => {
+          if(val.message == 'empty here') {
+            this.addedProducts = [];
+          } else {
+            this.addedProducts = val.docs;
+          }
+          //console.log('addedProducts ', this.addedProducts);
+
+          if(this.currentUser){
+            this.title="Hello "+this.currentUser.userName.toUpperCase();
+            this.isLoading = false;
+          }
+        });
       });
     }, error => {
       console.log(error);
@@ -57,5 +60,30 @@ export class UserProfileComponent implements OnInit, OnDestroy{
 
   viewProduct(product: Product){
     this.router.navigate(['/viewproduct', product._id]);
+  }
+
+  removeFromWishlist(product: Product){
+    let itr = 0;
+    let startPos = 0;
+    for(itr = 0; itr<this.wishlist.length; itr++) {
+      if((this.wishlist[itr])._id == product._id){
+        this.wishlist.splice(itr,1);
+        break;
+      }
+      //console.log('itr ', itr, ' wishlist ', this.wishlist[itr], ' product ', product._id);
+
+    }
+    //console.log('updated array for removal ', this.wishlist);
+
+    let userid = this.authService.getAuthData().userId;
+    this.search_service.addToWishlist(this.wishlist, userid).subscribe(data => {
+      if(data.message == "Wishlist Updated successfully"){
+        alert("Wishlist updated! :)");
+        //console.log(data.doc);
+        this.router.navigate(['/userprofile']);
+      } else {
+        alert("data.message");
+      }
+    });
   }
 }

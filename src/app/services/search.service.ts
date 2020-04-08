@@ -97,4 +97,13 @@ export class Search_service  {
     return Observable.throw(error.message || "server error");
   }
 
+  getAddedProducts(user_id : string) : Observable<{message: string, docs: any}>{
+    return this.http.get<{message: string, docs: any}>("http://localhost:3000/api/product/myproducts/"+ user_id)
+      .catch(this.addedProductsErrorHandler);
+  }
+
+  addedProductsErrorHandler(error: HttpErrorResponse){
+    return Observable.throw(error.message || "server error");
+  }
+
 }

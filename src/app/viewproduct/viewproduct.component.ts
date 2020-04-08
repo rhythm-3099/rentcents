@@ -16,7 +16,7 @@ export class ViewproductComponent implements OnInit, OnDestroy {
 
   product: Product;
   private productsub: Subscription;
-
+  private iterator = 0;
   isLoading = true;
   show1 = false;
   show2 = false;
@@ -169,6 +169,13 @@ export class ViewproductComponent implements OnInit, OnDestroy {
       // console.log('wishing', this.wishlist);
 
       //if(this.wishlist)
+      //let alreadyAdded = false;
+      for(this.iterator = 0; this.iterator < this.wishlist.length; this.iterator++){
+        if(this.wishlist[this.iterator] == this.product._id){
+          alert('This product is already in your wishlist!');
+          return ;
+        }
+      }
       this.wishlist.push(this.product._id);
       console.log("still inside, wishlist: ", this.wishlist);
       this.serach_service.addToWishlist(this.wishlist, this.userid).subscribe(data => {

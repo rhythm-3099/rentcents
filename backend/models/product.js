@@ -11,6 +11,7 @@ const productSchema = mongoose.Schema({
   imagePath: { type: String, required: true},
   owner : { type: String },
   owner_name : { type: String },
+  owner_id: { type: String },
   rating: { type: String },
   comments: [{ type: String }]
 });
