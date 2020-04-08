@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product } from './product.model';
@@ -157,5 +157,21 @@ export class User_item_service  {
         });
     console.log('here');
 
+  }
+
+  updateProduct(product_id: string, name: string, description: string, price: string, city: string, state: string, main_category: string, sub_category: string, image: string ): Observable<{message: string}>{
+    const postData = new FormData();
+    postData.append("name", name);
+    postData.append("price", price);
+    postData.append("description", description);
+    postData.append("city", city);
+    postData.append("state", state);
+    postData.append("main_category", main_category);
+    postData.append("sub_category", sub_category);
+    postData.append("image", image, name);
+    postData.append("userId", this.authService.getAuthData().userId);
+    postData.append("userName", this.authService.getAuthData().userName);
+    // console.log("postData => ", postData);
+    return this.http.put<{message: string}>("http://localhost:3000/api/product/" + product_id, postData);
   }
 }

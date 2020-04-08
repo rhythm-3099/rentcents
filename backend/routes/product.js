@@ -113,13 +113,31 @@ router.get("/", (req,res,next) => {
     })
 });
 
-router.put('/:id', function(req,res) {
+// update a product by its ID
+router.put('/:id', multer({storage: storage}).single("image"), function(req,res) {
+  const url = req.protocol + '://' + req.get("host");
   let conditions = {_id: req.params.id};
 
-  Product.update(conditions, req.body)
+  const post = {
+    name: req.body.name,
+    price: req.body.price,
+    description: req.body.description,
+    city: req.body.city,
+    state: req.body.state,
+    main_category: req.body.main_category,
+    sub_category: req.body.sub_category,
+    imagePath:  url + "/images/" + req.file.filename,
+    owner_id: req.body.userId,
+    owner_name : req.body.userName,
+    rating : "0"
+  };
+
+  Product.update(conditions, post)
     .then(doc => {
       if(!doc) { return res.status(404).end(); }
-      return res.status(200).json("Updated successfully");
+      return res.status(200).json({
+        message: 'updated successfully :)'
+      });
     })
     .catch(err => next(err));
 })

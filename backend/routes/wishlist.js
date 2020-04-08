@@ -6,6 +6,7 @@ router.get("/", (req,res,next) => {
   Wishlist.find({})
     .populate('products')
     .then(docs => {
+      docs.products = docs.products.f
       res.status(200).json({
         message: 'Fetched successfully :)',
         docs: docs

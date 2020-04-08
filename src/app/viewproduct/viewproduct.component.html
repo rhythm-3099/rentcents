@@ -62,10 +62,105 @@
               <mat-card-actions>
                 <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading && userIsAuthenticated" (click)="book()">Book product</button>
                 <button mat-raised-button routerLink="/chatpage" color="primary"  type="button" *ngIf="!isLoading && userIsAuthenticated"><mat-icon>chat</mat-icon>&nbsp;&nbsp;Chat</button>
-                <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading && userIsAuthenticated" (click)="addToWishlist()">Add to Wishlist</button>
+                <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading && userIsAuthenticated && product.owner_id != userid" (click)="addToWishlist()">Add to Wishlist</button>
+                <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading && userIsAuthenticated && product.owner_id == userid" (click)="showUpdateCard()">Update this product</button>
+                <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading && userIsAuthenticated && product.owner_id == userid" (click)="deleteProduct(product)">Delete this product</button>
               </mat-card-actions>
-        <mat-spinner *ngIf="isLoading"></mat-spinner>
+          <mat-spinner *ngIf="isLoading"></mat-spinner>
         </mat-card>
+
+
+
+
+        <mat-card id="myitem" *ngIf="showUpdateCardField">
+          <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
+          <form [formGroup]="form" (submit)="onUpload()"  >
+            <h1>Upload items</h1>
+            <div style="margin-left: 10px ; margin-right: 10px ; " class="form-group">
+            <div>
+              <mat-form-field>
+                <mat-label >Product Name</mat-label>
+                <input matInput name="name" formControlName="name" type="text" placeholder="Enter the name of the item">
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field>
+                <mat-label>Expected price</mat-label>
+                <input matInput name="price" formControlName="price" type="text" placeholder="Enter the expected price" >
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field>
+                <mat-label>Description</mat-label>
+                <input matInput name="description" formControlName="description" type="text" placeholder="Enter the description of the item" >
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field>
+                <mat-label>City</mat-label>
+                <input matInput name="city" formControlName="city" type="text" placeholder="Enter the city">
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field>
+                <mat-label>State</mat-label>
+                <input matInput name="state" formControlName="state" type="text" placeholder="Enter the state">
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field>
+
+                <mat-select placeholder="Main Category" name="main_category" formControlName="main_category" (selectionChange)="findSUB()">
+
+                  <mat-option *ngFor="let cas of cat_main" [value]="cas">
+                    {{cas}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+             </div>
+
+            <div>
+              <mat-form-field>
+
+                <mat-select placeholder="Sub Category" name="sub_category" formControlName="sub_category">
+                  <mat-option *ngFor="let cas of cat_sub" [value]="cas">
+                    {{cas}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+             </div>
+
+            <!-- <div style="color: #585d61; margin-bottom: 20px;" >
+
+                Product image
+                <input name="productimage" ngModel type="file" #mobInput="ngModel" required>
+
+            </div> -->
+            <div>
+              <button mat-stroked-button type="button" (click)="filePicker.click()">Pick image</button>
+              <input type="file" #filePicker (change)="onImagePicked($event)">
+            </div>
+            <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
+              <img [src]="imagePreview" [alt]="form.value.name">
+            </div>
+
+            <div>
+              <button mat-raised-button color="primary" type="submit" >Upload for rent</button>
+            </div>
+            <!-- <mat-spinner *ngIf="isLoading"></mat-spinner>
+            </div>-->
+            </div>
+          </form>
+        </mat-card>
+
+
+
+
+
+
+
+
+
         <mat-card class="card-container">
             <mat-card-header>
                 <mat-card-title>Comments and Reviews</mat-card-title>
