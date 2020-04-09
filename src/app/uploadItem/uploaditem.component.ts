@@ -50,11 +50,11 @@ export class UploadItemComponent implements OnInit{
   }
 
   onUpload() {
-    console.log(this.form.value.name,this.form.value.description,this.form.value.price,this.form.value.city,this.form.value.state,this.form.value.main_category,this.form.value.sub_category);
+    //console.log(this.form.value.name,this.form.value.description,this.form.value.price,this.form.value.city,this.form.value.state,this.form.value.main_category,this.form.value.sub_category);
     if (this.form.invalid) {
       return;
     }
-    console.log(this.form.value.main_category,this.form.value.sub_category);
+    //console.log(this.form.value.main_category,this.form.value.sub_category);
     //console.log(form.value.name,form.value.description,form.value.price,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
     this.user_item_service.addProduct(this.form.value.name,this.form.value.description,this.form.value.price,this.form.value.city,this.form.value.state,this.form.value.main_category,this.form.value.sub_category, this.form.value.image);//,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
     //git staconst message = 'Item added!!';

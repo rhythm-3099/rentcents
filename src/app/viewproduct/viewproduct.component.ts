@@ -43,6 +43,62 @@ export class ViewproductComponent implements OnInit, OnDestroy {
 
 
   constructor(public serach_service : Search_service,private router: Router,private authService: AuthService, private activatedRoute: ActivatedRoute, public user_item_service: User_item_service, private _snackBar: MatSnackBar) {
+    // this.product_id = this.activatedRoute.snapshot.paramMap.get('id');
+    // this.userIsAuthenticated = this.authService.getIsAuth();
+    //   this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
+    //     this.userIsAuthenticated = isAuthenticated;
+    //   });
+    //   if(this.userIsAuthenticated) {
+    //     this.username = this.authService.getAuthData().userName;
+    //     this.userid = this.authService.getAuthData().userId;
+    //     console.log('usrid here in view, ', this.userid);
+    //     this.serach_service.getWishlist(this.userid).subscribe(data => {
+    //       this.wishlist = data.docs;
+
+
+    //       if(data.message == 'no products in the wishlist'){
+    //         this.wishlist = [];
+    //         console.log('are we here?');
+    //       }
+    //       console.log('moment of truth, ', this.wishlist);
+    //     });
+    //   }
+    // this.serach_service.getProduct(this.product_id);
+    // this.productsub = this.serach_service.getProductUpdateListener()
+    //   .subscribe((product: Product) => {
+    //     this.product = product;
+    //     this.postcomments = product.comments;
+    //     console.log("heyy there");
+    //     console.log(this.product);
+
+    //     if(this.product){
+    //       this.isLoading = false;
+    //     }
+    //   });
+      // this.userIsAuthenticated = this.authService.getIsAuth();
+      // this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
+      //   this.userIsAuthenticated = isAuthenticated;
+      // });
+  }
+
+
+  ngOnInit(): void {
+    // this.serach_service.getProduct(this.product_id);
+    // this.productsub = this.serach_service.getProductUpdateListener()
+    //   .subscribe((product: Product) => {
+    //     this.product = product;
+    //     this.postcomments = product.comments;
+    //     console.log("heyy there");
+    //    console.log(this.product);
+    //    this.username = this.authService.getAuthData().userName;
+    //   });
+    //   this.userIsAuthenticated = this.authService.getIsAuth();
+    // this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
+    //   this.userIsAuthenticated = isAuthenticated;
+    // }) ;
+
+    // ********************************************************************
+    this.showUpdateCardField = false;
     this.product_id = this.activatedRoute.snapshot.paramMap.get('id');
     this.userIsAuthenticated = this.authService.getIsAuth();
       this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
@@ -75,27 +131,8 @@ export class ViewproductComponent implements OnInit, OnDestroy {
           this.isLoading = false;
         }
       });
-      // this.userIsAuthenticated = this.authService.getIsAuth();
-      // this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
-      //   this.userIsAuthenticated = isAuthenticated;
-      // });
-  }
 
-
-  ngOnInit(): void {
-    // this.serach_service.getProduct(this.product_id);
-    // this.productsub = this.serach_service.getProductUpdateListener()
-    //   .subscribe((product: Product) => {
-    //     this.product = product;
-    //     this.postcomments = product.comments;
-    //     console.log("heyy there");
-    //    console.log(this.product);
-    //    this.username = this.authService.getAuthData().userName;
-    //   });
-    //   this.userIsAuthenticated = this.authService.getIsAuth();
-    // this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
-    //   this.userIsAuthenticated = isAuthenticated;
-    // }) ;
+    // ********************************************************************
 
     this.form = new FormGroup({
       'name' : new FormControl(null, {
@@ -125,7 +162,7 @@ export class ViewproductComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this.serach_service.updateProductComments(this.product_id, this.postcomments);
+
     this.productsub.unsubscribe();
   }
 
@@ -177,6 +214,7 @@ export class ViewproductComponent implements OnInit, OnDestroy {
   post1(){
     let newcomment = this.username + " : " + this.comment;
     this.postcomments.push(newcomment);
+    this.serach_service.updateProductComments(this.product_id, this.postcomments);
     this.comment='';
   }
 
@@ -239,7 +277,7 @@ export class ViewproductComponent implements OnInit, OnDestroy {
 
     this.serach_service.deleteProduct(product._id).subscribe(data => {
       alert('product deleted, refresh the page');
-      this.ngOnInit();
+      //this.ngOnInit();
       this.router.navigate(['/userprofile']);
     })
   }
@@ -253,17 +291,35 @@ export class ViewproductComponent implements OnInit, OnDestroy {
     if (this.form.invalid) {
       return;
     }
-    console.log(this.form.value.main_category,this.form.value.sub_category);
+    //console.log(this.form.value.main_category,this.form.value.sub_category);
     //console.log(form.value.name,form.value.description,form.value.price,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
-    this.user_item_service.updateProduct(this.product_id, this.form.value.name,this.form.value.description,this.form.value.price,this.form.value.city,this.form.value.state,this.form.value.main_category,this.form.value.sub_category, this.form.value.image)//,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
-      .subscribe(data => {
-        this._snackBar.open(data.message, 'Okay', {
+    // this.user_item_service.updateProduct(this.product_id, this.form.value.name,this.form.value.description,this.form.value.price,this.form.value.city,this.form.value.state,this.form.value.main_category,this.form.value.sub_category, this.form.value.image)//,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
+    //   .subscribe(data => {
+    //     this._snackBar.open("Product updated, please reload the page!", 'Okay', {
+    //       duration: 3000
+    //     });
+    //     this.ngOnInit();
+    //     //this.form.reset();
+    //     // this.router.navigate(['/']);
+    //   }),
+    //   error => {
+    //     console.log(error);
+
+    //   }
+
+    this.serach_service.deleteProduct(this.product_id).subscribe(val => {
+      console.log('ahiya?');
+
+      if(val.message == 'Post deleted! '){
+        this.user_item_service.addProduct(this.form.value.name,this.form.value.description,this.form.value.price,this.form.value.city,this.form.value.state,this.form.value.main_category,this.form.value.sub_category, this.form.value.image);//,form.value.city,form.value.state,form.value.main_category,form.value.sub_category);
+        //git staconst message = 'Item added!!';
+        this._snackBar.open('Item updated', 'Okay', {
           duration: 3000
         });
         this.form.reset();
-        this.router.navigate(['/userprofile']);
-      })
-    //git staconst message = 'Item added!!';
+        this.router.navigate(['/homepage']);
+      }
+    })
 
   }
 

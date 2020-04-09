@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Product } from './product.model';
 import { AuthService } from '../auth/auth.service';
 
@@ -55,52 +55,7 @@ export class User_item_service  {
           }
         );
       });
-      //console.log('riii ', this.posts);
-
-
-
   }
-
-  // getVehiclePosts(postsPerPage: number, currentPage: number) {
-  //   const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
-  //   console.log(queryParams);
-
-
-  //   this.http.get<{message: string, posts: any, maxPosts: number}>('http://localhost:3000/api/category/vehicle' + queryParams)
-  //     .pipe(
-  //       map(postData => {
-  //         return { posts: postData.posts.map(post => {
-  //           return {
-  //             _id: post._id,
-  //             name: post.name,
-  //             description: post.description,
-  //             price : post.price,
-  //             city: post.city,
-  //             state: post.state,
-  //             main_category: post.main_category,
-  //             sub_cateegory: post.sub_cateegory,
-  //             imagePath: post.imagePath,
-  //             owner: post.owner,
-  //             owner_name: post.owner_name,
-  //             rating: post.rating,
-  //           }
-  //         }),
-  //         maxPosts: postData.maxPosts};
-  //       })
-  //     )
-  //     .subscribe((transformedPostData) => {
-  //       this.posts = transformedPostData.posts;
-  //       this.postsUpdated.next(
-  //         { posts: [...this.posts],
-  //           postCount: transformedPostData.maxPosts
-  //         }
-  //       );
-  //     });
-  //     //console.log('riii ', this.posts);
-
-
-
-  // }
 
   //**************************************************************************************************************
 
@@ -126,7 +81,7 @@ export class User_item_service  {
     postData.append("image", image, name);
     postData.append("userId", this.authService.getAuthData().userId);
     postData.append("userName", this.authService.getAuthData().userName);
-    console.log('last one please ', this.authService.getAuthData().userName);
+    //console.log('last one please ', this.authService.getAuthData().userName);
 
 
     this.http
@@ -153,25 +108,31 @@ export class User_item_service  {
           // console.log(product);
           // this.posts.push(product);
           // this.postsUpdated.next([...this.posts]);
-          this.router.navigate(['/']);
+          //this.router.navigate(['/']);
         });
-    console.log('here');
+    //console.log('here');
 
   }
 
-  updateProduct(product_id: string, name: string, description: string, price: string, city: string, state: string, main_category: string, sub_category: string, image: string ): Observable<{message: string}>{
-    const postData = new FormData();
-    postData.append("name", name);
-    postData.append("price", price);
-    postData.append("description", description);
-    postData.append("city", city);
-    postData.append("state", state);
-    postData.append("main_category", main_category);
-    postData.append("sub_category", sub_category);
-    postData.append("image", image, name);
-    postData.append("userId", this.authService.getAuthData().userId);
-    postData.append("userName", this.authService.getAuthData().userName);
-    // console.log("postData => ", postData);
-    return this.http.put<{message: string}>("http://localhost:3000/api/product/" + product_id, postData);
-  }
+  // updateProduct(product_id: string, name: string, description: string, price: string, city: string, state: string, main_category: string, sub_category: string, image: File ): Observable<{message: string}>{
+  //   const postData = new FormData();
+  //   postData.append("name", name);
+  //   postData.append("price", price);
+  //   postData.append("description", description);
+  //   postData.append("city", city);
+  //   postData.append("state", state);
+  //   postData.append("main_category", main_category);
+  //   postData.append("sub_category", sub_category);
+  //   postData.append("image", image, name);
+  //   postData.append("userId", this.authService.getAuthData().userId);
+  //   postData.append("userName", this.authService.getAuthData().userName);
+  //   // console.log("postData => ", postData);
+  //   return this.http.put<{message: string}>("http://localhost:3000/api/product/" + product_id, postData)
+  //     .catch(this.updateProductErrorHandler);
+  // }
+
+  // updateProductErrorHandler(error: HttpErrorResponse){
+  //   return Observable.throw(error.message || "server error! :(");
+  // }
 }
+

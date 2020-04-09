@@ -48,6 +48,8 @@ export class Search_service  {
     this.http.put("http://localhost:3000/api/product/" + id, this.updatedProduct)
       .subscribe(response => {
         console.log('product comment updated, from search.service');
+      }, error => {
+        console.log(error);
       });
   }
 
@@ -107,6 +109,8 @@ export class Search_service  {
   }
 
   deleteProduct(id: string){
+    //console.log('in delete');
+
     return this.http.delete<{message: string, docs: any}>("http://localhost:3000/api/product/"+ id)
       .catch(this.deleteProductErrorHandler);
   }

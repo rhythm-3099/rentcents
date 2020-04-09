@@ -22,6 +22,7 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const name = file.originalname.toLowerCase().split(' ').join('-');
+    //console.log('name in multer ', name);
     const ext = MIME_TYPE_MAP[file.mimetype];
     cb(null, name + '-' + Date.now() + '.' + ext);
   }
@@ -29,6 +30,8 @@ const storage = multer.diskStorage({
 
 router.post("/", multer({storage: storage}).single("image"), (req,res,next) => {
   const url = req.protocol + '://' + req.get("host");
+  console.log('In post router');
+
   const post = new Product({
     _id: req.body._id,
     name: req.body.name,
@@ -114,36 +117,69 @@ router.get("/", (req,res,next) => {
 });
 
 // update a product by its ID
-router.put('/:id', multer({storage: storage}).single("image"), function(req,res) {
-  const url = req.protocol + '://' + req.get("host");
-  let conditions = {_id: req.params.id};
+// router.put('/:id', multer({storage: storage}).single("image"), function(req,res) {
+//   const url = req.protocol + '://' + req.get("host");
+//   let conditions = {_id: req.params.id};
+//   let Fname = req.file.filename;
+//   //console.log('req body ', req)
+//   ;
 
-  const post = {
-    name: req.body.name,
-    price: req.body.price,
-    description: req.body.description,
-    city: req.body.city,
-    state: req.body.state,
-    main_category: req.body.main_category,
-    sub_category: req.body.sub_category,
-    imagePath:  url + "/images/" + req.file.filename,
-    owner_id: req.body.userId,
-    owner_name : req.body.userName,
-    rating : "0"
-  };
+//   const post = {
+//     name: req.body.name,
+//     price: req.body.price,
+//     description: req.body.description,
+//     city: req.body.city,
+//     state: req.body.state,
+//     main_category: req.body.main_category,
+//     sub_category: req.body.sub_category,
+//     imagePath:  url + "/images/" + Fname,
+//     owner_id: req.body.userId,
+//     owner_name : req.body.userName,
+//     rating : "0"
+//   };
 
-  Product.update(conditions, post)
-    .then(doc => {
-      if(!doc) { return res.status(404).end(); }
-      return res.status(200).json({
-        message: 'updated successfully :)'
-      });
-    })
-    .catch(err => next(err));
-})
+//   Product.update(conditions, post)
+//     .then(doc => {
+//       if(!doc) { return res.status(404).end(); }
+//       return res.status(200).json({
+//         message: 'updated successfully :)'
+//       });
+//     })
+//     .catch(err => next(err));
+// })
 
+// router.put('/:id', multer({storage: storage}).single("image"), (req,res,next) => {
+//   const url = req.protocol + '://' + req.get("host");
+//   let conditions = {_id: req.params.id};
+//   let Fname = req.file.filename;
+
+//     const post = {
+//       name: req.body.name,
+//       price: req.body.price,
+//       description: req.body.description,
+//       city: req.body.city,
+//       state: req.body.state,
+//       main_category: req.body.main_category,
+//       sub_category: req.body.sub_category,
+//       imagePath:  url + "/images/" + Fname,
+//       owner_id: req.body.userId,
+//       owner_name : req.body.userName,
+//       rating : "0"
+//     };
+
+//     Product.update(conditions, post)
+//       .then(doc => {
+//         if(!doc) { return res.status(404).end(); }
+//         return res.status(200).json({
+//           message: 'updated successfully :)'
+//         });
+//       })
+//       .catch(err => next(err));
+// })
 // delete a product by its id
 router.delete("/:id",(req,res,next) => {
+  console.log('in delete router');
+
   Product.deleteOne({ _id: req.params.id }).then(result => {
     console.log('result');
     res.status(200).json({ message: 'Post deleted! '});
