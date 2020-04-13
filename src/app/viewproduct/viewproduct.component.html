@@ -65,7 +65,7 @@
                 <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading && userIsAuthenticated && product.owner_id != userid" (click)="addToWishlist()">Add to Wishlist</button>
                 <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading && userIsAuthenticated && product.owner_id == userid" (click)="showUpdateCard()">Update this product</button>
                 <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading && userIsAuthenticated && product.owner_id == userid" (click)="deleteProduct(product)">Delete this product</button>
-                <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading && userIsAuthenticated " (click)="sendEmailFlagUpdate()">Send an email</button>
+                <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading && userIsAuthenticated && product.owner_id != userid" (click)="sendEmailFlagUpdate()">Send an email</button>
               </mat-card-actions>
           <mat-spinner *ngIf="isLoading"></mat-spinner>
         </mat-card>

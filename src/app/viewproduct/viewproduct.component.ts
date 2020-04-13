@@ -346,7 +346,6 @@ export class ViewproductComponent implements OnInit, OnDestroy {
       // this.emailObj[0] = this.emailForm.value.emailText;
       // this.emailObj[1] = this.product.owner_email;
       // this.emailObj[2] = this.authService.getAuthData().userEmail;
-      console.log('obj ', this.emailObj);
       console.log('user email ', this.authService.getAuthData().userEmail);
 
       this.serach_service.sendMail(this.emailForm.value.emailText,this.product.owner_email,this.authService.getAuthData().userEmail, this.product.name).subscribe(data => {
