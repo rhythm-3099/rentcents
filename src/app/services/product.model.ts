@@ -9,6 +9,7 @@ export interface Product {
   sub_category: string;
   imagePath: string;
   owner_id: string;
+  owner_email: string;
   owner_name: string;
   rating: string;
   comments: string[];

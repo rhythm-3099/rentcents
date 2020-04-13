@@ -65,6 +65,7 @@
                 <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading && userIsAuthenticated && product.owner_id != userid" (click)="addToWishlist()">Add to Wishlist</button>
                 <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading && userIsAuthenticated && product.owner_id == userid" (click)="showUpdateCard()">Update this product</button>
                 <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading && userIsAuthenticated && product.owner_id == userid" (click)="deleteProduct(product)">Delete this product</button>
+                <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading && userIsAuthenticated " (click)="sendEmailFlagUpdate()">Send an email</button>
               </mat-card-actions>
           <mat-spinner *ngIf="isLoading"></mat-spinner>
         </mat-card>
@@ -153,6 +154,29 @@
           </form>
         </mat-card>
 
+
+
+<!--***************************************************************************************************************************-->
+
+<mat-card id="myitem" *ngIf="showEmailFormField">
+  <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
+  <form [formGroup]="emailForm" (submit)="sendEmail()"  >
+    <h1>Send an email</h1>
+    <div style="margin-left: 10px ; margin-right: 10px ; " class="form-group">
+      <div>
+        <mat-form-field>
+          <mat-label >Email text</mat-label>
+          <input matInput name="emailText" formControlName="emailText" type="text" placeholder="Communicate...">
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button mat-raised-button color="primary" type="submit" >Send mail</button>
+      </div>
+
+    </div>
+  </form>
+</mat-card>
 
 
 

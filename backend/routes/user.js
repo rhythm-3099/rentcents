@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const nodemailer = require('nodemailer');
 
 const User = require("../models/user");
 
@@ -205,6 +206,49 @@ router.put("/updateuser/:id", (req,res,next) => {
   // }).catch(err => {
   //   res.json(err);
   // })
+})
+
+router.post("/sendemail", (req,res,next) => {
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'rentscents@gmail.com',
+      pass: '#Rhythm3099#'
+    }
+  });
+
+  let mailText = req.body.text;
+  let receiver_email = req.body.receiver_email;
+  let sender_email = req.body.sender_email;
+  let product_name = req.body.product_name;
+  let mailing_list = receiver_email + ', ' + sender_email;
+  console.log('mailing list ', mailing_list);
+  let subject = "An enquiry on " + product_name;
+  let body = "From " + sender_email + " : " + mailText;
+  console.log('1 email text', mailText);
+    console.log('1 receiver email', receiver_email);
+    console.log('1 sender email', sender_email);
+
+  let mailOptions = {
+    from: 'rentscents@gmail.com',
+    to: mailing_list,
+    subject: subject,
+    text: body
+  }
+
+  transporter.sendMail(mailOptions, function(err, data) {
+    if(err){
+      console.log('Error sending the mail: ', err);
+      res.status(200).json({
+        message: 'Error'
+      })
+    } else {
+      console.log("Email sent successully!!");
+      res.status(200).json({
+        message: 'Sent mail'
+      })
+    }
+  })
 })
 
 

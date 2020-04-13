@@ -7,7 +7,6 @@ import { AuthService } from '../auth/auth.service';
 
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { Capability } from 'protractor';
 
 @Injectable({providedIn: 'root'})
 export class User_item_service  {
@@ -81,6 +80,7 @@ export class User_item_service  {
     postData.append("image", image, name);
     postData.append("userId", this.authService.getAuthData().userId);
     postData.append("userName", this.authService.getAuthData().userName);
+    postData.append("userEmail", this.authService.getAuthData().userEmail);
     //console.log('last one please ', this.authService.getAuthData().userName);
 
 

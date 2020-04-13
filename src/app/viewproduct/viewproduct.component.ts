@@ -32,6 +32,7 @@ export class ViewproductComponent implements OnInit, OnDestroy {
   userid: string;
   wishlist = [];
   showUpdateCardField = false;
+  showEmailFormField = false;
   private authListenerSubs: Subscription;
 
   catef;
@@ -39,7 +40,9 @@ export class ViewproductComponent implements OnInit, OnDestroy {
   cat_main = ["Real Estate","Vehicles","Electronics","Sports","Hobby","Books","Educational","Clothing","Furniture","Other"];
   cat_sub = ["Laptop","mobile","Pendrives/hard-disks","Computer accessories","Home entertainment","Televisions","camera accessories","projecters","Security cameras","Cameras","Printers and scanners","Other"];
   form: FormGroup;
+  emailForm: FormGroup;
   imagePreview: string;
+  emailObj: string[];
 
 
   constructor(public serach_service : Search_service,private router: Router,private authService: AuthService, private activatedRoute: ActivatedRoute, public user_item_service: User_item_service, private _snackBar: MatSnackBar) {
@@ -159,6 +162,12 @@ export class ViewproductComponent implements OnInit, OnDestroy {
       'image' : new FormControl(null, {validators: [Validators.required], asyncValidators: [mimeType]})
 
     });
+
+    this.emailForm = new FormGroup({
+      'emailText': new FormControl(null, {
+        validators: [Validators.minLength(1)]
+      })
+    });
   }
 
   ngOnDestroy(){
@@ -220,6 +229,10 @@ export class ViewproductComponent implements OnInit, OnDestroy {
 
   showUpdateCard(){
     this.showUpdateCardField = true;
+  }
+
+  sendEmailFlagUpdate(){
+    this.showEmailFormField = true;
   }
 
   addToWishlist() {
@@ -320,6 +333,35 @@ export class ViewproductComponent implements OnInit, OnDestroy {
         this.router.navigate(['/homepage']);
       }
     })
+
+  }
+
+  sendEmail() {
+    if(this.emailForm.invalid){
+      alert("The email body cannot be empty!");
+      return;
+    } else {
+      console.log('email ', this.emailForm.value.emailText);
+
+      // this.emailObj[0] = this.emailForm.value.emailText;
+      // this.emailObj[1] = this.product.owner_email;
+      // this.emailObj[2] = this.authService.getAuthData().userEmail;
+      console.log('obj ', this.emailObj);
+      console.log('user email ', this.authService.getAuthData().userEmail);
+
+      this.serach_service.sendMail(this.emailForm.value.emailText,this.product.owner_email,this.authService.getAuthData().userEmail, this.product.name).subscribe(data => {
+        if(data.message == 'Sent mail'){
+          this._snackBar.open('Mail sent!', 'Okay', {
+            duration: 3000
+          });
+        } else {
+          this._snackBar.open('Error sending mail, try again!', 'Okay', {
+            duration: 3000
+          });
+        }
+      })
+    }
+
 
   }
 

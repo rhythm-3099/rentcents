@@ -43,6 +43,7 @@ router.post("/", multer({storage: storage}).single("image"), (req,res,next) => {
     sub_category: req.body.sub_category,
     imagePath:  url + "/images/" + req.file.filename,
     owner_id: req.body.userId,
+    owner_email: req.body.userEmail,
     owner_name : req.body.userName,
     rating : "0"
   });

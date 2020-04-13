@@ -119,5 +119,20 @@ export class Search_service  {
     return Observable.throw(error.message || "server error :(" );
   }
 
+  sendMail(text: string, receiver_email: string, sender_email: string, product_name: string) {
+    console.log('email text', text);
+    console.log('receiver email', receiver_email);
+    console.log('sender email', sender_email);
+    console.log('product name', product_name);
+    let emailObj = {
+      text: text,
+      receiver_email: receiver_email,
+      sender_email: sender_email,
+      product_name: product_name
+    }
+
+    console.log("email object ", emailObj);
+    return this.http.post<{message: string}>("http://localhost:3000/api/user/sendemail", emailObj);
+  }
 
 }
