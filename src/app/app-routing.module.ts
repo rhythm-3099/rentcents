@@ -24,6 +24,7 @@ import { HelppageComponent } from './helppage/helppage.component';
 import { ChatpageComponent } from './chatpage/chatpage.component';
 import { PaydoneComponent } from './paydone/paydone.component';
 import { PageNotFoundComponent } from './page-not-found/pagenotfound.component';
+//import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
 
 
 const routes: Routes = [
@@ -54,6 +55,7 @@ const routes: Routes = [
   {path: 'helppage', component: HelppageComponent},
   {path: 'helppage', component: HelppageComponent},
   {path: 'chatpage', component: ChatpageComponent},
+  //{path: 'confirm-email', component: ConfirmEmailComponent},
 
   {path: 'paydone', component: PaydoneComponent},
   {path: "**", component: PageNotFoundComponent}

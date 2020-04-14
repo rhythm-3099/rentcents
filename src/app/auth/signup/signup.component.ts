@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent{
   isLoading = false;
+  msg: string;
 
   constructor(public authService: AuthService,  private router: Router) {}
 
@@ -33,12 +34,19 @@ export class SignupComponent{
       }
       this.isLoading = true;
       this.authService.createUser(form.value.email,form.value.password,form.value.f_name + " " + form.value.l_name, form.value.mob, form.value.address).subscribe(data => {
+        console.log('message ', data.message);
+
         if(data.message == "User email already exists") {
           alert('This email already exists');
           this.isLoading = false;
-        } else {
+        } else if(data.message == "mail sent"){
+          alert('Mail sent to your email!');
+          this.isLoading = false;
           this.router.navigate(['/login']);
         }
+        // } else {
+        //   this.router.navigate(['/login']);
+        // }
       })
       //console.log(form.value);
 

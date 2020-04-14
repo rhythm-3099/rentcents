@@ -135,4 +135,8 @@ export class Search_service  {
     return this.http.post<{message: string}>("http://localhost:3000/api/user/sendemail", emailObj);
   }
 
+  getAllUsers() {
+    return this.http.get("http://localhost:3000/api/user");
+  }
+
 }

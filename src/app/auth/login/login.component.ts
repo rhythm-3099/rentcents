@@ -44,7 +44,7 @@ export class LoginComponent{
         const now = new Date();
         const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
         this.authService.saveAuthData(data.token,expirationDate,userId,userName,email);
-        console.log("hey beautiful");
+        //console.log("hey beautiful");
         if(this.authService.isAuthenticated){
           this.router.navigate(['/homepage']);
         }
@@ -55,9 +55,14 @@ export class LoginComponent{
         } else if(data.message == "Password wrong"){
           alert('The password that you entered is incorrect');
           this.isLoading = false;
+        } else if(data.message == "Not verified") {
+          alert('This email ID is not verified. Check your email to verify this account!');
+          this.isLoading = false;
+        } else {
+          this.router.navigate(['/login']);
         }
-        this.router.navigate(['/login']);
       }
+
 
     }), error => {
       alert("Some error!");
