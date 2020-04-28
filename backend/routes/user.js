@@ -302,10 +302,57 @@ router.post("/sendemail", (req,res,next) => {
       console.log("Email sent successully!!");
       res.status(200).json({
         message: 'Sent mail'
-      })
+      });
     }
-  })
-})
+  });
+});
+
+// ********************************************************************** 
+
+router.post("/sendpersonalemail", (req,res,next) => {
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'rentscents@gmail.com',
+      pass: '#Rhythm3099#'
+    }
+  });
+
+  let mailText = req.body.text;
+  let receiver_email = req.body.receiver_email;
+  let sender_email = req.body.sender_email;
+  let mailing_list = receiver_email + ', ' + sender_email;
+  console.log('mailing list ', mailing_list);
+  let subject = "A personal message on CentsRents";
+  let body = "From " + sender_email + " : \n\n" + "\t" + mailText;
+  console.log('2 email text', mailText);
+    console.log('2 receiver email', receiver_email);
+    console.log('2 sender email', sender_email);
+
+  let mailOptions = {
+    from: 'rentscents@gmail.com',
+    to: mailing_list,
+    subject: subject,
+    text: body
+  }
+
+  transporter.sendMail(mailOptions, function(err, data) {
+    if(err){
+      console.log('Error sending the mail: ', err);
+      res.status(200).json({
+        message: 'Error'
+      })
+    } else {
+      console.log("Email sent successully!!");
+      res.status(200).json({
+        message: 'Sent mail'
+      });
+    }
+  });
+});
+
+// ********************************************************************** 
+
 
 router.get("/confirmation/:token", (req,res,next) => {
   Token.findOne({token: req.params.token}, function(err, token){

@@ -1,0 +1,21 @@
+<div *ngIf="!isLoading">
+  <h3>Sending email to: {{toUser.email}}</h3>
+  <mat-card id="myitem">
+      <!-- <mat-spinner *ngIf="isLoading"></mat-spinner> -->
+      <form [formGroup]="emailForm" (submit)="sendEmail()"  >
+        <div style="margin-left: 10px ; margin-right: 10px ; " class="form-group">
+          <div>
+            <mat-form-field>
+              <mat-label >Email text</mat-label>
+              <input matInput name="emailText" formControlName="emailText" type="text" placeholder="Communicate...">
+            </mat-form-field>
+          </div>
+    
+          <div>
+            <button mat-raised-button color="primary" type="submit" >Send mail</button>
+          </div>
+    
+        </div>
+      </form>
+    </mat-card>
+</div>

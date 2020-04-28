@@ -53,6 +53,7 @@ import { ProductFilterPipe } from './bookscategory/product-filter.pipe';
 import { FilterPricePipe } from './bookscategory/product-price-filter.pipe';
 import { ChatpageComponent } from './chatpage/chatpage.component';
 import { PaydoneComponent } from './paydone/paydone.component';
+import { SendEmailComponent } from './sendEmail/sendemail.component';
 
 
 @NgModule({
@@ -84,6 +85,7 @@ import { PaydoneComponent } from './paydone/paydone.component';
     FilterPricePipe,
     ChatpageComponent,
     PaydoneComponent,
+    SendEmailComponent
   ],
   imports: [
     BrowserModule,

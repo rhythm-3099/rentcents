@@ -135,8 +135,22 @@ export class Search_service  {
     return this.http.post<{message: string}>("http://localhost:3000/api/user/sendemail", emailObj);
   }
 
-  getAllUsers() {
-    return this.http.get("http://localhost:3000/api/user");
+  sendPersonalMail(text: string, receiver_email: string, sender_email: string) {
+    console.log('email text', text);
+    console.log('receiver email', receiver_email);
+    console.log('sender email', sender_email);
+    let emailObj = {
+      text: text,
+      receiver_email: receiver_email,
+      sender_email: sender_email
+    }
+
+    console.log("email object ", emailObj);
+    return this.http.post<{message: string}>("http://localhost:3000/api/user/sendpersonalemail", emailObj);
   }
 
+  getAllUsers() {
+    return this.http.get<{message: string, users: any}>("http://localhost:3000/api/user");
+  }
+  
 }
