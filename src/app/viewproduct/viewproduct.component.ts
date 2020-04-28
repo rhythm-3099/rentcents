@@ -406,4 +406,8 @@ export class ViewproductComponent implements OnInit, OnDestroy {
     // this.flag= true;
   }
 
+  visitOtherUserProfile() {
+    this.router.navigate(['/otheruserprofile',this.product.owner_email]);
+  }
+
 }

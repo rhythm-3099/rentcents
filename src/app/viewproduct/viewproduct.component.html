@@ -57,7 +57,7 @@
             <mat-card-header>
                 <div mat-card-avatar class="seller-image"></div>
                 <mat-card-title>Seller name: {{product.owner_name}}</mat-card-title>
-                <mat-card-subtitle (click)="doStuff()">View Profile</mat-card-subtitle>
+                <mat-card-subtitle (click)="visitOtherUserProfile()">View Profile</mat-card-subtitle>
               </mat-card-header>
               <mat-card-actions>
                 <button mat-raised-button color="primary" type="submit" *ngIf="!isLoading && userIsAuthenticated" (click)="book()">Book product</button>

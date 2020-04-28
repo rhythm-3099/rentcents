@@ -25,6 +25,7 @@ import { ChatpageComponent } from './chatpage/chatpage.component';
 import { PaydoneComponent } from './paydone/paydone.component';
 import { PageNotFoundComponent } from './page-not-found/pagenotfound.component';
 import { SendEmailComponent } from './sendEmail/sendemail.component';
+import { OtherUserProfileComponent } from './otheruserprofile/otheruserprofile.component';
 //import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
 
 
@@ -57,6 +58,7 @@ const routes: Routes = [
   {path: 'helppage', component: HelppageComponent},
   {path: 'chatpage', component: ChatpageComponent},
   {path: 'sendemail/:id', component: SendEmailComponent},
+  {path: 'otheruserprofile/:id', component: OtherUserProfileComponent},
   //{path: 'confirm-email', component: ConfirmEmailComponent},
 
   {path: 'paydone', component: PaydoneComponent},

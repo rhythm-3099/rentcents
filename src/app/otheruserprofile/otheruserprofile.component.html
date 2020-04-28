@@ -1,0 +1,138 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<mat-card style="background-color: #f2f2f2;" *ngIf="!isLoading">
+    <mat-card-header><h1 style="font-family: quattrocento;">{{title}}</h1></mat-card-header>
+    <mat-card-content>
+        <mat-card>
+            <ul class="list-group">
+                <li style="font-family: quattrocento;" class="list-group-item"><b>NAME:</b>{{currentUser.userName}}</li>
+                <li style="font-family: quattrocento;" class="list-group-item"><b>EMAIL:</b>{{currentUser.email}}</li>
+                <li style="font-family: quattrocento;" class="list-group-item"><b>MOBILE NO.:</b>{{currentUser.number}}</li>
+            </ul>
+            <button style="font-family: quattrocento;" mat-raised-button color="primary" type="submit" (click)='chat()'>Chat</button>
+             <!-- <button style="font-family: quattrocento;"mat-raised-button routerLink="/payment" color="primary" type="submit" >Payment Details</button> -->
+            <!-- <button style="font-family: quattrocento;"mat-raised-button routerLink="/chatpage" color="primary" type="submit" >My Chats</button>  --> 
+        </mat-card>
+        <mat-card>
+            <mat-card-content>
+                <p style="font-family: quattrocento;">On this page you would be able  to see your profile as well as opt to change your profile as and when you wish.</p>
+                <p style="font-family: quattrocento;">Also this page will show you the things that have been rented by you as well as the things that you have put on rent and also their statuses.</p>
+                <div class="center">
+                    <h1 style="font-family: quattrocento;">STATUS OF THE PROFILE</h1>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title><h1 style="font-family: quattrocento;">PRODUCTS THAT THE USER HAS RENTED:</h1></mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <table cellpadding = "5" cellspacing = "5" >
+                    <tr>
+                    <th style="font-family: quattrocento;">PRODUCT NAME</th>
+                    <th style="font-family: quattrocento;">IMAGE</th>
+                    <th style="font-family: quattrocento;">NAME OF OWNER</th>
+                    <th style="font-family: quattrocento;">DATE OF RENT</th>
+                    <th style="font-family: quattrocento;">DATE OF RETURN</th>
+                    <th style="font-family: quattrocento;">PAYMENT STATUS</th>
+                    </tr>
+
+                    <tr>
+                    <td style="font-family: quattrocento;">TV</td>
+                    <td style="font-family: quattrocento;">TV Image</td>
+                    <td style="font-family: quattrocento;">Bunty</td>
+                    <td style="font-family: quattrocento;">12-02-2019</td>
+                    <td style="font-family: quattrocento;">12-03-2020</td>
+                    <td style="font-family: quattrocento;">NOT PAID</td>
+                    </tr>
+                </table>
+            </mat-card-content>
+        </mat-card>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title><h1 style="font-family: quattrocento;">PRODUCTS THAT THE USER HAS PUT ON RENT:</h1></mat-card-title>
+            </mat-card-header>
+            <!-- <mat-card-content>
+                <table cellpadding = "5" cellspacing = "5">
+                    <tr>
+                    <th style="font-family: quattrocento;">PRODUCT NAME</th>
+                    <th style="font-family: quattrocento;">IMAGE</th>
+                    <th style="font-family: quattrocento;">NAME OF RENTER</th>
+                    <th style="font-family: quattrocento;">DATE OF RENT</th>
+                    <th style="font-family: quattrocento;">DATE OF RETURN</th>
+                    <th style="font-family: quattrocento;">PAYMENT STATUS</th>
+                    </tr>
+
+                    <tr>
+                    <td style="font-family: quattrocento;">TV</td>
+                    <td style="font-family: quattrocento;">TV Image</td>
+                    <td style="font-family: quattrocento;">Bunty</td>
+                    <td style="font-family: quattrocento;">12-02-2019</td>
+                    <td style="font-family: quattrocento;">12-03-2020</td>
+                    <td style="font-family: quattrocento;">NOT PAID</td>
+                    </tr>
+                </table>
+            </mat-card-content> -->
+
+            <mat-grid-list cols="4" rowHeight="1:2" guttersize="5px" *ngIf="addedProducts.length > 0">
+          <!-- items being paged -->
+        <!-- <div *ngFor="let item of pagedItems">{{item.name}}</div> -->
+
+         <mat-grid-tile *ngFor="let tile of addedProducts">
+              <mat-card class="example-card">
+                <mat-card-header>
+                  <div mat-card-avatar class="example-header-image"></div>
+                  <mat-card-title>{{tile.name}}</mat-card-title>
+                </mat-card-header>
+
+                <img  style="width: 370px; height: 300px;" mat-card-image class='post-image' [src]="tile.imagePath" [alt]="tile.name">
+
+                <mat-card-content>
+                  <p> Price : {{tile.price}}  </p>
+                </mat-card-content>
+
+                <mat-card-actions>
+
+                  <!-- <button mat-raised-button color="primary" (click)="buyProduct(tile)" *ngIf="userIsAuthenticated">BUY</button> -->
+                  <button mat-raised-button color="primary" (click)="viewProduct(tile)">VIEW</button>
+                  <button mat-raised-button color="primary" (click)="deleteProduct(tile)">DELETE</button>
+                </mat-card-actions>
+
+              </mat-card>
+          </mat-grid-tile>
+      </mat-grid-list>
+      <h1 *ngIf="addedProducts.length == 0">No products Put on Rent yet</h1>
+        </mat-card>
+
+        <h1>User's Wishlist</h1>
+        <mat-grid-list cols="4" rowHeight="1:2" guttersize="5px" *ngIf="wishlist.length > 0">
+          <!-- items being paged -->
+        <!-- <div *ngFor="let item of pagedItems">{{item.name}}</div> -->
+
+         <mat-grid-tile *ngFor="let tile of wishlist">
+              <mat-card class="example-card">
+                <mat-card-header>
+                  <div mat-card-avatar class="example-header-image"></div>
+                  <mat-card-title>{{tile.name}}</mat-card-title>
+                </mat-card-header>
+
+                <img  style="width: 370px; height: 300px;" mat-card-image class='post-image' [src]="tile.imagePath" [alt]="tile.name">
+
+                <mat-card-content>
+                  <p> Price : {{tile.price}}  </p>
+                </mat-card-content>
+
+                <mat-card-actions>
+
+                  <!-- <button mat-raised-button color="primary" (click)="buyProduct(tile)" *ngIf="userIsAuthenticated">BUY</button> -->
+                  <!-- <button mat-raised-button color="primary" (click)="viewProduct(tile)">VIEW</button>
+                  <button mat-raised-button color="primary" (click)="removeFromWishlist(tile)">Remove from wishlist</button> -->
+
+                </mat-card-actions>
+
+              </mat-card>
+          </mat-grid-tile>
+      </mat-grid-list>
+      <p *ngIf="wishlist.length == 0">No wishlist till now</p>
+    </mat-card-content>
+  </mat-card>
