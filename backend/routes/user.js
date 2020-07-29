@@ -27,33 +27,6 @@ router.post("/signup", (req, res, next) => {
         address:req.body.address,
         rating: "0"
       });
-      // user
-      //   .save()
-      //   .then(result => { // .randomBytes(16).toString('hex')
-      //     var token = new Token({ _userId: user._id, token: crypto.randomBytes(16).toString('hex') });
-
-      //     token.save(function(err) {
-      //       if(err)
-      //         return res.status(500).send({ msg: err.message });
-      //        // Send the email
-      //        var transporter = nodemailer.createTransport({ service: 'Sendgrid', auth: { user: 'rentscents@gmail.com', pass: '@Rhythm3099#' } });
-      //        var mailOptions = { from: 'rentscents@gmail.com', to: user.email, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/confirmation\/' + token.token + '.\n' };
-      //        transporter.sendMail(mailOptions, function (err) {
-      //            if (err) { return res.status(500).send({ msg: err.message }); }
-      //            res.status(200).send('A verification email has been sent to ' + user.email + '.');
-      //        });
-      //     })
-      //     res.status(201).json({
-      //       message: "User created!",
-      //       result: result
-      //     });
-      //   })
-      //   .catch(err => {
-      //     // res.status(500).json({
-      //     //   error: err
-      //     // });
-      //   });
-      //console.log('still here?');
 
       user.save(function (err) {
         if (err) { return res.status(201).json({ message: err.message }); }
@@ -85,35 +58,10 @@ router.post("/signup", (req, res, next) => {
       });
 
     })
-    // const user = new User({
-    //   email: req.body.email,
-    //   password: hash,
-    //   userName: req.body.userName,
-    //   number:req.body.number,
-    //   address:req.body.address,
-    //   rating: "0"
-    // });
-    // user
-    //   .save()
-    //   .then(result => {
-    //     res.status(201).json({
-    //       message: "User created!",
-    //       result: result
-    //     });
-    //   })
-    //   .catch(err => {
-    //     res.status(500).json({
-    //       error: err
-    //     });
-    //   });
+    
   });
 });
 
-// router.put("updateprofile", (req,res,next) => {
-//   bcrypt.hash(req.body.password,10).then(hash => {
-
-//   })
-// })
 
 router.post("/login", (req,res,next) => {
   let fetchedUser;
@@ -121,7 +69,6 @@ router.post("/login", (req,res,next) => {
     .then(user => {
 
       if(!user){
-        //console.log('wrong useremail part');
         return res.status(201).json({
           token:null,
           userId: null,
@@ -146,17 +93,7 @@ router.post("/login", (req,res,next) => {
       console.log('wehere i am supposed to be');
       return bcrypt.compare(req.body.password, user.password);
     })
-    // .catch(error => {
-    //   console.log('here???  ', error);
-
-    //   res.json(error);
-    // })
-
-    // console.log('i am here', );
-    // bcrypt.compare(req.body.password, fetchedUser.password)
     .then(result => {
-
-
       if(!result) {
         fetchedUser = null;
         return res.status(201).json({
@@ -169,12 +106,6 @@ router.post("/login", (req,res,next) => {
         });
       }
 
-      //console.log(fetchedUser);
-      // ****************************************
-      // if(!fetchedUser.isVerified)
-      //   return res.json();
-
-      // ****************************************
        user_id = "" + fetchedUser._id;
        user_name = "" + fetchedUser.userName;
        user_email = "" + fetchedUser.email;
@@ -191,33 +122,17 @@ router.post("/login", (req,res,next) => {
       console.log('in the user route');
     })
     .catch(err => {
-      //res.json(err);
+
     });
 });
-
-// router.get("/checkuser/:email", (req,res,next) => {
-//   let em = req.params.email;
-//   console.log('parasite');
-
-//   console.log(User.findOne({email: em}).count());
-// })
 
 router.get("/:userEmail", (req,res,next) => {
   const email = req.params.userEmail;
   User.findOne({email: email})
   .exec()
   .then(doc => {
-      //console.log(doc, "hii");
       res.status(200).json(doc);
     })
-  //   .catch(err => console.log(err));
-  // User.findOne({email: email}).toArray((err,user) => {
-  //   if(err){
-  //     console.log(err);
-  //     return false;
-  //   }
-  //   res.json(user);
-  // });
 })
 
 router.get("/", (req, res, next) => {
@@ -255,13 +170,6 @@ router.put("/updateuser/:id", (req,res,next) => {
     console.log('the error is ', err);
   });
   console.log('body that is sent ', req.body);
-
-  // User.findByIdAndUpdate({_id: id}, user,{new: true}).then(newuser => {
-  //   console.log(newuser);
-  //   res.json(newuser);
-  // }).catch(err => {
-  //   res.json(err);
-  // })
 })
 
 router.post("/sendemail", (req,res,next) => {
@@ -307,8 +215,6 @@ router.post("/sendemail", (req,res,next) => {
   });
 });
 
-// ********************************************************************** 
-
 router.post("/sendpersonalemail", (req,res,next) => {
   let transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -350,8 +256,6 @@ router.post("/sendpersonalemail", (req,res,next) => {
     }
   });
 });
-
-// ********************************************************************** 
 
 
 router.get("/confirmation/:token", (req,res,next) => {

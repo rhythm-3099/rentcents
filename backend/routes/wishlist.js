@@ -12,23 +12,9 @@ router.get("/", (req,res,next) => {
         docs: docs
       });
     });
-  // res.status(200).json({
-  //   message: 'done!'
-  // })
-
 });
 
 router.get("/:id", (req,res,next) => {
-  // Wishlist.findOne({person.id: }).
-  //   populate('person')
-  //   .populate('products')
-  //   .then(wishlist => {
-  //   res.status(200).json({
-  //     message: 'wishlist fetched successfully',
-  //     wishlist: wishlist
-  //   });
-  // });
-
   Wishlist.findOne({person: req.params.id})
     .then(docs => {
       if(docs){
@@ -75,16 +61,6 @@ router.put('/:id', function(req,res) {
 });
 
 router.get("/expanded/:id", (req,res,next) => {
-  // Wishlist.findOne({person.id: }).
-  //   populate('person')
-  //   .populate('products')
-  //   .then(wishlist => {
-  //   res.status(200).json({
-  //     message: 'wishlist fetched successfully',
-  //     wishlist: wishlist
-  //   });
-  // });
-
   Wishlist.findOne({person: req.params.id})
     .populate('products')
     .then(docs => {

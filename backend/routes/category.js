@@ -5,16 +5,12 @@ const Product = require("../models/product");
 
 const router = express.Router();
 
+// fetching vehicle category products
 router.get("/vehicle", (req,res,next) => {
   console.log('req.query',req.query);
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
   let newCount;
-  // Product.find({ "main_category": { $eq: "Vehicles" } }).exec(function (err, results) {
-  //   // var newCount = results.length;
-  //   // console.log(newCount);
-
-  // });
   const postQuery = Product.find({ "main_category": { $eq: "Vehicles" } });
   console.log('hiiiiiii');
 
@@ -39,6 +35,7 @@ router.get("/vehicle", (req,res,next) => {
     });
 });
 
+// fetching realestate category products
 router.get("/realestate", (req,res,next) => {
   console.log('req.query',req.query);
   const pageSize = +req.query.pagesize;
@@ -64,6 +61,7 @@ router.get("/realestate", (req,res,next) => {
     });
 });
 
+// fetching electronics category products
 router.get("/electronics", (req,res,next) => {
   console.log('req.query',req.query);
   const pageSize = +req.query.pagesize;
@@ -89,6 +87,7 @@ router.get("/electronics", (req,res,next) => {
     });
 });
 
+// fetching sports category products
 router.get("/sports", (req,res,next) => {
   console.log('req.query',req.query);
   const pageSize = +req.query.pagesize;
@@ -114,6 +113,7 @@ router.get("/sports", (req,res,next) => {
     });
 });
 
+// fetching furniture category products
 router.get("/furniture", (req,res,next) => {
   console.log('req.query',req.query);
   const pageSize = +req.query.pagesize;
@@ -139,6 +139,7 @@ router.get("/furniture", (req,res,next) => {
     });
 });
 
+// fetching books category products
 router.get("/books", (req,res,next) => {
   console.log('req.query',req.query);
   const pageSize = +req.query.pagesize;
@@ -164,6 +165,7 @@ router.get("/books", (req,res,next) => {
     });
 });
 
+// fetching hobby category products
 router.get("/hobby", (req,res,next) => {
   console.log('req.query',req.query);
   const pageSize = +req.query.pagesize;
@@ -189,6 +191,7 @@ router.get("/hobby", (req,res,next) => {
     });
 });
 
+// fetching educational category products
 router.get("/educational", (req,res,next) => {
   console.log('req.query',req.query);
   const pageSize = +req.query.pagesize;
@@ -214,6 +217,7 @@ router.get("/educational", (req,res,next) => {
     });
 });
 
+// fetching clothing category products
 router.get("/clothing", (req,res,next) => {
   console.log('req.query',req.query);
   const pageSize = +req.query.pagesize;
@@ -239,6 +243,7 @@ router.get("/clothing", (req,res,next) => {
     });
 });
 
+// fetching others category products
 router.get("/others", (req,res,next) => {
   console.log('req.query',req.query);
   const pageSize = +req.query.pagesize;

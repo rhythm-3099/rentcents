@@ -3,11 +3,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
-//const postsRoutes = require("./routes/posts");
 const userRoutes = require("./routes/user");
 const productRoutes = require("./routes/product");
 const paymenttRoutes = require("./routes/payment");
-
 const categoryRoutes = require("./routes/category");
 const wishlistRoutes = require("./routes/wishlist");
 const extraRoutes = require("./routes/extra");
@@ -51,4 +49,5 @@ app.use("/api/category",categoryRoutes);
 app.use("/api/payment",paymenttRoutes);
 app.use("/api/wishlist",wishlistRoutes);
 app.use("/api/extra",extraRoutes);
+
 module.exports = app;

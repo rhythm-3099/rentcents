@@ -128,30 +128,6 @@ routers.get('/paymentDetails/:id',(req,res,next)=>{
     })
     .catch(err => console.log(err));
 
-
-  // console.log("start");
-  /*let id_ = req.param("id");
-  // console.log(id_);
-  MongoClient.connect('mongodb://localhost:27017/renting_system', function(err, db) {
-
-      var users = null;
-      assert.equal(err, null);
-      var db1 = db.db('renting_system');
-          var cursor = db1.collection('payment').find();
-          cursor.forEach(
-          function(doc) {
-              // console.log(doc);
-              if(doc.id == id_)
-                  users = doc;
-                  console.log(users);
-           },
-          function(err) {
-              if(err) return err;
-              db.close();
-             res.json(users);
-          }
-      );
-  });*/
 });
 
 module.exports = routers;
