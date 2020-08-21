@@ -17,3 +17,16 @@ This is my project for the course Software Engineering. We have created a protot
 ## Tools and Technologies used
 
 * MEAN Stack
+
+## Contribution
+
+#### Backend Team
+
+* Akash Jain
+* Rhythm Patel
+
+#### Frontend Team
+
+* Chintan Ilasariya
+* Yogesh Prajapati
+* Rushabh Gajab
